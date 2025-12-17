@@ -1,0 +1,94 @@
+---
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const title = t("seo.hero.title", i18n);
+const lead = t("seo.hero.lead", i18n);
+const h2 = t("seo.hero.h2", i18n);
+const p1 = t("seo.hero.p1", i18n);
+const li1 = t("seo.hero.li1", i18n);
+const li2 = t("seo.hero.li2", i18n);
+const li3 = t("seo.hero.li3", i18n);
+const p2 = t("seo.hero.p2", i18n);
+---
+
+<main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+  <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+    {title}
+  </h1>
+  <p class="text-xl text-center max-w-3xl mx-auto mb-16">
+    {lead}
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div class="space-y-6">
+      <h2 class="text-3xl font-bold text-neutral-800">
+        {h2}
+      </h2>
+      <p class="text-neutral-600 leading-relaxed">
+        {p1}
+      </p>
+      <ul class="space-y-3">
+        <li class="flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-[#FF8A00]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          <span class="text-neutral-700">{li1}</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-[#FF8A00]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          <span class="text-neutral-700">{li2}</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-[#FF8A00]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          <span class="text-neutral-700">{li3}</span>
+        </li>
+      </ul>
+      <p class="text-neutral-600 leading-relaxed" set:html={p2} />
+    </div>
+    <div
+      class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75"
+    >
+      <svg
+        class="w-32 h-32 text-[#FF8A00] opacity-50"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l.5 1.539a1 1 0 00.95.69h1.619c.969 0 1.371 1.24.588 1.81l-1.31.953a1 1 0 00-.364 1.118l.5 1.539c.3.921-.755 1.688-1.538 1.118l-1.31-.953a1 1 0 00-1.175 0l-1.31.953c-.783.57-1.838-.197-1.539-1.118l.5-1.539a1 1 0 00-.364-1.118l-1.31-.953c-.783-.57-.38-1.81.588-1.81h1.619a1 1 0 00.95-.69l.5-1.539z"
+        ></path>
+      </svg>
+    </div>
+  </div>
+</main>

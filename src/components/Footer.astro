@@ -1,0 +1,153 @@
+---
+import { Image } from "astro:assets";
+import logoGanex from "../assets/logo-ganex.svg";
+import { Icon } from "astro-icon/components";
+import { pageHref } from "../lib/site";
+
+import { getSite } from "../lib/site";
+import { getI18nDict, t } from "../lib/i18n";
+
+interface Props {
+  lang: string;
+}
+
+const { lang = "es" } = Astro.props as Props;
+
+const site = await getSite(lang);
+const dict = await getI18nDict(lang);
+
+const footer = site?.data.footer ?? {};
+const social = site?.data.social ?? [];
+
+const navLabel = t("footer.nav_label", dict);
+const socialLabel = t("footer.social_label", dict);
+const copyrightText = t("footer.copyright", dict) || site?.data.ogImageAlt;
+const systemStatus = t("footer.system_status", dict);
+
+const year = new Date().getFullYear();
+---
+
+<footer class="bg-white border-t border-neutral-100">
+  <div class="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <div class="flex flex-col gap-6">
+        <a href={`/${lang}`} class="w-fit">
+          <Image src={logoGanex} alt="Ganex" width={180} />
+        </a>
+        <p class="text-neutral-600">
+          {site.data.defaultDescription}
+        </p>
+        {
+          social.length > 0 && (
+            <nav aria-label={socialLabel}>
+              <ul class="flex gap-3">
+                {(Array.isArray(social) ? social : []).map((s) => (
+                  <li>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={s.name}
+                      class="w-10 h-10 rounded-full bg-neutral-50 flex items-center justify-center
+                               text-neutral-500 hover:bg-[#FF8A00] hover:text-white transition-colors"
+                    >
+                      <Icon name={s.icon} width="20" height="20" />
+                      <span class="sr-only">{s.name}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
+      </div>
+
+      <div class="md:col-span-1">
+        <h3
+          class="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-4"
+        >
+          {
+            t("footer.services_label", dict) ??
+              t("home.services.tag", dict) ??
+              "Servicios"
+          }
+        </h3>
+        <ul class="space-y-3">
+          {
+            (site.data.services ?? []).map((s) => (
+              <li>
+                <a
+                  href={`/${lang}/${s.slug}`}
+                  class="text-sm text-neutral-600 hover:text-[#FF8A00]"
+                >
+                  {s.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-1">
+        <h3
+          class="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-4"
+        >
+          {t("footer.company_label", dict)}
+        </h3>
+        <ul class="space-y-3">
+          {
+            (site.data.nav ?? []).map((n) => (
+              <li>
+                <a
+                  href={n.href ?? (n.slug ? `/${lang}/${n.slug}` : `/${lang}`)}
+                  class="text-sm text-neutral-600 hover:text-[#FF8A00]"
+                >
+                  {n.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="md:col-span-1 md:justify-self-end">
+        <h3
+          class="text-sm font-bold uppercase tracking-wider text-neutral-500 mb-4"
+        >
+          {t("footer.legal_label", dict) ?? navLabel}
+        </h3>
+        <ul class="space-y-3">
+          {
+            footer.menu?.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  class="text-sm text-neutral-600 hover:text-[#FF8A00]"
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="border-t border-neutral-100 bg-black">
+    <div
+      class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row justify-between items-center gap-4"
+    >
+      <p class="text-neutral-400 text-sm">
+        © {year}
+        {copyrightText}
+      </p>
+      <div class="flex gap-2 items-center">
+        <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+        <span class="text-xs font-medium text-neutral-300">
+          {systemStatus}
+        </span>
+      </div>
+    </div>
+  </div>
+</footer>

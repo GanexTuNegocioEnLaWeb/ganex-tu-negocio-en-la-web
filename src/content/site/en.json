@@ -1,0 +1,23 @@
+{
+  "locale": "en",
+  "defaultTitle": "Ganex — Digital studio: custom development, UI/UX & branding",
+  "defaultDescription": "We are Ganex, a digital studio specialized in custom development, UI/UX design and strategic branding.",
+  "ogImageAlt": "Ganex: digital studio for development, UI/UX and branding",
+  "services": [
+    { "title": "Web Development", "slug": "services/web-development" },
+    { "title": "Mobile Apps", "slug": "services/app-development" },
+    { "title": "Digital Marketing", "slug": "services/digital-marketing" },
+    { "title": "SEO", "slug": "services/seo" },
+    { "title": "AI Chatbots", "slug": "services/ai-chatbots" }
+  ],
+  "nav": [{ "label": "About Us", "slug": "about-us" }],
+  "footer": {
+    "copyright": "© Ganex",
+    "nav_label": "Navegación del pie",
+    "social_label": "Enlaces sociales",
+    "menu": [
+      { "label": "Privacy", "href": "/en/privacy" },
+      { "label": "Terms", "href": "/en/terms" }
+    ]
+  }
+}

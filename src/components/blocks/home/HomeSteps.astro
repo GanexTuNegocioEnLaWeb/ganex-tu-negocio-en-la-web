@@ -1,0 +1,324 @@
+---
+import { Image } from "astro:assets";
+import stepImage1 from "../../../assets/steps/1.svg";
+import stepImage2 from "../../../assets/steps/2.svg";
+import stepImage3 from "../../../assets/steps/3.svg";
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const s1Tag = t("home.steps.s1.tag", i18n);
+const s1TitlePre = t("home.steps.s1.title_pre", i18n);
+const s1TitleHighlight = t("home.steps.s1.title_highlight", i18n);
+const s1CompanyDesc = t("home.steps.s1.company_desc", i18n);
+const missionTitle = t("home.steps.s1.mission_title", i18n);
+const missionText = t("home.steps.s1.mission_text", i18n);
+const visionTitle = t("home.steps.s1.vision_title", i18n);
+const visionText = t("home.steps.s1.vision_text", i18n);
+const s2Tag = t("home.steps.s2.tag", i18n);
+const s2TitlePre = t("home.steps.s2.title_pre", i18n);
+const s2TitleHighlight = t("home.steps.s2.title_highlight", i18n);
+const s2TitlePost = t("home.steps.s2.title_post", i18n);
+const s2Items = t("home.steps.s2.items", i18n) as string[];
+const s2Btn = t("home.steps.s2.btn", i18n);
+const s3Tag = t("home.steps.s3.tag", i18n);
+const s3TitlePre = t("home.steps.s3.title_pre", i18n);
+const s3TitleHighlight = t("home.steps.s3.title_highlight", i18n);
+const s3Desc = t("home.steps.s3.desc", i18n);
+const s3CtaText = t("home.steps.s3.cta_text", i18n);
+---
+
+<section class="relative py-24 overflow-hidden bg-white">
+  <div
+    class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-orange-100 rounded-full blur-3xl -z-10 opacity-50 animate-pulse-slow"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-emerald-100 rounded-full blur-3xl -z-10 opacity-50 animate-pulse-slow"
+  >
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+    <!-- Step 1 -->
+    <div
+      class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 scroll-reveal group"
+    >
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative transform transition-transform duration-500 group-hover:scale-105"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-tr from-orange-500 to-yellow-400 rounded-full blur-2xl opacity-20 animate-blob"
+          >
+          </div>
+          <Image
+            src={stepImage1}
+            alt={t("home.steps.s1.img_alt", i18n) ??
+              "Misión, Visión y Valores de Ganex"}
+            class="relative w-full h-auto drop-shadow-xl"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+          >{s1Tag}</span
+        >
+        <h3
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6 leading-tight"
+        >
+          {s1TitlePre}
+          <span class="text-[#FF8A00]">{s1TitleHighlight}</span>
+        </h3>
+        <p class="text-lg text-neutral-600 mb-8 leading-relaxed">
+          {s1CompanyDesc}
+        </p>
+
+        <div class="space-y-6">
+          <div
+            class="flex gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors duration-300 cursor-default"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-white border border-orange-100 shadow-sm flex items-center justify-center shrink-0 text-[#FF8A00]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+              >
+            </div>
+            <div>
+              <h4 class="font-bold text-neutral-800 text-lg">{missionTitle}</h4>
+              <p class="text-neutral-600">
+                {missionText}
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors duration-300 cursor-default"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-white border border-orange-100 shadow-sm flex items-center justify-center shrink-0 text-[#FF8A00]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                ></path></svg
+              >
+            </div>
+            <div>
+              <h4 class="font-bold text-neutral-800 text-lg">{visionTitle}</h4>
+              <p class="text-neutral-600">
+                {visionText}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2 -->
+    <div
+      class="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-24 scroll-reveal group"
+    >
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative transform transition-transform duration-500 group-hover:scale-105"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-tr from-emerald-500 to-teal-400 rounded-full blur-2xl opacity-20 animate-blob animation-delay-2000"
+          >
+          </div>
+          <Image
+            src={stepImage2}
+            alt={t("home.steps.s2.img_alt", i18n) ?? "Desarrollo confiable"}
+            class="relative w-full h-auto drop-shadow-xl"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class="text-emerald-600 font-bold tracking-wider uppercase text-sm mb-2 block"
+          >{s2Tag}</span
+        >
+        <h3
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6 leading-tight"
+        >
+          {s2TitlePre}
+          <span class="text-emerald-600">{s2TitleHighlight}</span>
+          {s2TitlePost}
+        </h3>
+        <ul class="space-y-4">
+          {
+            s2Items.map((item) => (
+              <li class="flex items-center gap-4 text-neutral-700 p-3 rounded-lg hover:bg-emerald-50 transition-colors duration-300">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <span class="font-medium">{item}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <a
+          href="#soporte"
+          class="inline-block mt-10 px-8 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-200"
+        >
+          {s2Btn}
+        </a>
+      </div>
+    </div>
+
+    <!-- Step 3 -->
+    <div
+      class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 scroll-reveal group"
+    >
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative transform transition-transform duration-500 group-hover:scale-105"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-tr from-blue-500 to-indigo-400 rounded-full blur-2xl opacity-20 animate-blob animation-delay-4000"
+          >
+          </div>
+          <Image
+            src={stepImage3}
+            alt={t("home.steps.s3.img_alt", i18n) ?? "Ecosistema digital"}
+            class="relative w-full h-auto drop-shadow-xl"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block"
+          >{s3Tag}</span
+        >
+        <h3
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6 leading-tight"
+        >
+          {s3TitlePre}
+          <span class="text-blue-600">{s3TitleHighlight}</span>
+        </h3>
+        <p class="text-lg text-neutral-600 mb-6 leading-relaxed">
+          {s3Desc}
+        </p>
+        <p class="text-neutral-600 mb-8 flex items-center gap-2">
+          {t("home.steps.s3.cta_pre", i18n) ?? "¿Tienes un proyecto en mente?"}
+          <a
+            href="#soporte"
+            class="text-blue-600 font-bold hover:underline flex items-center gap-1"
+          >
+            {s3CtaText}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+            >
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".scroll-reveal").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
+<style>
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+  .animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

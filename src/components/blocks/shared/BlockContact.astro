@@ -1,0 +1,325 @@
+---
+import { t } from "../../../lib/i18n";
+import { getSite } from "../../../lib/site";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const tag = t("blocks.contact.tag", i18n);
+const title = t("blocks.contact.title", i18n);
+const desc = t("blocks.contact.desc", i18n);
+const emailLabel = t("blocks.contact.email_label", i18n);
+const phoneLabel = t("blocks.contact.phone_label", i18n);
+const scheduleText = t("blocks.contact.schedule", i18n);
+
+// Form translations
+const fName = t("blocks.contact.form.name", i18n);
+const fNamePh = t("blocks.contact.form.name_placeholder", i18n);
+const fLastname = t("blocks.contact.form.lastname", i18n);
+const fLastnamePh = t("blocks.contact.form.lastname_placeholder", i18n);
+const fEmail = t("blocks.contact.form.email", i18n);
+const fEmailPh = t("blocks.contact.form.email_placeholder", i18n);
+const fPhone = t("blocks.contact.form.phone", i18n);
+const fPhonePh = t("blocks.contact.form.phone_placeholder", i18n);
+const fCompany = t("blocks.contact.form.company", i18n);
+const fCompanyPh = t("blocks.contact.form.company_placeholder", i18n);
+const fMessage = t("blocks.contact.form.message", i18n);
+const fMessagePh = t("blocks.contact.form.message_placeholder", i18n);
+const fSubmit = t("blocks.contact.form.submit", i18n);
+const fSending = t("blocks.contact.form.sending", i18n);
+const fSuccess = t("blocks.contact.form.success", i18n);
+const fError = t("blocks.contact.form.error", i18n);
+const fFastResponse = t("blocks.contact.form.fast_response", i18n);
+
+const siteData = await getSite(t("locale", i18n));
+const sectionId = t("nav.contact_id", i18n);
+---
+
+<section id={sectionId} class="relative bg-white overflow-hidden py-24">
+  <!-- Background decoration -->
+  <div class="absolute top-0 left-0 w-full h-full bg-neutral-50 -z-10"></div>
+  <div
+    class="absolute top-0 right-0 w-1/2 h-full bg-[#FFF4E5] rounded-l-full blur-3xl opacity-60 -z-10"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 w-96 h-96 bg-emerald-50 rounded-full blur-3xl opacity-60 -z-10"
+  >
+  </div>
+
+  <div
+    class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-start"
+  >
+    <!-- Left Column: Info -->
+    <div>
+      <span
+        class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block bg-orange-100 w-fit px-3 py-1 rounded-full"
+        >{tag}</span
+      >
+      <h2
+        class="text-4xl md:text-5xl font-extrabold text-neutral-800 mb-6 leading-tight"
+      >
+        {title.split(" ").slice(0, 2).join(" ")}
+        <span class="text-[#FF8A00]">{title.split(" ").slice(2).join(" ")}</span
+        >
+      </h2>
+      <p class="text-lg text-neutral-600 mb-12 leading-relaxed">
+        {desc}
+      </p>
+
+      <div class="space-y-8">
+        <div
+          class="flex items-start gap-5 p-6 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-14 h-14 bg-orange-50 rounded-full flex items-center justify-center text-[#FF8A00] shrink-0"
+          >
+            <svg
+              class="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              ></path></svg
+            >
+          </div>
+          <div>
+            <h4 class="font-bold text-neutral-800 text-lg mb-1">
+              {emailLabel}
+            </h4>
+            {
+              siteData.data?.company?.email ? (
+                <a
+                  href={`mailto:${siteData.data.company.email}`}
+                  class="text-neutral-600 hover:text-[#FF8A00] transition-colors block text-lg"
+                >
+                  {siteData.data.company.email}
+                </a>
+              ) : null
+            }
+            <span class="text-xs text-neutral-400 mt-1 block"
+              >{fFastResponse}</span
+            >
+          </div>
+        </div>
+
+        <div
+          class="flex items-start gap-5 p-6 bg-white rounded-2xl shadow-sm border border-neutral-100 hover:shadow-md transition-shadow"
+        >
+          <div
+            class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-600 shrink-0"
+          >
+            <svg
+              class="w-7 h-7"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+              ></path></svg
+            >
+          </div>
+          <div>
+            <h4 class="font-bold text-neutral-800 text-lg mb-1">
+              {phoneLabel}
+            </h4>
+            {
+              siteData.data?.company?.phoneLink &&
+              siteData.data?.company?.phone ? (
+                <a
+                  href={siteData.data.company.phoneLink}
+                  class="text-neutral-600 hover:text-[#FF8A00] transition-colors block text-lg"
+                >
+                  {siteData.data.company.phone}
+                </a>
+              ) : null
+            }
+            <span class="text-xs text-neutral-400 mt-1 block"
+              >{scheduleText}</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Form -->
+    <div
+      class="bg-white rounded-4xl shadow-2xl p-8 sm:p-10 border border-neutral-100 relative overflow-hidden"
+    >
+      <div
+        class="absolute top-0 right-0 w-20 h-20 bg-orange-100 rounded-bl-full -mr-10 -mt-10 z-0"
+      >
+      </div>
+
+      <form id="contact-form" class="space-y-6 relative z-10">
+        <h3 class="text-2xl font-bold text-neutral-800 mb-6">
+          {
+            t("blocks.contact.form.message", i18n)
+              ? t("blocks.contact.form.message", i18n).replace(
+                  "Mensaje",
+                  "Envíanos un mensaje"
+                )
+              : "Envíanos un mensaje"
+          }
+        </h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-neutral-700 ml-1"
+              >{fName}</label
+            >
+            <input
+              name="nombre"
+              required
+              placeholder={fNamePh}
+              class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+            />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-neutral-700 ml-1"
+              >{fLastname}</label
+            >
+            <input
+              name="apellido"
+              placeholder={fLastnamePh}
+              class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+            />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-neutral-700 ml-1"
+              >{fEmail}</label
+            >
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder={fEmailPh}
+              class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+            />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-neutral-700 ml-1"
+              >{fPhone}</label
+            >
+            <input
+              type="tel"
+              name="telefono"
+              placeholder={fPhonePh}
+              class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+            />
+          </div>
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-neutral-700 ml-1"
+            >{fCompany}</label
+          >
+          <input
+            name="empresa"
+            placeholder={fCompanyPh}
+            class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+          />
+        </div>
+
+        <div class="space-y-2">
+          <label class="block text-sm font-semibold text-neutral-700 ml-1"
+            >{fMessage}</label
+          >
+          <textarea
+            name="mensaje"
+            rows="4"
+            required
+            placeholder={fMessagePh}
+            class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="w-full bg-[#FF8A00] text-white font-bold py-4 rounded-xl hover:bg-[#e67e00] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-200 flex items-center justify-center gap-2 group"
+        >
+          <span>{fSubmit}</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 transition-transform group-hover:translate-x-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M13 5l7 7-7 7M5 12h14"></path>
+          </svg>
+        </button>
+        <p
+          id="form-message"
+          class="text-center text-sm mt-4 text-neutral-500 min-h-5"
+          data-sending={fSending}
+          data-success={fSuccess}
+          data-error={fError}
+        >
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  const form = document.getElementById("contact-form");
+  const messageEl = document.getElementById("form-message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const sendingMsg = messageEl.dataset.sending;
+    const successMsg = messageEl.dataset.success;
+    const errorMsg = messageEl.dataset.error;
+
+    messageEl.textContent = sendingMsg;
+    messageEl.className = "mt-4 text-center text-sm text-neutral-600";
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const payload = {
+        nombre: `${data.nombre} ${data.apellido || ""}`.trim(),
+        email: data.email,
+        telefono: data.telefono,
+        empresa: data.empresa,
+        mensaje: data.mensaje,
+      };
+
+      const response = await fetch("/api/contacto", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Error al enviar el mensaje");
+      }
+
+      messageEl.textContent = successMsg;
+      messageEl.className =
+        "mt-4 text-center text-sm text-green-600 font-medium";
+      form.reset();
+    } catch (error) {
+      console.error(error);
+      messageEl.textContent = errorMsg;
+      messageEl.className = "mt-4 text-center text-sm text-red-600";
+    }
+  });
+</script>

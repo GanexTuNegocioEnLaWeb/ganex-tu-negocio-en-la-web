@@ -1,0 +1,19 @@
+{
+  "siteName": "Ganex",
+  "baseUrl": "https://www.ganexbo.com",
+  "themeColor": "#0B0B0B",
+  "social": [
+    {
+      "name": "facebook",
+      "url": "https://www.facebook.com/ganexbo",
+      "icon": "simple-icons:facebook"
+    }
+  ],
+  "ogImage": "/og-image.jpg",
+  "noindex": false,
+  "company": {
+    "email": "hola@ganexbo.com",
+    "phone": "+591 70930853",
+    "phoneLink": "tel:+59170930853"
+  }
+}

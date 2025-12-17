@@ -1,0 +1,11 @@
+{
+  "blocks": [
+    { "type": "home-hero" },
+    { "type": "home-services" },
+    { "type": "home-portfolio" },
+    { "type": "home-phrase" },
+    { "type": "steps" },
+    { "type": "home-location" },
+    { "type": "block-contact" }
+  ]
+}

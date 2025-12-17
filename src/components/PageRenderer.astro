@@ -1,0 +1,30 @@
+---
+import { BLOCK_REGISTRY } from "./blocks/index";
+
+interface Props {
+  lang: string;
+  blocks: Array<{ type: string; props?: Record<string, any> }>;
+  i18n: Record<string, string>;
+}
+
+const { lang = "es", blocks = [], i18n } = Astro.props as Props;
+
+const resolvedBlocks = await Promise.all(
+  blocks.map(async (block) => {
+    const componentModule = await BLOCK_REGISTRY[block.type];
+    const Cmp =
+      componentModule && componentModule.default
+        ? componentModule.default
+        : null;
+    return { Cmp, props: block.props };
+  })
+);
+---
+
+{
+  resolvedBlocks.map(({ Cmp, props }, i) => {
+    return Cmp ? (
+      <Cmp lang={lang} i18n={i18n} {...(props || {})} key={i} />
+    ) : null;
+  })
+}

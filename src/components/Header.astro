@@ -1,0 +1,416 @@
+---
+import { Image } from "astro:assets";
+import logoGanexWhite from "../assets/logo-ganex-white.svg";
+import logoGanex from "../assets/logo-ganex.svg";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
+import { Icon } from "astro-icon/components";
+
+import { getSite } from "../lib/site";
+import { getI18nDict, t } from "../lib/i18n";
+
+interface Props {
+  lang: string;
+  slug: string;
+  variant?: "transparent" | "orange";
+  class?: string;
+}
+
+const {
+  lang = "es",
+  slug = "home",
+  variant = "transparent",
+  class: className,
+} = Astro.props as Props;
+
+const bgClass =
+  variant === "orange" ? "bg-gradient-to-br from-[#ff8a00] to-[#ffb25a]" : "";
+
+const site = await getSite(lang);
+const dict = await getI18nDict(lang);
+
+// navegación
+const nav = (site?.data.nav ?? []) as Array<{
+  label: string;
+  slug?: string;
+  href?: string;
+}>;
+
+// servicios (dropdown)
+const services = (site?.data.services ?? []) as Array<{
+  title: string;
+  slug?: string;
+  href?: string;
+}>;
+
+const url = new URL(Astro.url);
+const currentPath = url.pathname;
+
+function hrefFor(item: { slug?: string; href?: string }) {
+  if (item.href) return item.href;
+  if (!item.slug || item.slug === "home") return `/${lang}`;
+  return `/${lang}/${item.slug}`;
+}
+
+const navLabel = t("header.nav", dict);
+const openMenu = t("header.aria.open_menu", dict);
+const closeMenu = t("header.aria.close_menu", dict);
+const cta = t("header.cta", dict);
+const contactAnchor = `#${t("nav.contact_id", dict)}`;
+const sectionServicesId = t("nav.services_id", dict);
+---
+
+<header class:list={["relative", bgClass, className]} id="primary-header">
+  <section
+    class="max-w-7xl mx-auto flex items-center justify-between py-6 text-white px-12"
+  >
+    <!-- Logo -->
+    <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
+      <Image
+        src={logoGanexWhite}
+        alt={site?.data.ogImageAlt || "Ganex"}
+        width={240}
+        height={160}
+        class="drop-shadow-lg"
+      />
+    </a>
+
+    <!-- Desktop menu -->
+    <nav
+      class="hidden md:flex gap-10 items-center"
+      aria-label={navLabel}
+      role="navigation"
+    >
+      <!-- Servicios dropdown -->
+      <section class="relative group">
+        <a
+          href={`/${lang}#${sectionServicesId}`}
+          class="nav-link text-base font-medium flex items-center gap-1"
+        >
+          {t("nav.services", dict)}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 transition-transform group-hover:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+
+        <div
+          class="absolute top-full left-0 mt-2 bg-white text-neutral-800 shadow-2xl rounded-xl px-2 py-2 flex flex-col min-w-60
+                 opacity-0 scale-95 invisible z-50
+                 transition-all duration-200 ease-out
+                 group-hover:opacity-100 group-hover:scale-100 group-hover:visible border border-neutral-100 origin-top-left"
+        >
+          {
+            services.map((service) => (
+              <a
+                href={hrefFor(service)}
+                class="text-sm text-neutral-600 hover:text-[#FF7A00] hover:bg-orange-50 px-4 py-3 rounded-lg
+                       transition-colors font-medium flex items-center justify-between group/item"
+              >
+                {service.title}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Resto del nav -->
+      {
+        nav.map((item) => {
+          const href = hrefFor(item);
+          const isActive = currentPath === new URL(href, url).pathname;
+
+          return (
+            <a
+              href={href}
+              aria-current={isActive ? "page" : undefined}
+              class={`nav-link text-base font-medium transition-colors ${
+                isActive ? "underline" : "hover:text-white/80"
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <!-- CTA + Lang -->
+    <div class="hidden md:flex items-center gap-4">
+      <a
+        href={`${currentPath}${contactAnchor}`}
+        class="px-6 py-2.5 bg-white text-[#FF7A00] rounded-full font-bold shadow-lg
+               hover:shadow-xl hover:scale-105 transition-all duration-300"
+      >
+        {cta}
+      </a>
+      <LanguageSwitcher lang={lang} slug={slug} />
+    </div>
+
+    <!-- Mobile button -->
+    <button
+      id="menu-btn"
+      class="md:hidden text-white"
+      aria-label={openMenu}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="tabler:menu-2" width="28" height="28" />
+    </button>
+  </section>
+</header>
+
+<div
+  id="secondary-header"
+  class="fixed left-0 w-full bg-white shadow-xl z-40 -top-32 pointer-events-none transition-all"
+>
+  <div class="max-w-7xl mx-auto px-12 py-3 flex items-center justify-between">
+    <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
+      <Image
+        src={logoGanex}
+        alt={site?.data.ogImageAlt || "Ganex"}
+        width={240}
+        height={160}
+        class="drop-shadow-lg"
+      />
+    </a>
+
+    <nav
+      class="hidden md:flex gap-10 items-center"
+      aria-label={navLabel}
+      role="navigation"
+    >
+      <!-- Servicios dropdown -->
+      <section class="relative group">
+        <a
+          href={`/${lang}#${sectionServicesId}`}
+          class="nav-link text-base font-medium flex items-center gap-1"
+        >
+          {t("nav.services", dict)}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 transition-transform group-hover:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
+
+        <div
+          class="absolute top-full left-0 mt-2 bg-white text-neutral-800 shadow-2xl rounded-xl px-2 py-2 flex flex-col min-w-60
+                 opacity-0 scale-95 invisible z-50
+                 transition-all duration-200 ease-out
+                 group-hover:opacity-100 group-hover:scale-100 group-hover:visible border border-neutral-100 origin-top-left"
+        >
+          {
+            services.map((service) => (
+              <a
+                href={hrefFor(service)}
+                class="text-sm text-neutral-600 hover:text-[#FF7A00] hover:bg-orange-50 px-4 py-3 rounded-lg
+                       transition-colors font-medium flex items-center justify-between group/item"
+              >
+                {service.title}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <!-- Resto del nav -->
+      {
+        nav.map((item) => {
+          const href = hrefFor(item);
+          const isActive = currentPath === new URL(href, url).pathname;
+
+          return (
+            <a
+              href={href}
+              aria-current={isActive ? "page" : undefined}
+              class={`nav-link text-base font-medium transition-colors ${
+                isActive ? "underline" : "hover:text-white/80"
+              }`}
+            >
+              {item.label}
+            </a>
+          );
+        })
+      }
+    </nav>
+
+    <div class="hidden md:flex items-center gap-4">
+      <a
+        href={`${currentPath}${contactAnchor}`}
+        class="px-4 py-2 bg-[#FF8A00] text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all"
+      >
+        {cta}
+      </a>
+      <LanguageSwitcher lang={lang} slug={slug} theme="dark" />
+    </div>
+    <!-- Mobile button -->
+    <button
+      id="menu-btn-2"
+      class="md:hidden text-black"
+      aria-label={openMenu}
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+    >
+      <Icon name="tabler:menu-2" width="28" height="28" />
+    </button>
+  </div>
+  <style>
+    #secondary-header .nav-link {
+      color: #171717;
+    }
+    #secondary-header .nav-link::after {
+      background: #ff8a00;
+    }
+    #secondary-header.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</div>
+<!-- Mobile menu -->
+<div
+  id="mobile-menu"
+  class="fixed inset-0 bg-[#FF8A00] flex flex-col items-center justify-center gap-8
+         opacity-0 pointer-events-none transition-opacity z-50"
+>
+  <button
+    id="close-menu"
+    class="absolute top-6 right-6 text-white"
+    aria-label={closeMenu}
+  >
+    <Icon name="tabler:x" width="28" height="28" />
+  </button>
+
+  <a
+    href={`/${lang}#${sectionServicesId}`}
+    class="text-2xl text-white font-medium"
+  >
+    {t("nav.services", dict)}
+  </a>
+
+  {
+    nav.map((item) => (
+      <a
+        href={hrefFor(item)}
+        class="text-2xl text-white font-medium hover:text-neutral-200"
+      >
+        {item.label}
+      </a>
+    ))
+  }
+
+  <LanguageSwitcher lang={lang} slug={slug} />
+</div>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const btn2 = document.getElementById("menu-btn-2");
+  const close = document.getElementById("close-menu");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    menu?.classList.remove("opacity-0", "pointer-events-none");
+    btn?.setAttribute("aria-expanded", "true");
+  });
+
+  close?.addEventListener("click", () => {
+    menu?.classList.add("opacity-0", "pointer-events-none");
+    btn?.setAttribute("aria-expanded", "false");
+  });
+
+   btn2?.addEventListener("click", () => {
+    menu?.classList.remove("opacity-0", "pointer-events-none");
+    btn2?.setAttribute("aria-expanded", "true");
+  });
+
+  close?.addEventListener("click", () => {
+    menu?.classList.add("opacity-0", "pointer-events-none");
+    btn2?.setAttribute("aria-expanded", "false");
+  });
+  const primary = document.getElementById("primary-header");
+  const secondary = document.getElementById("secondary-header");
+  const obs = new IntersectionObserver(
+    (entries) => {
+      const visible = entries[0]?.isIntersecting ?? true;
+      if (!visible) {
+        secondary?.classList.add("top-0");
+        secondary?.classList.remove("pointer-events-none");
+      } else {
+        secondary?.classList.remove("top-0");
+        secondary?.classList.add("pointer-events-none");
+      }
+    },
+    { threshold: 0, rootMargin: "32px 0px 0px 0px" }
+  );
+  if (primary) obs.observe(primary);
+</script>
+
+<style>
+  .nav-link {
+    position: relative;
+    color: white;
+    text-decoration: none;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+  }
+</style>

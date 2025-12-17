@@ -1,0 +1,7 @@
+{
+  "route": "services/web-development",
+  "blocks": [
+    { "type": "web-development-hero" },
+    { "type": "block-contact" }
+  ]
+}

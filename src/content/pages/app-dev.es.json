@@ -1,0 +1,7 @@
+{
+  "route": "servicios/desarrollo-apps",
+  "blocks": [
+    { "type": "app-development-hero" },
+    { "type": "block-contact" }
+  ]
+}

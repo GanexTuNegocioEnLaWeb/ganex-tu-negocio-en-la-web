@@ -1,0 +1,42 @@
+---
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const tag = t("blocks.location.tag", i18n);
+const title = t("blocks.location.title", i18n);
+const desc = t("blocks.location.desc", i18n);
+const mapUrl = t("blocks.location.mapUrl", i18n);
+---
+
+<section id="ubicacion" class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
+    <div class="text-center">
+      <span
+        class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+        >{tag}</span
+      >
+      <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+        {title.split(" ").slice(0, 2).join(" ")}
+        <span class="text-[#FF8A00]">{title.split(" ").slice(2).join(" ")}</span
+        >
+      </h2>
+      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+        {desc}
+      </p>
+    </div>
+  </div>
+
+  <div class="w-full">
+    <div class="w-full h-125 sm:h-150 lg:h-175 relative">
+      <iframe
+        src={mapUrl}
+        width="100%"
+        height="100%"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="absolute inset-0 w-full h-full grayscale-20 hover:grayscale-0 transition-all duration-500"
+      ></iframe>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,326 @@
+{
+  "header": {
+    "nav": "Navigation",
+    "cta": "Contact & Support",
+    "aria": {
+      "open_menu": "Open menu",
+      "close_menu": "Close menu"
+    },
+    "portfolio": {
+      "tag": "Our Portfolio",
+      "title_pre": "Projects that",
+      "title_highlight": "inspire",
+      "desc": "A curated selection of our latest high-performance digital solutions. Quality over quantity.",
+      "see_project": "View project"
+    }
+  },
+  "nav": {
+    "services": "Services",
+    "contact_id": "support",
+    "services_id": "services"
+  },
+  "chatbots": {
+    "hero": {
+      "title": "AI Chatbot Solutions",
+      "lead": "Smart customer service automation and lead generation.",
+      "h2": "The Future of Automated Customer Engagement",
+      "p1": "Integrate cutting-edge Artificial Intelligence into your business to provide instant, personalized responses 24/7. Optimize workflows and free up your team for high-impact strategic tasks.",
+      "li1": "24/7 Automated Customer Support",
+      "li2": "Natural Language Processing (NLP) integration",
+      "li3": "Seamless CRM and Database connectivity"
+    }
+  },
+  "digital": {
+    "hero": {
+      "title": "Digital Marketing Agency",
+      "lead": "Data-driven strategies to boost traffic and conversion rates.",
+      "h2": "Connect with Your Ideal Audience",
+      "p1": "We design and execute performance-based digital marketing campaigns: SEO, SEM, and Social Media Marketing. We manage Google Ads and Meta Ads, optimizing CTR, CPC, and ROI for your business in Bolivia and beyond.",
+      "li1": "Social Media Management (SMM) & Growth",
+      "li2": "PPC Management: Google & Meta Ads (SEM)",
+      "li3": "Marketing Automation and Advanced Analytics"
+    }
+  },
+  "seo": {
+    "hero": {
+      "title": "Professional SEO Services",
+      "lead": "Enhance your search engine visibility and organic reach.",
+      "h2": "Rank Higher Where Your Customers Are",
+      "p1": "90% of online experiences begin with a search engine. We optimize your site for Google's latest algorithms: Technical SEO (crawling, indexing, Core Web Vitals), On-page SEO (semantic tags, content optimization), and Off-page SEO (link building and authority). Drive high-quality organic traffic without the cost-per-click, focusing on Santa Cruz and global markets.",
+      "li1": "Technical SEO Audit & On-Page Optimization",
+      "li2": "Keyword Research and Content Strategy",
+      "li3": "Link Building & Domain Authority Growth",
+      "p2": "We complement our strategy with <a href=\"/en/services/digital-marketing\" class=\"text-[#FF8A00] font-medium hover:underline\">digital marketing</a> and <strong>CTR optimization</strong> through structured data and rich snippets to dominate search results."
+    }
+  },
+  "webdev": {
+    "hero": {
+      "title": "Full-Stack Web Development",
+      "lead": "Custom-built, high-performance websites optimized for growth.",
+      "h2": "Elevate Your Online Presence",
+      "p1": "We build websites that don't just look stunning—they rank and convert. Utilizing Astro, React, and Tailwind CSS, we maximize Core Web Vitals, technical SEO, and accessibility. We implement semantic HTML and rich snippets tailored for the Bolivian and international markets.",
+      "p2": "Our development includes on-page SEO, strategic information architecture, and internal linking to rank for keywords like 'web development in Santa Cruz' and 'top web agency in Bolivia'.",
+      "li1": "Responsive & Modern UI/UX Design",
+      "li2": "Speed Optimization (Core Web Vitals)",
+      "li3": "Custom CMS & E-commerce Integration"
+    }
+  },
+  "appdev": {
+    "hero": {
+      "title": "Mobile App Development",
+      "lead": "Custom mobile and web applications tailored to your needs.",
+      "h2": "Innovation in the Palm of Your Hand",
+      "p1": "We transform your ideas into powerful mobile and web apps using React Native and Flutter, prioritizing performance, user experience (UX), and scalability. We integrate real-time analytics and push notifications for friction-less growth.",
+      "li1": "Native & Hybrid App Development (React Native, Flutter)",
+      "li2": "User-Centric UI/UX Design",
+      "li3": "Ongoing Maintenance and Cloud Scalability"
+    }
+  },
+  "privacy": {
+    "hero": {
+      "title": "Privacy Policy",
+      "lead": "At Ganex, we value your privacy and are committed to protecting your personal data. This policy explains how we collect, use, and safeguard your information.",
+      "email": "Ganex"
+    }
+  },
+  "terms": {
+    "hero": {
+      "title": "Terms of Service",
+      "lead": "Welcome to Ganex. By accessing our website and using our services, you agree to comply with the following Terms of Service.",
+      "email": "Ganex"
+    },
+    "sections": [
+      {
+        "title": "1. Acceptance of Terms",
+        "content": "By browsing our site or using our services, you confirm that you have read and accepted these Terms of Service. If you do not agree, please refrain from using our platform."
+      },
+      {
+        "title": "2. Proper Use of Services",
+        "content": "You agree to use our services responsibly and legally. Specifically, you will not:",
+        "list": [
+          "Violate local, national, or international laws.",
+          "Distribute illegal, offensive, or fraudulent content.",
+          "Attempt unauthorized access to our systems or networks."
+        ],
+        "extra": "We reserve the right to suspend access if misuse is detected."
+      },
+      {
+        "title": "3. Intellectual Property",
+        "content": "All content on this site—including text, images, designs, and code—is the exclusive property of <strong>Ganex</strong> and is protected by intellectual property laws.",
+        "extra": "Reproduction or distribution without express written consent is prohibited."
+      },
+      {
+        "title": "4. Limitation of Liability",
+        "content": "We strive for excellence, but <strong>Ganex</strong> does not guarantee uninterrupted or error-free service.",
+        "extra": "To the extent permitted by law, we are not liable for direct or indirect damages arising from the use of our services."
+      },
+      {
+        "title": "5. Third-Party Links",
+        "content": "Our site may contain links to third-party websites. We are not responsible for their content or privacy practices."
+      },
+      {
+        "title": "6. Modifications",
+        "content": "We reserve the right to update these terms at any time. Changes are effective upon publication."
+      },
+      {
+        "title": "7. Contact Information",
+        "content": "If you have questions regarding these terms, please contact us.",
+        "email_label": "Email:"
+      }
+    ],
+    "last_update": "Last updated:"
+  },
+  "home": {
+    "hero": {
+      "tag": "Your Trusted Technology Partner",
+      "title_pre": "Scale Your Business with",
+      "title_highlight": "Digital Solutions",
+      "desc": "At Ganex, we merge creativity and technology to develop high-performance websites, mobile apps, and SEO strategies that boost visibility, drive organic traffic, and increase conversion rates.",
+      "cta_services": "Explore Services",
+      "cta_meeting": "Book a Meeting",
+      "img_alt": "Digital strategy and web development services by Ganex"
+    },
+    "portfolio": {
+      "tag": "Our Work",
+      "title_pre": "Projects that",
+      "title_highlight": "Deliver Results",
+      "desc": "Showcasing our latest success stories in web and app development.",
+      "see_project": "View project",
+      "items": [
+        {
+          "title": "Megaloblastos",
+          "category": "Political Website",
+          "description": "A strategic web platform for a political center at UAGRM. The site was a key factor in securing their electoral victory.",
+          "image": "/images/portfolio/megaloblastos.jpg",
+          "link": "https://megaloblastos.com"
+        },
+        {
+          "title": "Ecomedical",
+          "category": "Healthcare / Corporate",
+          "description": "A regenerative medicine clinic website in Tarija, serving as a primary channel for patient acquisition and services.",
+          "image": "/images/portfolio/ecomedical.jpg",
+          "link": "https://ecomedicalweb.com"
+        },
+        {
+          "title": "QRaten",
+          "category": "Mobile App / SaaS",
+          "description": "A QR-based attendance tracking app that simplifies records and management through a sleek mobile interface.",
+          "image": "/images/portfolio/qraten.jpg",
+          "link": "https://www.qraten.com"
+        }
+      ]
+    },
+    "phrase": {
+      "welcome": "Welcome",
+      "items": [
+        "to digital success",
+        "to new opportunities",
+        "to innovation",
+        "to digital growth",
+        "to transformation"
+      ],
+      "desc": "We transform your digital presence with expert web development, SEO, and marketing for exceptional UX and solid organic rankings."
+    },
+    "services": {
+      "tag": "Our Expertise",
+      "title_pre": "Solutions that",
+      "title_highlight": "Scale",
+      "title_post": "Your Business",
+      "desc": "From development to marketing, we cover all digital needs so you can focus on growth.",
+      "more": "Learn more",
+      "items": [
+        {
+          "title": "Web Development",
+          "slug": "services/web-development",
+          "description": "Fast, optimized websites built with Astro, React, and Tailwind. We focus on Core Web Vitals and SEO conversion.",
+          "icon": "tabler:code"
+        },
+        {
+          "title": "Mobile Apps",
+          "slug": "services/mobile-apps",
+          "description": "iOS and Android apps developed with React Native and Flutter, focused on UX/UI and scalability.",
+          "icon": "tabler:devices"
+        },
+        {
+          "title": "Digital Marketing",
+          "slug": "services/digital-marketing",
+          "description": "Holistic marketing with SEO, SEM, and SMM. Expert Google Ads and Meta Ads management for higher ROI.",
+          "icon": "tabler:chart-bar"
+        },
+        {
+          "title": "SEO",
+          "slug": "services/seo",
+          "description": "Technical SEO and content optimization: indexing, keywords, and link building to dominate Google rankings.",
+          "icon": "tabler:search"
+        },
+        {
+          "title": "AI Chatbots",
+          "slug": "services/ai-chatbots",
+          "description": "Smart AI Chatbots for automated customer service, integrated across web and social platforms.",
+          "icon": "tabler:message-chatbot"
+        }
+      ]
+    },
+    "steps": {
+      "s1": {
+        "tag": "Our Essence",
+        "title_pre": "More than an agency, your",
+        "title_highlight": "strategic ally",
+        "img_alt": "Ganex Mission, Vision, and Values",
+        "company_desc": "Leading web development, SEO, and digital marketing in Bolivia. High-speed sites with a focus on accessibility and organic positioning.",
+        "mission_title": "Mission",
+        "mission_text": "Driving growth through innovative technological solutions.",
+        "vision_title": "Vision",
+        "vision_text": "To be the benchmark for digital quality and real-world impact."
+      },
+      "s2": {
+        "tag": "Technical Mastery",
+        "title_pre": "Efficient",
+        "title_highlight": "Scalable",
+        "title_post": "Development",
+        "items": [
+          "Modern UI/UX design and development",
+          "E-commerce solutions and online stores",
+          "Custom software and systems",
+          "Digital positioning and optimization"
+        ],
+        "img_alt": "Reliable development",
+        "btn": "Start a Project"
+      },
+      "s3": {
+        "tag": "Proven Results",
+        "title_pre": "Integrated",
+        "title_highlight": "Digital Ecosystem",
+        "desc": "We create solutions that connect brands and users. We don't just deliver code; we deliver value and sustainable growth.",
+        "cta_pre": "Have a project in mind?",
+        "cta_text": "Talk to our experts",
+        "img_alt": "Digital ecosystem illustration"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "intro": "At Ganex, we are passionate about technology and innovation. We help companies in Santa Cruz and throughout Latin America scale via expert web development, SEO, and result-driven mobile apps.",
+      "mission_title": "Our Mission",
+      "mission_text": "To drive our clients' digital transformation through personalized tech solutions, from high-performance websites to AI systems, ensuring quality and measurable results.",
+      "vision_title": "Our Vision",
+      "vision_text": "To be the preferred technology partner in the region, known for turning complex challenges into simple, effective, and visually stunning digital solutions."
+    }
+  },
+  "blocks": {
+    "contact": {
+      "tag": "Contact Us",
+      "title": "Your Next Big Project Starts Here",
+      "desc": "Ready to transform your ideas into digital reality? Tell us your goals, and we'll provide a custom proposal in less than 12 hours.",
+      "email_label": "Email",
+      "phone_label": "Call us",
+      "schedule": "Mon - Sat, 8am - 6pm",
+      "form": {
+        "name": "First Name",
+        "name_placeholder": "Your name",
+        "lastname": "Last Name",
+        "lastname_placeholder": "Your last name",
+        "email": "Email Address",
+        "email_placeholder": "you@company.com",
+        "phone": "Phone Number",
+        "phone_placeholder": "+1 000 000 000",
+        "company": "Company (Optional)",
+        "company_placeholder": "Company name",
+        "message": "Message",
+        "message_placeholder": "Tell us about your project details...",
+        "submit": "Send Message",
+        "sending": "Sending...",
+        "success": "Message sent successfully! We will contact you shortly.",
+        "error": "There was an error sending the message. Please try again.",
+        "fast_response": "Fast response guaranteed"
+      }
+    },
+    "location": {
+      "tag": "Location",
+      "title": "Where to Find Us",
+      "desc": "Visit our offices or contact us to schedule a virtual meeting.",
+      "mapUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30393.558107676796!2d-63.2304007!3d-17.7825414!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e9df56520ef5%3A0x2b5c85fcc274b1d5!2sGanex!5e0!3m2!1ses!2sbo!4v1767725152905!5m2!1ses!2sbo"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Ganex - High-Performance Web Development & SEO Agency",
+      "description": "Empower your business growth with expert web development, mobile apps, SEO, and digital marketing solutions."
+    },
+    "about-us": {
+      "title": "Ganex - Who We Are | Digital Innovation Partner",
+      "description": "Learn more about Ganex, our mission to drive digital transformation, and our commitment to technical excellence."
+    }
+  },
+  "footer": {
+    "services_label": "Services",
+    "company_label": "Company",
+    "legal_label": "Legal",
+    "nav_label": "Footer navigation",
+    "social_label": "Social links",
+    "copyright": "© Ganex",
+    "system_status": "Systems operational"
+  },
+  "locale": "en"
+}

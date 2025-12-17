@@ -1,0 +1,7 @@
+{
+  "route": "services/seo",
+  "blocks": [
+    { "type": "seo-hero" },
+    { "type": "block-contact" }
+  ]
+}

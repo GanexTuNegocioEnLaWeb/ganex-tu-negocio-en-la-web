@@ -1,0 +1,108 @@
+---
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const title = t("digital.hero.title", i18n);
+const lead = t("digital.hero.lead", i18n);
+const h2 = t("digital.hero.h2", i18n);
+const p1 = t("digital.hero.p1", i18n);
+const li1 = t("digital.hero.li1", i18n);
+const li2 = t("digital.hero.li2", i18n);
+const li3 = t("digital.hero.li3", i18n);
+---
+
+<main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+  <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+    {title}
+  </h1>
+  <p class="text-xl text-center max-w-3xl mx-auto mb-16">
+    {lead}
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+    <div
+      class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75 order-2 md:order-1"
+    >
+      <svg
+        class="w-32 h-32 text-[#FF8A00] opacity-50"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1"
+          d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+      </svg>
+    </div>
+    <div class="space-y-6 order-1 md:order-2">
+      <h2 class="text-3xl font-bold text-neutral-800">
+        {h2}
+      </h2>
+      <p class="text-neutral-600 leading-relaxed">
+        {p1}
+      </p>
+      <ul class="space-y-3">
+        <li class="flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-[#FF8A00]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          <span class="text-neutral-700">{li1}</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-[#FF8A00]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          <span class="text-neutral-700">{li2}</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <svg
+            class="w-6 h-6 text-[#FF8A00]"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            ><path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 13l4 4L19 7"></path></svg
+          >
+          <span class="text-neutral-700">{li3}</span>
+        </li>
+      </ul>
+      <p class="text-neutral-600 leading-relaxed">
+        Integramos campañas con tu <a
+          href="/servicios/desarrollo-web"
+          class="text-[#FF8A00] font-medium hover:underline"
+          >sitio web optimizado</a
+        > y <a
+          href="/servicios/optimizacion-seo"
+          class="text-[#FF8A00] font-medium hover:underline">SEO</a
+        > para potenciar la <strong>visibilidad</strong> y el <strong
+          >posicionamiento</strong
+        > orgánico y de pago.
+      </p>
+    </div>
+  </div>
+</main>

@@ -1,0 +1,7 @@
+{
+  "route": "servicios/marketing-digital",
+  "blocks": [
+    { "type": "digital-marketing-hero" },
+    { "type": "block-contact" }
+  ]
+}

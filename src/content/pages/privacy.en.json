@@ -1,0 +1,7 @@
+{
+  "route": "privacy",
+  "blocks": [
+    { "type": "privacy-hero" },
+    { "type": "block-contact" }
+  ]
+}

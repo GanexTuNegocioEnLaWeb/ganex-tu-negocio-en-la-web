@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getSupportedLangs, isLang, DEFAULT_LANG } from "../lib/i18n";
+
+const supported = await getSupportedLangs();
+const path = Astro.url.pathname.split("/").filter(Boolean);
+const langCandidate = path[0] ?? DEFAULT_LANG;
+const lang: string = isLang(langCandidate, supported) ? langCandidate : DEFAULT_LANG;
+
+const text = {
+  title: lang === "es" ? "Página no encontrada" : "Page not found",
+  desc:  lang === "es" ? "La URL no existe." : "The URL does not exist."
+};
+---
+<Layout lang={lang} slug="404">
+  <section class="max-w-3xl mx-auto px-4 py-16">
+    <h1 class="text-3xl font-bold">{text.title}</h1>
+    <p class="mt-3 opacity-80">{text.desc}</p>
+  </section>
+</Layout>

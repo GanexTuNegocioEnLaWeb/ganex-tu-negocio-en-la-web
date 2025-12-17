@@ -1,0 +1,54 @@
+---
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const title = t("terms.hero.title", i18n);
+const lead = t("terms.hero.lead", i18n);
+const email = t("terms.hero.email", i18n);
+const sections = t("terms.sections", i18n) || [];
+const lastUpdate = t("terms.last_update", i18n);
+---
+
+<main class="py-20 bg-white">
+  <div class="max-w-4xl mx-auto px-6">
+    <h1 class="text-4xl font-bold text-neutral-800 mb-8">
+      {title}
+    </h1>
+
+    <div class="prose prose-lg prose-neutral max-w-none text-neutral-600">
+      <p class="lead">
+        {lead}
+      </p>
+
+      {sections.map((section: any) => (
+        <>
+            <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">{section.title}</h3>
+            {section.content && <p set:html={section.content}></p>}
+            {section.list && (
+                <ul class="list-disc pl-6 space-y-2">
+                    {section.list.map((item: string) => <li>{item}</li>)}
+                </ul>
+            )}
+            {section.extra && <p class="mt-4" set:html={section.extra}></p>}
+             {section.email_label && (
+                <p class="font-medium mt-4">
+                  {section.email_label}
+                  <a href={`mailto:${email}`} class="text-[#FF8A00] hover:underline ml-1">
+                    {email}
+                  </a>
+                </p>
+            )}
+        </>
+      ))}
+
+      <p class="text-sm text-neutral-400 mt-12 pt-8 border-t border-neutral-100">
+        {lastUpdate} {
+          new Date().toLocaleDateString("es-ES", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          })
+        }
+      </p>
+    </div>
+  </div>
+</main>

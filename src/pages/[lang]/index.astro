@@ -1,0 +1,42 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { resolveMeta } from "../../lib/seo";
+import { getSupportedLangs, isLang, DEFAULT_LANG } from "../../lib/i18n";
+import { getCollection } from "astro:content";
+import PageRenderer from "../../components/PageRenderer.astro";
+import { getI18nDict } from "../../lib/i18n";
+
+export const prerender = false;
+
+export async function getStaticPaths() {
+  const supported = await getSupportedLangs();
+  return supported.map((l: string) => ({ params: { lang: l } }));
+}
+
+const supported = await getSupportedLangs();
+const { lang: rawLang } = Astro.params;
+const lang: string = isLang(rawLang, supported) ? rawLang : DEFAULT_LANG;
+
+// Cargamos la entrada "home" del contenido para este idioma
+const page = (await getCollection("pages", (p) => p.id === `home.${lang}`))[0];
+
+const meta = await resolveMeta({
+  slug: "home",
+  lang,
+  canonicalUrl: Astro.url?.href,
+});
+const i18nDict = await getI18nDict(lang);
+---
+
+<Layout lang={lang} slug="home" transparentHeader={true}>
+  {
+    page?.data.blocks?.length ? (
+      <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
+    ) : (
+      <section class="max-w-3xl mx-auto px-4 py-12">
+        <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
+        <p class="opacity-80">{meta.description}</p>
+      </section>
+    )
+  }
+</Layout>

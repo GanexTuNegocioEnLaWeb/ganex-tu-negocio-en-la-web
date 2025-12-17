@@ -1,0 +1,326 @@
+{
+  "header": {
+    "nav": "Navegación",
+    "cta": "Contacto & Soporte",
+    "aria": {
+      "open_menu": "Abrir menú",
+      "close_menu": "Cerrar menú"
+    },
+    "portfolio": {
+      "tag": "Nuestro Trabajo",
+      "title_pre": "Proyectos que",
+      "title_highlight": "inspiran",
+      "desc": "Una selección de nuestros trabajos más recientes. Calidad sobre cantidad.",
+      "see_project": "Ver proyecto"
+    }
+  },
+  "nav": {
+    "services": "Servicios",
+    "contact_id": "soporte",
+    "services_id": "servicios"
+  },
+  "chatbots": {
+    "hero": {
+      "title": "Chatbots con IA",
+      "lead": "Automatización y atención al cliente inteligente.",
+      "h2": "El futuro de la atención al cliente",
+      "p1": "Integra inteligencia artificial en tu negocio para ofrecer respuestas instantáneas y personalizadas las 24 horas del día. Optimiza tus procesos y libera a tu equipo para tareas más estratégicas.",
+      "li1": "Atención 24/7 sin interrupciones",
+      "li2": "Procesamiento de Lenguaje Natural (NLP)",
+      "li3": "Integración con CRM y Bases de Datos"
+    }
+  },
+  "digital": {
+    "hero": {
+      "title": "Marketing Digital",
+      "lead": "Estrategias para aumentar tu tráfico y conversiones.",
+      "h2": "Conecta con tu audiencia ideal",
+      "p1": "Diseñamos y ejecutamos campañas de marketing digital basadas en datos: SEO, SEM y Social Media Marketing. Gestionamos Google Ads y Meta Ads optimizando CTR, CPC y conversión para tu negocio en Bolivia.",
+      "li1": "Gestión de Redes Sociales (SMM)",
+      "li2": "Publicidad en Google y Meta Ads (SEM)",
+      "li3": "Automatización y Analítica"
+    }
+  },
+  "seo": {
+    "hero": {
+      "title": "Optimización SEO",
+      "lead": "Mejora tu visibilidad en buscadores.",
+      "h2": "Aparece cuando te buscan",
+      "p1": "El 90% de las experiencias online comienzan en un motor de búsqueda. Optimizamos tu sitio para que Google lo entienda y lo priorice: SEO técnico (crawling, indexación, Core Web Vitals), SEO on‑page (etiquetas, semántica, contenido) y SEO off‑page (autoridad y enlaces). Atrae tráfico orgánico de calidad sin pagar por cada clic, con foco en Bolivia y Santa Cruz.",
+      "li1": "Auditoría Técnica y SEO On-Page",
+      "li2": "Estrategia de Contenidos y Palabras Clave",
+      "li3": "Link Building y Autoridad de Dominio",
+      "p2": "Complementamos con <a href=\"/servicios/marketing-digital\" class=\"text-[#FF8A00] font-medium hover:underline\">marketing digital</a> y optimización de <strong>CTR</strong> mediante títulos, descripciones y <strong>datos estructurados</strong> que mejoran el aspecto de tus resultados en buscadores."
+    }
+  },
+  "webdev": {
+    "hero": {
+      "title": "Desarrollo Web Completo",
+      "lead": "Sitios web personalizados y optimizados.",
+      "h2": "Tu presencia online, elevada",
+      "p1": "Creamos sitios web que no solo se ven increíbles, sino que posicionan en Google y convierten. Desarrollamos con Astro, React y TailwindCSS para maximizar Core Web Vitals, SEO técnico, accesibilidad y rendimiento. Implementamos estructura semántica HTML, rich snippets y estrategias de palabras clave enfocadas en tu mercado de Bolivia y Latinoamérica.",
+      "p2": "Implementamos SEO on‑page, arquitectura de información y linking interno estratégico para mejorar tu posicionamiento orgánico en búsquedas como “desarrollo web en Santa Cruz”, “agencia de sitios web en Bolivia” y afines.",
+      "li1": "Diseño Responsivo y Moderno",
+      "li2": "Optimización de Velocidad (Core Web Vitals)",
+      "li3": "Integración con CMS y E-commerce"
+    }
+  },
+  "appdev": {
+    "hero": {
+      "title": "Desarrollo de Aplicaciones",
+      "lead": "Apps móviles y web a medida.",
+      "h2": "Innovación en la palma de tu mano",
+      "p1": "Transformamos tus ideas en aplicaciones móviles y aplicaciones web potentes, con React Native y Flutter, cuidando UX/UI, performance y accesibilidad. Integramos analítica, notificaciones y escalabilidad para crecer sin fricciones.",
+      "li1": "Desarrollo Nativo e Híbrido (React Native, Flutter)",
+      "li2": "Diseño UX/UI Centrado en el Usuario",
+      "li3": "Mantenimiento y Escalabilidad"
+    }
+  },
+  "privacy": {
+    "hero": {
+      "title": "Política de Privacidad",
+      "lead": "En Ganex, valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información.",
+      "email": "Ganex"
+    }
+  },
+  "terms": {
+    "hero": {
+      "title": "Términos de Servicio",
+      "lead": "Bienvenido a Ganex. Nos alegra contar con su visita. Al acceder y utilizar nuestro sitio web y servicios, usted acepta los presentes Términos de Servicio.",
+      "email": "Ganex"
+    },
+    "sections": [
+      {
+        "title": "1. Aceptación de los términos",
+        "content": "Al navegar por nuestro sitio web o utilizar cualquiera de nuestros servicios, usted confirma que ha leído, comprendido y aceptado estos Términos de Servicio. Si no está de acuerdo con alguno de ellos, le recomendamos no utilizar nuestros servicios."
+      },
+      {
+        "title": "2. Uso adecuado de los servicios",
+        "content": "Usted se compromete a utilizar nuestros servicios de forma responsable, ética y conforme a la ley. En particular, se abstendrá de:",
+        "list": [
+          "Violar leyes o normativas locales, nacionales o internacionales.",
+          "Publicar, transmitir o distribuir contenido ilegal, ofensivo o fraudulento.",
+          "Intentar acceder sin autorización a nuestros sistemas, servidores o redes."
+        ],
+        "extra": "Nos reservamos el derecho de suspender o limitar el acceso a nuestros servicios si detectamos un uso indebido."
+      },
+      {
+        "title": "3. Propiedad intelectual",
+        "content": "Todo el contenido disponible en este sitio web —incluyendo textos, imágenes, diseños, logotipos, gráficos, código y materiales digitales— es propiedad exclusiva de <strong>Ganex</strong> o de sus respectivos licenciantes, y se encuentra protegido por las leyes de propiedad intelectual.",
+        "extra": "Queda prohibida la reproducción, distribución, modificación o uso del contenido sin autorización previa y expresa por escrito."
+      },
+      {
+        "title": "4. Limitación de responsabilidad",
+        "content": "Trabajamos constantemente para ofrecer información precisa y servicios de calidad. Sin embargo, <strong>Ganex</strong> no garantiza que el sitio web funcione de manera ininterrumpida o libre de errores.",
+        "extra": "En la medida permitida por la ley, no nos hacemos responsables por daños directos, indirectos, incidentales o consecuentes derivados del uso o la imposibilidad de uso de nuestros servicios."
+      },
+      {
+        "title": "5. Enlaces a sitios de terceros",
+        "content": "Nuestro sitio web puede incluir enlaces a páginas externas de terceros como referencia o conveniencia. No tenemos control sobre su contenido ni sus prácticas, por lo que no asumimos responsabilidad alguna sobre ellos."
+      },
+      {
+        "title": "6. Modificaciones de los términos",
+        "content": "Nos reservamos el derecho de actualizar o modificar estos Términos de Servicio en cualquier momento. Las modificaciones serán efectivas desde el momento de su publicación en esta página. Le recomendamos revisar periódicamente esta sección."
+      },
+      {
+        "title": "7. Contacto y atención",
+        "content": "Si tiene preguntas, comentarios o necesita más información sobre estos Términos de Servicio, estaremos encantados de ayudarle.",
+        "email_label": "Correo electrónico:"
+      }
+    ],
+    "last_update": "Última actualización:"
+  },
+  "home": {
+    "hero": {
+      "tag": "Tu socio tecnológico de confianza",
+      "title_pre": "Impulsamos tu Negocio con",
+      "title_highlight": "Soluciones Digitales",
+      "desc": "En Ganex, fusionamos creatividad y tecnología para desarrollar sitios web de alto rendimiento, aplicaciones móviles y estrategias SEO y marketing digital que mejoran tu visibilidad, atraen tráfico orgánico y aumentan conversiones.",
+      "cta_services": "Explorar Servicios",
+      "cta_meeting": "Agendar Cita",
+      "img_alt": "Estrategia digital y desarrollo web con Ganex"
+    },
+    "portfolio": {
+      "tag": "Nuestro Trabajo",
+      "title_pre": "Proyectos que",
+      "title_highlight": "inspiran",
+      "desc": "Una selección de nuestros trabajos más recientes. Calidad sobre cantidad.",
+      "see_project": "Ver proyecto",
+      "items": [
+        {
+          "title": "Megaloblastos",
+          "category": "Sitio Web Político",
+          "description": "Sitio web para un partido político de un centro interno de la Gabriel René Moreno. El tener la web antes de que termine la campaña fue uno de los indicadores clave para la victoria.",
+          "image": "/images/portfolio/megaloblastos.jpg",
+          "link": "https://megaloblastos.com"
+        },
+        {
+          "title": "Ecomedical",
+          "category": "Salud / Web Corporativa",
+          "description": "Clínica en Tarija que ofrece servicios regenerativos y sirve como puente o canal para mostrar todos sus servicios.",
+          "image": "/images/portfolio/ecomedical.jpg",
+          "link": "https://ecomedicalweb.com"
+        },
+        {
+          "title": "QRaten",
+          "category": "App Móvil / Web App",
+          "description": "App de asistencias con QR que simplifica el control y registro de asistencia.",
+          "image": "/images/portfolio/qraten.jpg",
+          "link": "https://www.qraten.com"
+        }
+      ]
+    },
+    "phrase": {
+      "welcome": "Bienvenidos",
+      "items": [
+        "al éxito digital",
+        "a nuevas oportunidades",
+        "a la innovación",
+        "al crecimiento digital",
+        "a la transformación"
+      ],
+      "desc": "Transformamos tu negocio digital con desarrollo web, SEO y marketing para una experiencia de usuario excepcional y un posicionamiento orgánico sólido."
+    },
+    "services": {
+      "tag": "Nuestros Servicios",
+      "title_pre": "Soluciones que",
+      "title_highlight": "Escalan",
+      "title_post": "tu Negocio",
+      "desc": "Desde el desarrollo hasta el marketing, cubrimos todas las necesidades digitales para que tú solo te preocupes por crecer.",
+      "more": "Ver más",
+      "items": [
+        {
+          "title": "Desarrollo Web",
+          "slug": "servicios/desarrollo-web",
+          "description": "Desarrollo de sitios web rápidos y optimizados con Astro, React y Tailwind. Mejoramos Core Web Vitals, SEO técnico y conversión.",
+          "icon": "tabler:code"
+        },
+        {
+          "title": "Apps Móviles",
+          "slug": "servicios/apps-mobiles",
+          "description": "Desarrollo de aplicaciones móviles y web con React Native y Flutter, centradas en UX/UI, rendimiento y escalabilidad.",
+          "icon": "tabler:devices"
+        },
+        {
+          "title": "Marketing Digital",
+          "slug": "servicios/marketing-digital",
+          "description": "Marketing digital con SEO, SEM y SMM. Gestión de Google Ads y Meta Ads optimizando CTR, CPC y conversiones.",
+          "icon": "tabler:chart-bar"
+        },
+        {
+          "title": "SEO",
+          "slug": "servicios/seo",
+          "description": "Optimización SEO técnica y de contenidos: indexación, etiquetas, semántica, palabras clave y link building para mejorar la visibilidad en Google.",
+          "icon": "tabler:search"
+        },
+        {
+          "title": "Chatbots IA",
+          "slug": "servicios/chatbots-ia",
+          "description": "Chatbots con IA para atención al cliente y automatización, integrados en web y redes sociales.",
+          "icon": "tabler:message-chatbot"
+        }
+      ]
+    },
+    "steps": {
+      "s1": {
+        "tag": "Nuestra Esencia",
+        "title_pre": "Más que una agencia, tu",
+        "title_highlight": "aliado estratégico",
+        "img_alt": "Misión, Visión y Valores de Ganex",
+        "company_desc": "Desarrollo web, SEO, marketing digital y apps móviles en Bolivia. Sitios rápidos y optimizados con Astro, React y Tailwind, foco en Core Web Vitals, accesibilidad y posicionamiento orgánico.",
+        "mission_title": "Misión",
+        "mission_text": "Impulsar el crecimiento con soluciones innovadoras.",
+        "vision_title": "Visión",
+        "vision_text": "Ser referentes por calidad e impacto real."
+      },
+      "s2": {
+        "tag": "Experiencia Técnica",
+        "title_pre": "Desarrollo",
+        "title_highlight": "Eficiente",
+        "title_post": "y Escalable",
+        "items": [
+          "Diseño y desarrollo de sitios web modernos",
+          "Tiendas online y soluciones e-commerce",
+          "Sistemas y plataformas a medida",
+          "Optimización y posicionamiento digital"
+        ],
+        "img_alt": "Desarrollo confiable",
+        "btn": "Iniciar Proyecto"
+      },
+      "s3": {
+        "tag": "Resultados",
+        "title_pre": "Ecosistema Digital",
+        "title_highlight": "Integrado",
+        "desc": "Creamos soluciones que conectan marcas, tecnología y usuarios para generar resultados reales y sostenibles. No solo entregamos código, entregamos valor.",
+        "cta_pre": "¿Tienes un proyecto en mente?",
+        "cta_text": "Habla con nuestro equipo",
+        "img_alt": "Ecosistema digital"
+      }
+    }
+  },
+  "about": {
+    "hero": {
+      "title": "Sobre Nosotros",
+      "intro": "En Ganex, somos un equipo apasionado por la tecnología y la innovación. Ayudamos a empresas en Santa Cruz y toda Bolivia a escalar con desarrollo web, SEO, marketing digital y apps móviles centradas en resultados.",
+      "mission_title": "Nuestra Misión",
+      "mission_text": "Impulsar la transformación digital de nuestros clientes mediante soluciones tecnológicas personalizadas, desde sitios web de alto rendimiento hasta sistemas de inteligencia artificial, garantizando siempre calidad, eficiencia y resultados medibles.",
+      "vision_title": "Nuestra Visión",
+      "vision_text": "Ser el socio tecnológico referente en la región, reconocidos por nuestra capacidad para convertir desafíos complejos en soluciones digitales simples, efectivas y estéticamente impactantes."
+    }
+  },
+  "blocks": {
+    "contact": {
+      "tag": "Contáctanos",
+      "title": "Tu próximo gran proyecto",
+      "desc": "Estamos listos para ayudarte a transformar tus ideas en realidad digital. Cuéntanos tus objetivos y te responderemos con una propuesta personalizada en menos de 12 horas.",
+      "email_label": "Correo electrónico",
+      "phone_label": "Llámanos",
+      "schedule": "Lun - Sab, 8am - 6pm",
+      "form": {
+        "name": "Nombre",
+        "name_placeholder": "Tu nombre",
+        "lastname": "Apellido",
+        "lastname_placeholder": "Tu apellido",
+        "email": "Correo electrónico",
+        "email_placeholder": "tu@empresa.com",
+        "phone": "Teléfono",
+        "phone_placeholder": "+591 70000000",
+        "company": "Empresa (Opcional)",
+        "company_placeholder": "Nombre de tu empresa",
+        "message": "Mensaje",
+        "message_placeholder": "Cuéntanos los detalles de tu proyecto...",
+        "submit": "Enviar Mensaje",
+        "sending": "Enviando...",
+        "success": "¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.",
+        "error": "Hubo un error al enviar el mensaje. Por favor intenta de nuevo.",
+        "fast_response": "Respuesta rápida asegurada"
+      }
+    },
+    "location": {
+      "tag": "Ubicación",
+      "title": "Dónde nos encontramos",
+      "desc": "Visítanos en nuestras oficinas o contáctanos para agendar una reunión.",
+      "mapUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30393.558107676796!2d-63.2304007!3d-17.7825414!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e9df56520ef5%3A0x2b5c85fcc274b1d5!2sGanex!5e0!3m2!1ses!2sbo!4v1767725152905!5m2!1ses!2sbo"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Ganex — Estudio digital: desarrollo a medida, UI/UX y branding",
+      "description": "Soluciones digitales para impulsar tu crecimiento: desarrollo web, apps, SEO y marketing."
+    },
+    "about-us": {
+      "title": "Ganex - Quienes Somos",
+      "description": "Conoce más sobre Ganex, nuestra misión y visión."
+    }
+  },
+  "footer": {
+    "services_label": "Servicios",
+    "company_label": "Compañía",
+    "legal_label": "Legal",
+    "nav_label": "Navegación del pie",
+    "social_label": "Enlaces sociales",
+    "copyright": "© Ganex",
+    "system_status": "Sistemas operativos"
+  },
+  "locale": "es"
+}

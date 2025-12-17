@@ -1,0 +1,34 @@
+---
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const title = t("about.hero.title", i18n);
+const intro = t("about.hero.intro", i18n);
+const missionTitle = t("about.hero.mission_title", i18n);
+const missionText = t("about.hero.mission_text", i18n);
+const visionTitle = t("about.hero.vision_title", i18n);
+const visionText = t("about.hero.vision_text", i18n);
+---
+
+<section class="py-20 px-6 max-w-7xl mx-auto">
+  <div class="text-center max-w-3xl mx-auto mb-16">
+    <h1 class="text-5xl font-bold mb-6 text-[#FF8A00]">{title}</h1>
+    <p class="text-neutral-600 leading-relaxed">
+      {intro}
+    </p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+    <div class="bg-orange-50 p-8 rounded-2xl">
+      <h2 class="text-3xl font-bold mb-4 text-neutral-800">{missionTitle}</h2>
+      <p class="text-neutral-600 leading-relaxed">
+        {missionText}
+      </p>
+    </div>
+    <div class="bg-neutral-50 p-8 rounded-2xl">
+      <h2 class="text-3xl font-bold mb-4 text-neutral-800">{visionTitle}</h2>
+      <p class="text-neutral-600 leading-relaxed">
+        {visionText}
+      </p>
+    </div>
+  </div>
+</section>

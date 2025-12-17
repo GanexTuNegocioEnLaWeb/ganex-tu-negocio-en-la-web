@@ -1,0 +1,123 @@
+---
+import { t } from "../../../lib/i18n";
+const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+const phrases = t("home.phrase.items", i18n) as string[];
+const welcome = t("home.phrase.welcome", i18n);
+const desc = t("home.phrase.desc", i18n);
+---
+
+<section
+  class="relative bg-[#FF8A00] py-20 lg:py-32 overflow-hidden"
+>
+  <div class="absolute top-0 left-0 w-full overflow-hidden leading-none">
+    <svg
+      class="relative block w-[calc(100%+1.3px)] h-16 sm:h-24 lg:h-32"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        fill="#ffffff"></path>
+    </svg>
+  </div>
+
+  <div
+    class="max-w-7xl mx-auto flex flex-col gap-8 items-center px-4 py-8 text-white relative z-10"
+  >
+    <h2
+      class="text-4xl sm:text-5xl lg:text-6xl text-center
+             leading-tight font-light tracking-tight"
+    >
+      <span class="font-bold block sm:inline">{welcome} </span>
+      <span
+        id="typing"
+        class="typing-effect inline-block align-middle font-medium text-white/90"
+      ></span>
+    </h2>
+
+    <p
+      class="text-center text-lg sm:text-xl max-w-2xl text-orange-50 font-light leading-relaxed"
+    >
+      {desc}
+    </p>
+  </div>
+
+  <div
+    class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180"
+  >
+    <svg
+      class="relative block w-[calc(100%+1.3px)] h-16 sm:h-24 lg:h-32"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        fill="#ffffff"></path>
+    </svg>
+  </div>
+</section>
+
+<script define:vars={{ phrases }}>
+  const el = document.getElementById("typing");
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const typingSpeed = 80;
+  const deletingSpeed = 40;
+  const pauseAfterTyping = 1500;
+  const pauseAfterDeleting = 500;
+
+  function typeLoop() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (!isDeleting) {
+      el.textContent = currentPhrase.slice(0, charIndex);
+      charIndex++;
+
+      if (charIndex > currentPhrase.length) {
+        setTimeout(() => (isDeleting = true), pauseAfterTyping);
+      }
+    } else {
+      el.textContent = currentPhrase.slice(0, charIndex);
+      charIndex--;
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(() => {}, pauseAfterDeleting);
+      }
+    }
+
+    setTimeout(typeLoop, isDeleting ? deletingSpeed : typingSpeed);
+  }
+
+  typeLoop();
+</script>
+
+<style>
+  .typing-effect {
+    min-height: 1.4em;
+    white-space: normal;
+    border-right: 3px solid currentColor;
+    padding-right: 6px;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50%,
+    100% {
+      border-color: transparent;
+    }
+    25%,
+    75% {
+      border-color: currentColor;
+    }
+  }
+</style>

@@ -1,0 +1,7 @@
+{
+  "route": "services/ai-chatbots",
+  "blocks": [
+    { "type": "chatbots-ia-hero" },
+    { "type": "block-contact" }
+  ]
+}

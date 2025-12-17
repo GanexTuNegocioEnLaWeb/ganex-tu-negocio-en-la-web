@@ -1,0 +1,8 @@
+{
+  "route": "about-us",
+  "blocks": [
+    { "type": "about-hero" },
+    { "type": "steps" },
+    { "type": "block-contact" }
+  ]
+}

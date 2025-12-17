@@ -1,0 +1,110 @@
+---
+import "../assets/global.css";
+import { resolveMeta } from "../lib/seo";
+import { getSupportedLangs } from "../lib/i18n";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+  slug?: string;
+  lang: string;
+  transparentHeader?: boolean;
+}
+
+const { slug = "home", lang = "es", transparentHeader = false } = Astro.props;
+const meta = await resolveMeta({ slug, lang, canonicalUrl: Astro.url?.href });
+
+const supported = await getSupportedLangs(); // ['es','en',...]
+const urlObj = new URL(meta.canonicalUrl);
+const parts = urlObj.pathname.split("/").filter(Boolean);
+
+// quita el primer segmento si es un idioma soportado
+const baseParts = [...parts];
+if (supported.includes(baseParts[0])) baseParts.shift();
+
+const alternates = supported.map((l) => {
+  const u = new URL(meta.canonicalUrl);
+  const localized = `/${l}${baseParts.length ? `/${baseParts.join("/")}` : ""}`;
+  u.pathname = localized;
+  return { lang: l, href: u.toString() };
+});
+---
+
+<!doctype html>
+<html lang={lang}>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+<title>{meta.title}</title>
+<meta name="description" content={meta.description} />
+<link rel="canonical" href={meta.canonicalUrl} />
+
+
+{alternates.map((a) => (<link rel="alternate" hreflang={a.lang} href={a.href} />))}
+<link rel="alternate" hreflang="x-default" href={alternates.find(a=>a.lang==='es')?.href} />
+
+
+<meta name="robots" content={meta.noindex ? 'noindex,nofollow' : 'index,follow'} />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content={meta.locale} />
+<meta property="og:site_name" content={meta.siteName} />
+<meta property="og:title" content={meta.title} />
+<meta property="og:description" content={meta.description} />
+<meta property="og:url" content={meta.canonicalUrl} />
+<meta property="og:image" content={meta.ogImage} />
+<meta property="og:image:alt" content={meta.ogImageAlt} />
+<meta name="twitter:card" content="summary_large_image" />
+
+<meta name="twitter:title" content={meta.title} />
+<meta name="twitter:description" content={meta.description} />
+<meta name="twitter:image" content={meta.ogImage} />
+
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content={meta.themeColor} />
+
+<!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-27TKK0PR92"
+    ></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-27TKK0PR92");
+    </script>
+
+<script type="application/ld+json" set:html={JSON.stringify(meta.jsonLd)} />
+<slot name="head" />
+</head>
+<body class="bg-white text-neutral-800">
+  <a
+    href="#main"
+    class="sr-only focus:not-sr-only focus:absolute focus:z-100 focus:top-4 focus:left-4 bg-[#FF8A00] text-white px-6 py-3 rounded-full font-bold shadow-2xl border-2 border-white outline-none ring-4 ring-[#FF8A00]/30 transition-all"
+  >
+    {lang === "es" ? "Saltar al contenido" : "Skip to content"}
+  </a>
+<div class="min-h-screen flex flex-col">
+  {
+    transparentHeader
+      ? null
+      : (
+        <Header
+          lang={lang}
+          slug={slug}
+          variant="orange"
+        />
+      )
+  }
+  <main id="main" class="grow">
+    <slot />
+  </main>
+  <Footer lang={lang} />
+</div>
+</body>
+</html>

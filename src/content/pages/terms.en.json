@@ -1,0 +1,7 @@
+{
+  "route": "terms",
+  "blocks": [
+    { "type": "terms-hero" },
+    { "type": "block-contact" }
+  ]
+}

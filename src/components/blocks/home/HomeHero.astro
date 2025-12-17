@@ -1,0 +1,151 @@
+---
+import Picture from "astro/components/Picture.astro";
+import imgHero from "../../../assets/img-hero.svg";
+import { t } from "../../../lib/i18n";
+import Header from "../../Header.astro";
+const { i18n = {}, lang = "es" } = Astro.props as {
+  i18n?: Record<string, any>;
+  lang?: string;
+  };
+const tag = t("home.hero.tag", i18n);
+const titlePre = t("home.hero.title_pre", i18n);
+const titleHighlight = t("home.hero.title_highlight", i18n);
+const desc = t("home.hero.desc", i18n);
+const ctaServices = t("home.hero.cta_services", i18n);
+const ctaMeeting = t("home.hero.cta_meeting", i18n);
+const imgAlt = t("home.hero.img_alt", i18n);
+
+const sectionId = t("nav.contact_id", i18n);
+
+const sectionServicesId = t("nav.services_id", i18n);
+---
+
+<div class="hero-bg relative pb-32">
+  <Header
+    lang={lang}
+    slug="home"
+    variant="transparent"
+    class="absolute top-0 w-full z-50"
+  />
+  <section
+    class="max-w-7xl mx-auto w-full flex flex-col-reverse lg:flex-row
+         items-center justify-between gap-12 lg:gap-16 px-6 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-8"
+  >
+    <!-- Texto -->
+    <article
+      class="text-white flex flex-col gap-6 items-start
+            pt-0 pb-16 sm:pt-0 sm:pb-20 lg:pb-20 lg:pt-10 text-center lg:text-left w-full lg:w-1/2"
+    >
+      <div class="flex flex-col gap-3">
+        <span
+          class="text-emerald-300 font-semibold tracking-wider text-sm uppercase bg-emerald-900/40 px-4 py-1.5 rounded-full w-fit mx-auto lg:mx-0 border border-emerald-500/40 backdrop-blur-sm"
+        >
+          {tag}
+        </span>
+        <h1
+          class="text-3xl sm:text-4xl lg:text-5xl
+               font-extrabold max-w-2xl leading-tight tracking-tight text-white"
+        >
+          {titlePre}
+          <span
+            class="text-transparent bg-clip-text bg-linear-to-r from-emerald-200 to-cyan-200"
+            >{titleHighlight}</span
+          >
+        </h1>
+      </div>
+
+      <p
+        class="text-base sm:text-lg text-neutral-100 max-w-xl leading-relaxed font-light mx-auto lg:mx-0 opacity-90"
+      >
+        {desc}
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
+        <a
+          href={`/${lang}#${sectionServicesId}`}
+          class="px-8 py-3.5 bg-white text-[#FF8A00] text-base font-bold
+               rounded-full shadow-lg transition-all duration-300
+               hover:-translate-y-1 hover:shadow-xl hover:bg-orange-50 w-full sm:w-auto"
+        >
+          {ctaServices}
+        </a>
+        <a
+          href={`/${lang}#${sectionId}`}
+          class="px-8 py-3.5 bg-white/10 backdrop-blur-md border border-white/30 text-white text-base
+               rounded-full font-bold transition-all duration-300
+               hover:-translate-y-1 hover:bg-white/20 w-full sm:w-auto"
+        >
+          {ctaMeeting}
+        </a>
+      </div>
+    </article>
+
+    <!-- Imagen -->
+    <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+      <figure
+        class="relative w-full max-w-lg lg:max-w-xl transform hover:scale-[1.02] transition-transform duration-500 m-0"
+      >
+        <Picture
+          src={imgHero}
+          alt={imgAlt}
+          width={800}
+          height={600}
+          formats={['avif', 'webp']}
+          loading="eager"
+          fetchpriority="high"
+          class="w-full h-auto drop-shadow-2xl animate-float"
+        />
+      </figure>
+    </div>
+  </section>
+  <div
+    class="absolute bottom-0 left-0 w-full overflow-hidden leading-none rotate-180"
+  >
+    <svg
+      class="relative block w-[calc(100%+1.3px)] h-25 sm:h-37.5"
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+        fill="#fafafa"></path>
+    </svg>
+  </div>
+</div>
+
+<style>
+  .hero-bg {
+    background: linear-gradient(135deg, #ff8a00 0%, #ffb25a 100%);
+  }
+</style>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+</style>

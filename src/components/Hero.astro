@@ -1,0 +1,46 @@
+---
+import Image from "astro/components/Image.astro";
+import imgHero from "../assets/img-hero.svg";
+---
+
+<section
+  class="max-w-7xl mx-auto w-full flex flex-col-reverse lg:flex-row
+         items-center justify-between gap-10 px-4 sm:px-6 lg:px-8 pt-12 sm:pt-12 lg:pt-0"
+>
+  <!-- Texto -->
+  <article
+    class="text-white flex flex-col gap-6 items-start
+            pt-0 pb-12 sm:pt-0 sm:pb-16 lg:py-20 text-center lg:text-left"
+  >
+    <h1
+      class="text-4xl sm:text-5xl lg:text-7xl
+             font-bold max-w-xl leading-tight"
+    >
+      La visibilidad web impulsa tu negocio, marca o empresa.
+    </h1>
+
+    <p class="text-lg sm:text-xl text-white/90 max-w-lg">
+      Creamos soluciones digitales que hacen crecer tu presencia online.
+    </p>
+
+    <a
+      href="#servicios"
+      class="px-6 py-3 bg-emerald-600 text-white text-base sm:text-lg
+             rounded-lg font-medium transition
+             hover:-translate-y-1 hover:bg-emerald-500"
+    >
+      Conozca más
+    </a>
+  </article>
+
+  <!-- Imagen -->
+  <div class="w-full lg:w-1/2 flex justify-center">
+    <Image
+      src={imgHero}
+      alt="Imagen de hero"
+      width={800}
+      height={600}
+      class="w-full max-w-sm sm:max-w-md lg:max-w-lg h-auto"
+    />
+  </div>
+</section>

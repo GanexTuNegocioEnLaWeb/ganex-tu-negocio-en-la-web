@@ -1,0 +1,89 @@
+---
+const phrases = [
+  "al éxito digital",
+  "a nuevas oportunidades",
+  "a la innovación",
+  "al crecimiento digital",
+  "a la transformación",
+];
+---
+
+<section id="frase" class="bg-[#FF8A00]">
+  <div
+    class="max-w-7xl mx-auto flex flex-col gap-6 items-center
+           py-16 sm:py-20 px-4 text-white"
+  >
+    <h2
+      class="text-3xl sm:text-4xl lg:text-5xl text-center
+             leading-tight font-light"
+    >
+      <span class="font-semibold">Bienvenidos </span>
+      <span id="typing" class="typing-effect inline-block align-middle"></span>
+    </h2>
+
+    <p class="text-center text-base sm:text-lg max-w-2xl">
+      Transformamos tu negocio digital en una experiencia de usuario excepcional
+    </p>
+  </div>
+</section>
+
+<script define:vars={{ phrases }}>
+  const el = document.getElementById("typing");
+
+  let phraseIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  const typingSpeed = 80;
+  const deletingSpeed = 40;
+  const pauseAfterTyping = 1500;
+  const pauseAfterDeleting = 500;
+
+  function typeLoop() {
+    const currentPhrase = phrases[phraseIndex];
+
+    if (!isDeleting) {
+      el.textContent = currentPhrase.slice(0, charIndex);
+      charIndex++;
+
+      if (charIndex > currentPhrase.length) {
+        setTimeout(() => (isDeleting = true), pauseAfterTyping);
+      }
+    } else {
+      el.textContent = currentPhrase.slice(0, charIndex);
+      charIndex--;
+
+      if (charIndex === 0) {
+        isDeleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(() => {}, pauseAfterDeleting);
+      }
+    }
+
+    setTimeout(typeLoop, isDeleting ? deletingSpeed : typingSpeed);
+  }
+
+  typeLoop();
+</script>
+
+<style>
+  .typing-effect {
+    min-height: 1.4em; /* evita saltos verticales */
+    white-space: normal; /* permite wrap en mobile */
+    border-right: 3px solid currentColor;
+    padding-right: 6px;
+    animation: blink 0.8s infinite;
+  }
+
+  @keyframes blink {
+    0%,
+    50%,
+    100% {
+      border-color: transparent;
+    }
+    25%,
+    75% {
+      border-color: currentColor;
+    }
+  }
+</style>

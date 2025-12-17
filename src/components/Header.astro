@@ -1,0 +1,128 @@
+---
+import { Image } from "astro:assets";
+import { Menu, X } from "@lucide/astro";
+import logoGanex from "../assets/logo-ganex-white.svg";
+import services from "../data/services.json";
+---
+
+<header class="relative">
+  <section
+    class="max-w-7xl mx-auto flex items-center justify-between py-6 text-white px-4"
+  >
+    <!-- Logo -->
+    <a href="/" class="w-40">
+      <Image src={logoGanex} alt="Logo de Ganex" width={180} height={120} />
+    </a>
+
+    <!-- Desktop menu -->
+    <nav class="hidden md:flex gap-8 items-center">
+      <section class="relative group">
+        <a href="#servicios" class="nav-link text-lg">Servicios</a>
+
+        <div
+          class="absolute top-10 left-0 bg-white text-neutral-800 shadow-lg rounded-lg px-4 py-6 flex flex-col gap-4
+                 opacity-0 scale-95 invisible
+                 transition-all duration-200 ease-out
+                 group-hover:opacity-100 group-hover:scale-100 group-hover:visible"
+        >
+          {
+            services.map((service) => (
+              <a
+                href="#servicios"
+                class="nav-link text-sm text-neutral-600! text-nowrap hover:text-[#FF7A00]"
+              >
+                {service.title}
+              </a>
+            ))
+          }
+        </div>
+      </section>
+
+      <a href="#frase" class="nav-link text-lg">Sobre nosotros</a>
+    </nav>
+
+    <!-- CTA -->
+    <a
+      href="#soporte"
+      class="hidden md:block px-6 py-2.5 bg-white text-[#FF7A00] rounded-lg font-medium"
+    >
+      Contacto & soporte
+    </a>
+
+    <!-- Mobile button -->
+    <button id="menu-btn" class="md:hidden text-white" aria-label="Abrir menú">
+      <Menu size={32} />
+    </button>
+  </section>
+
+  <!-- Mobile menu -->
+</header>
+
+<div
+  id="mobile-menu"
+  class="fixed z-50! inset-0 bg-[#FF8A00]! flex flex-col items-center justify-center gap-8
+         opacity-0 pointer-events-none transition-opacity"
+>
+  <button id="close-menu" class="absolute top-6 right-6 text-white">
+    <X size={32} />
+  </button>
+
+  <a href="#servicios" class="text-2xl text-white">Servicios</a>
+  <a href="#frase" class="text-2xl text-white">Sobre nosotros</a>
+  <a href="#soporte" class="text-2xl font-bold text-white">
+    Contacto & soporte
+  </a>
+</div>
+
+<script>
+  const btn = document.getElementById("menu-btn");
+  const close = document.getElementById("close-menu");
+  const menu = document.getElementById("mobile-menu");
+
+  btn?.addEventListener("click", () => {
+    if (!menu) return;
+    menu.classList.remove("opacity-0", "pointer-events-none");
+  });
+
+  close?.addEventListener("click", () => {
+    if (!menu) return;
+    menu.classList.add("opacity-0", "pointer-events-none");
+  });
+</script>
+
+<style>
+  #mobile-menu {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    color: #ffffff; /* neutral-800 */
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+
+  .nav-link:hover::after {
+    transform: scaleX(1);
+  }
+
+  .nav-link:hover {
+    color: #ffffff;
+  }
+</style>

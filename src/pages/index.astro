@@ -1,11 +1,27 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Services from "../components/Services.astro";
+import Phrase from "../components/Phrase.astro";
+import Layout from "../layouts/Layout.astro";
+import Steps from "../components/Steps.astro";
+import Contact from "../components/Contact.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <div class="hero-bg pb-28">
+    <Header />
+    <Hero />
+  </div>
+  <Services />
+  <Phrase />
+  <Steps />
+  <Contact />
 </Layout>
+
+<style>
+  .hero-bg {
+    background: linear-gradient(135deg, #ff8a00 0%, #ffb25a 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80%, 0 100%);
+  }
+</style>

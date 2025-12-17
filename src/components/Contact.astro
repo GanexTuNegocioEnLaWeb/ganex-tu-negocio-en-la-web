@@ -1,0 +1,128 @@
+<section id="soporte" class="relative bg-white overflow-hidden">
+  <div class="absolute -top-1 left-0 w-full h-96 bg-[#FF8A00] diagonal"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6">
+    <h2
+      class="pt-80 text-center text-4xl md:text-5xl font-semibold text-neutral-800 max-w-4xl mx-auto"
+    >
+      Contáctanos para mayor información o soporte sobre Ganex
+    </h2>
+    <p class="mt-6 text-center text-lg text-neutral-600 max-w-xl mx-auto">
+      Te responderemos dentro de las próximas 12 horas hábiles.
+    </p>
+
+    <form
+      id="contact-form"
+      class="mt-16 max-w-3xl mx-auto bg-white grid grid-cols-1 md:grid-cols-2 gap-6"
+    >
+      <div>
+        <label class="block text-sm font-medium text-neutral-700 mb-1"
+          >Nombre</label
+        >
+        <input
+          name="nombre"
+          required
+          class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#FF8A00] focus:border-[#FF8A00]"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-neutral-700 mb-1"
+          >Correo electrónico</label
+        >
+        <input
+          type="email"
+          name="email"
+          required
+          class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#FF8A00] focus:border-[#FF8A00]"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-neutral-700 mb-1"
+          >Teléfono</label
+        >
+        <input
+          type="tel"
+          name="telefono"
+          class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#FF8A00] focus:border-[#FF8A00]"
+        />
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium text-neutral-700 mb-1"
+          >Empresa</label
+        >
+        <input
+          name="empresa"
+          class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#FF8A00] focus:border-[#FF8A00]"
+        />
+      </div>
+
+      <div class="md:col-span-2">
+        <label class="block text-sm font-medium text-neutral-700 mb-1"
+          >Mensaje</label
+        >
+        <textarea
+          name="mensaje"
+          rows="5"
+          required
+          class="w-full rounded-lg border border-neutral-300 px-4 py-3 text-neutral-800 focus:outline-none focus:ring-2 focus:ring-[#FF8A00] focus:border-[#FF8A00] resize-none"
+        ></textarea>
+      </div>
+
+      <div class="md:col-span-2 text-center">
+        <button
+          type="submit"
+          class="inline-flex items-center justify-center rounded-lg bg-[#FF8A00] px-8 py-3 font-semibold text-white transition hover:bg-[#FF8A00] hover:cursor-pointer hover:-translate-y-1"
+        >
+          Enviar mensaje
+        </button>
+
+        <p id="form-message" class="mt-4 text-center text-sm"></p>
+      </div>
+    </form>
+  </div>
+</section>
+
+<script is:inline>
+  const form = document.getElementById("contact-form");
+  const messageEl = document.getElementById("form-message");
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    messageEl.textContent = "Enviando...";
+    messageEl.className = "mt-4 text-center text-sm text-neutral-600";
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const result = await res.json();
+
+      if (result.ok) {
+        messageEl.textContent = result.message;
+        messageEl.className = "mt-4 text-center text-sm text-green-600";
+        form.reset();
+      } else {
+        throw new Error(result.message);
+      }
+    } catch (err) {
+      messageEl.textContent = "Ocurrió un error. Intenta nuevamente.";
+      messageEl.className = "mt-4 text-center text-sm text-red-600";
+    }
+  });
+</script>
+
+<style>
+  .diagonal {
+    background: #ff8a00;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
+  }
+</style>

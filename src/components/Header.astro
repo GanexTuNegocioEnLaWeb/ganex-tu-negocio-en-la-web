@@ -2,7 +2,49 @@
 import { Image } from "astro:assets";
 import { Menu, X } from "@lucide/astro";
 import logoGanex from "../assets/logo-ganex-white.svg";
-import services from "../data/services.json";
+
+const services = [
+  {
+    title: "Desarrollo web completo",
+    description:
+      "Creamos sitios web personalizados y optimizados para tu negocio, utilizando las últimas tecnologías y mejores prácticas de la industria.",
+    link: "/servicios/desarrollo-web",
+    linkText: "Ver más",
+    image: "/images/services/web-development.png",
+  },
+  {
+    title: "Desarrollo de aplicaciones",
+    description:
+      "Desarrollamos aplicaciones móviles y web a medida que se adaptan a las necesidades específicas de tu empresa, garantizando una experiencia de usuario excepcional.",
+    link: "/servicios/desarrollo-de-aplicaciones",
+    linkText: "Ver más",
+    image: "/images/services/app-development.png",
+  },
+  {
+    title: "Chatbots con IA",
+    description:
+      "Desarrollamos chatbots inteligentes que mejoran la atención al cliente y automatizan procesos, utilizando inteligencia artificial avanzada.",
+    link: "/servicios/chatbots-ia",
+    linkText: "Ver más",
+    image: "/images/services/chatbot.png",
+  },
+  {
+    title: "Marketing digital",
+    description:
+      "Diseñamos campañas de marketing digital que aumentan el tráfico y las conversiones, utilizando herramientas como Google Ads y redes sociales.",
+    link: "/servicios/marketing-digital",
+    linkText: "Ver más",
+    image: "/images/services/digital-marketing.png",
+  },
+  {
+    title: "Optimización SEO",
+    description:
+      "Mejoramos la visibilidad de tu sitio web en los motores de búsqueda mediante estrategias de SEO efectivas y personalizadas.",
+    link: "/servicios/optimizacion-seo",
+    linkText: "Ver más",
+    image: "/images/services/seo.png",
+  },
+];
 ---
 
 <header class="relative">

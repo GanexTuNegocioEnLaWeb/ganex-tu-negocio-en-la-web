@@ -1,5 +1,5 @@
 ---
-import services from "../data/services.json";
+import * as services from "../data/services.json";
 ---
 
 <section id="servicios" class="relative">
@@ -21,13 +21,6 @@ import services from "../data/services.json";
                      shadow-sm transition-all
                      hover:-translate-y-1 hover:shadow-md"
           >
-            {/* <a
-              href={`/${service.link}`}
-              class="h-full px-6 py-8 bg-white rounded-xl
-                     flex flex-col sm:flex-row gap-6 items-start
-                     shadow-sm transition-all
-                     hover:-translate-y-1 hover:shadow-md"
-            > */}
             <img
               src={service.image}
               alt={service.title}
@@ -42,7 +35,6 @@ import services from "../data/services.json";
                 {service.description}
               </p>
             </article>
-            {/* </a> */}
           </li>
         ))
       }

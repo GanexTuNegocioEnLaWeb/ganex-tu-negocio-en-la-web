@@ -1,0 +1,98 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Contact from "../../components/Contact.astro";
+---
+
+<Layout>
+  <div class="bg-neutral-900">
+    <Header />
+  </div>
+  <main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+    <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+      Optimización SEO
+    </h1>
+    <p class="text-xl text-center max-w-3xl mx-auto mb-16">
+      Mejora tu visibilidad en buscadores.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div class="space-y-6">
+        <h2 class="text-3xl font-bold text-neutral-800">
+          Aparece cuando te buscan
+        </h2>
+        <p class="text-neutral-600 leading-relaxed">
+          El 90% de las experiencias online comienzan en un motor de búsqueda.
+          Optimizamos tu sitio web para que Google lo entienda y lo priorice,
+          atrayendo tráfico orgánico de calidad sin pagar por cada clic.
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700">Auditoría Técnica y SEO On-Page</span
+            >
+          </li>
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700"
+              >Estrategia de Contenidos y Palabras Clave</span
+            >
+          </li>
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700"
+              >Link Building y Autoridad de Dominio</span
+            >
+          </li>
+        </ul>
+      </div>
+      <div
+        class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75"
+      >
+        <svg
+          class="w-32 h-32 text-[#FF8A00] opacity-50"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+      </div>
+    </div>
+  </main>
+  <Contact />
+</Layout>

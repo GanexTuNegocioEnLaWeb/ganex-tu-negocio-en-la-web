@@ -1,0 +1,98 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Contact from "../../components/Contact.astro";
+---
+
+<Layout>
+  <div class="bg-neutral-900">
+    <Header />
+  </div>
+  <main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+    <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+      Desarrollo de Aplicaciones
+    </h1>
+    <p class="text-xl text-center max-w-3xl mx-auto mb-16">
+      Apps móviles y web a medida.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div
+        class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75 order-2 md:order-1"
+      >
+        <svg
+          class="w-32 h-32 text-[#FF8A00] opacity-50"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
+          ></path>
+        </svg>
+      </div>
+      <div class="space-y-6 order-1 md:order-2">
+        <h2 class="text-3xl font-bold text-neutral-800">
+          Innovación en la palma de tu mano
+        </h2>
+        <p class="text-neutral-600 leading-relaxed">
+          Transformamos tus ideas en aplicaciones potentes y fáciles de usar. Ya
+          sea para iOS, Android o plataformas web, desarrollamos soluciones
+          robustas que conectan con tus usuarios.
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700"
+              >Desarrollo Nativo e Híbrido (React Native, Flutter)</span
+            >
+          </li>
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700"
+              >Diseño UX/UI Centrado en el Usuario</span
+            >
+          </li>
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700">Mantenimiento y Escalabilidad</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Contact />
+</Layout>

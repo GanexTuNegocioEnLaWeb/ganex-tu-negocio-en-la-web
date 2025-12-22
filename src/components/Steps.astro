@@ -1,186 +1,311 @@
 ---
 import Image from "astro/components/Image.astro";
-
 import stepImage1 from "../assets/steps/1.svg";
-import stepImage2 from "../assets/steps/3.svg";
-import stepImage3 from "../assets/steps/2.svg";
+import stepImage2 from "../assets/steps/2.svg";
+import stepImage3 from "../assets/steps/3.svg";
+import { siteData } from "../data/siteData";
 ---
 
-<section class="relative">
-  <div class="steps-top-bg h-96 absolute -z-20 w-full -top-1"></div>
+<section class="relative py-24 overflow-hidden bg-white">
+  <!-- Decorative elements -->
+  <div
+    class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-orange-100 rounded-full blur-3xl -z-10 opacity-50 animate-pulse-slow"
+  >
+  </div>
+  <div
+    class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-emerald-100 rounded-full blur-3xl -z-10 opacity-50 animate-pulse-slow"
+  >
+  </div>
 
-  <section class="max-w-7xl mx-auto text-neutral-800 px-4">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-32">
+    <!-- Step 1 -->
     <div
-      class="flex flex-col md:flex-row gap-12 mb-16 items-center md:items-start"
+      class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 scroll-reveal group"
     >
-      <Image
-        src={stepImage1}
-        alt="Imagen ilustrativa de pasos"
-        class="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto"
-        width={1020}
-        height={1020}
-      />
-      <article class="mt-12 md:mt-60 text-neutral-800">
-        <h3 class="text-4xl font-medium text-[#ff8800] relative">
-          Confiables<span
-            class="absolute left-20 -bottom-12 -z-10 opacity-15 text-[140px] font-semibold"
-            >01</span
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative transform transition-transform duration-500 group-hover:scale-105"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-tr from-orange-500 to-yellow-400 rounded-full blur-2xl opacity-20 animate-blob"
+          >
+          </div>
+          <Image
+            src={stepImage1}
+            alt="Misión, Visión y Valores de Ganex"
+            class="relative w-full h-auto drop-shadow-xl"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+          >Nuestra Esencia</span
+        >
+        <h3
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6 leading-tight"
+        >
+          Más que una agencia, tu <span class="text-[#FF8A00]"
+            >aliado estratégico</span
           >
         </h3>
-        <p class="mt-12 text-lg font-light">
-          Desarrollamos soluciones digitales seguras, escalables y alineadas a
-          las mejores prácticas tecnológicas para impulsar tu negocio en el
-          entorno digital.
+        <p class="text-lg text-neutral-600 mb-8 leading-relaxed">
+          {siteData.company.description}
         </p>
 
-        <p class="mt-8">
-          ¿Tienes un proyecto en mente? <a href="#" class="nav-link"
-            >Habla con nuestro equipo.</a
+        <div class="space-y-6">
+          <div
+            class="flex gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors duration-300 cursor-default"
           >
-        </p>
-
-        <ul
-          class="text-lg font-light mt-8 space-y-4 text-neutral-800 text-center md:text-left"
-        >
-          <li>
-            <h4 class="font-normal text-[#ff8a00] mb-1">Misión</h4>
-            <p>
-              Impulsar el crecimiento de empresas y emprendedores a través de
-              soluciones digitales innovadoras, eficientes y centradas en el
-              usuario.
-            </p>
-          </li>
-          <li>
-            <h4 class="font-normal text-[#ff8a00] mb-1">Visión</h4>
-            <p>
-              Ser una empresa referente en soluciones digitales, reconocida por
-              la calidad, innovación y el impacto real que generamos en los
-              negocios.
-            </p>
-          </li>
-          <li class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-neutral-800">
-            <section>
-              <h4 class="font-normal text-[#ff8a00] mb-1">Valores</h4>
-              <ul>
-                <li>- Transparencia</li>
-                <li>- Innovación</li>
-                <li>- Compromiso</li>
-                <li>- Orientación al cliente</li>
-                <li>- Adaptación al cambio</li>
-              </ul>
-            </section>
-            <section>
-              <h4 class="font-normal text-[#ff8a00] mb-1">Atributos</h4>
-              <ul>
-                <li>- Profesionalismo</li>
-                <li>- Tecnología</li>
-                <li>- Creatividad</li>
-                <li>- Experiencia</li>
-                <li>- Dinamismo</li>
-              </ul>
-            </section>
-          </li>
-        </ul>
-      </article>
+            <div
+              class="w-12 h-12 rounded-full bg-white border border-orange-100 shadow-sm flex items-center justify-center shrink-0 text-[#FF8A00]"
+            >
+              <!-- Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg
+              >
+            </div>
+            <div>
+              <h4 class="font-bold text-neutral-800 text-lg">{siteData.mission.title}</h4>
+              <p class="text-neutral-600">
+                {siteData.mission.text}
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex gap-4 p-4 rounded-xl hover:bg-orange-50 transition-colors duration-300 cursor-default"
+          >
+            <div
+              class="w-12 h-12 rounded-full bg-white border border-orange-100 shadow-sm flex items-center justify-center shrink-0 text-[#FF8A00]"
+            >
+              <!-- Icon -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                ><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                ></path></svg
+              >
+            </div>
+            <div>
+              <h4 class="font-bold text-neutral-800 text-lg">{siteData.vision.title}</h4>
+              <p class="text-neutral-600">
+                {siteData.vision.text}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- Step 2 -->
     <div
-      class="flex flex-col md:flex-row gap-12 mb-16 items-center md:items-start"
+      class="flex flex-col md:flex-row-reverse items-center gap-12 lg:gap-24 scroll-reveal group"
     >
-      <Image
-        src={stepImage2}
-        alt="Imagen ilustrativa de pasos"
-        class="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto"
-        width={1020}
-        height={1020}
-      />
-      <article>
-        <h3 class="text-4xl font-medium text-[#ff8800] relative">
-          Desarrollo confiable<span
-            class="absolute -left-16 -bottom-12 -z-10 opacity-15 text-[140px] font-semibold"
-            >02</span
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative transform transition-transform duration-500 group-hover:scale-105"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-tr from-emerald-500 to-teal-400 rounded-full blur-2xl opacity-20 animate-blob animation-delay-2000"
           >
+          </div>
+          <Image
+            src={stepImage2}
+            alt="Desarrollo confiable"
+            class="relative w-full h-auto drop-shadow-xl"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class="text-emerald-600 font-bold tracking-wider uppercase text-sm mb-2 block"
+          >Experiencia Técnica</span
+        >
+        <h3
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6 leading-tight"
+        >
+          Desarrollo <span class="text-emerald-600">Confiable</span> y Robusto
         </h3>
-        <ul class="mt-12 text-lg font-light text-neutral-800">
-          <li>- Diseño y desarrollo de sitios web</li>
-          <li>- Tiendas online y soluciones e-commerce</li>
-          <li>- Sistemas y plataformas a medida</li>
-          <li>- Optimización y posicionamiento digital</li>
-          <li>- Soporte y evolución continua de tus soluciones</li>
+        <ul class="space-y-4">
+          {
+            [
+              "Diseño y desarrollo de sitios web modernos",
+              "Tiendas online y soluciones e-commerce",
+              "Sistemas y plataformas a medida",
+              "Optimización y posicionamiento digital",
+            ].map((item) => (
+              <li class="flex items-center gap-4 text-neutral-700 p-3 rounded-lg hover:bg-emerald-50 transition-colors duration-300">
+                <div class="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0">
+                  <svg
+                    class="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 13l4 4L19 7"
+                    />
+                  </svg>
+                </div>
+                <span class="font-medium">{item}</span>
+              </li>
+            ))
+          }
         </ul>
         <a
           href="#soporte"
-          class="inline-block! px-6 py-2.5 mt-6 bg-emerald-600 text-white text-lg rounded-lg font-medium transition hover:-translate-y-1"
+          class="inline-block mt-10 px-8 py-4 bg-emerald-600 text-white rounded-full font-bold hover:bg-emerald-700 transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-200"
         >
-          Saber más
+          Iniciar Proyecto
         </a>
-      </article>
+      </div>
     </div>
 
+    <!-- Step 3 -->
     <div
-      class="flex flex-col md:flex-row gap-12 items-center md:items-start"
+      class="flex flex-col md:flex-row items-center gap-12 lg:gap-24 scroll-reveal group"
     >
-      <Image
-        src={stepImage3}
-        alt="Imagen ilustrativa de pasos"
-        class="w-full max-w-sm sm:max-w-md lg:max-w-lg mx-auto"
-        width={1020}
-        height={1020}
-      />
-      <article>
-        <h3 class="text-4xl font-medium text-[#ff8800] relative">
-          Ecosistema digital<span
-            class="absolute left-60 -bottom-12 -z-10 opacity-15 text-[140px] font-semibold"
-            >03</span
+      <div class="w-full md:w-1/2">
+        <div
+          class="relative transform transition-transform duration-500 group-hover:scale-105"
+        >
+          <div
+            class="absolute inset-0 bg-linear-to-tr from-blue-500 to-indigo-400 rounded-full blur-2xl opacity-20 animate-blob animation-delay-4000"
           >
+          </div>
+          <Image
+            src={stepImage3}
+            alt="Ecosistema digital"
+            class="relative w-full h-auto drop-shadow-xl"
+            width={600}
+            height={400}
+          />
+        </div>
+      </div>
+      <div class="w-full md:w-1/2">
+        <span
+          class="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block"
+          >Resultados</span
+        >
+        <h3
+          class="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-800 mb-6 leading-tight"
+        >
+          Ecosistema Digital <span class="text-blue-600">Integrado</span>
         </h3>
-        <p class="mt-12 text-lg font-light text-neutral-800">
+        <p class="text-lg text-neutral-600 mb-6 leading-relaxed">
           Creamos soluciones que conectan marcas, tecnología y usuarios para
-          generar resultados reales y sostenibles.
+          generar resultados reales y sostenibles. No solo entregamos código,
+          entregamos valor.
         </p>
-      </article>
+        <p class="text-neutral-600 mb-8 flex items-center gap-2">
+          ¿Tienes un proyecto en mente?
+          <a
+            href="#soporte"
+            class="text-blue-600 font-bold hover:underline flex items-center gap-1"
+          >
+            Habla con nuestro equipo
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg
+            >
+          </a>
+        </p>
+      </div>
     </div>
-  </section>
-  <div class="steps-bottom-bg h-96 absolute -z-20 w-full bottom-0"></div>
+  </div>
 </section>
 
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.2,
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("active");
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll(".scroll-reveal").forEach((el) => {
+    observer.observe(el);
+  });
+</script>
+
 <style>
-  .steps-top-bg {
-    background: #ff8a00;
-    clip-path: polygon(0 0, 0 100%, 100% 0, 0 0);
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .scroll-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
   }
 
-  .steps-bottom-bg {
-    background: #ff8a00;
-    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
   }
-
-  .nav-link {
-    position: relative;
-    display: inline-block;
-    color: #009966; /* neutral-800 */
-    text-decoration: none;
-    transition: color 0.2s ease;
+  .animate-blob {
+    animation: blob 7s infinite;
   }
-
-  .nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -4px;
-    width: 100%;
-    height: 2px;
-    background-color: currentColor;
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease;
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
-
-  .nav-link:hover::after {
-    transform: scaleX(1);
+  .animation-delay-4000 {
+    animation-delay: 4s;
   }
-
-  .nav-link:hover {
-    color: #009966;
+  .animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 </style>

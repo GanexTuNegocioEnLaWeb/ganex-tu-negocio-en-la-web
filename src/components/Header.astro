@@ -2,49 +2,7 @@
 import { Image } from "astro:assets";
 import { Menu, X } from "@lucide/astro";
 import logoGanex from "../assets/logo-ganex-white.svg";
-
-const services = [
-  {
-    title: "Desarrollo web completo",
-    description:
-      "Creamos sitios web personalizados y optimizados para tu negocio, utilizando las últimas tecnologías y mejores prácticas de la industria.",
-    link: "/servicios/desarrollo-web",
-    linkText: "Ver más",
-    image: "/images/services/web-development.png",
-  },
-  {
-    title: "Desarrollo de aplicaciones",
-    description:
-      "Desarrollamos aplicaciones móviles y web a medida que se adaptan a las necesidades específicas de tu empresa, garantizando una experiencia de usuario excepcional.",
-    link: "/servicios/desarrollo-de-aplicaciones",
-    linkText: "Ver más",
-    image: "/images/services/app-development.png",
-  },
-  {
-    title: "Chatbots con IA",
-    description:
-      "Desarrollamos chatbots inteligentes que mejoran la atención al cliente y automatizan procesos, utilizando inteligencia artificial avanzada.",
-    link: "/servicios/chatbots-ia",
-    linkText: "Ver más",
-    image: "/images/services/chatbot.png",
-  },
-  {
-    title: "Marketing digital",
-    description:
-      "Diseñamos campañas de marketing digital que aumentan el tráfico y las conversiones, utilizando herramientas como Google Ads y redes sociales.",
-    link: "/servicios/marketing-digital",
-    linkText: "Ver más",
-    image: "/images/services/digital-marketing.png",
-  },
-  {
-    title: "Optimización SEO",
-    description:
-      "Mejoramos la visibilidad de tu sitio web en los motores de búsqueda mediante estrategias de SEO efectivas y personalizadas.",
-    link: "/servicios/optimizacion-seo",
-    linkText: "Ver más",
-    image: "/images/services/seo.png",
-  },
-];
+import { siteData } from "../data/siteData";
 ---
 
 <header class="relative">
@@ -52,41 +10,90 @@ const services = [
     class="max-w-7xl mx-auto flex items-center justify-between py-6 text-white px-4"
   >
     <!-- Logo -->
-    <a href="/" class="w-40">
-      <Image src={logoGanex} alt="Logo de Ganex" width={180} height={120} />
+    <a href="/" class="w-60 transition-transform hover:scale-105">
+      <Image
+        src={logoGanex}
+        alt="Logo de Ganex"
+        width={240}
+        height={160}
+        class="drop-shadow-lg"
+      />
     </a>
 
     <!-- Desktop menu -->
-    <nav class="hidden md:flex gap-8 items-center">
+    <nav class="hidden md:flex gap-10 items-center">
       <section class="relative group">
-        <a href="#servicios" class="nav-link text-lg">Servicios</a>
+        <a
+          href="/#servicios"
+          class="nav-link text-base font-medium hover:text-white/80 transition-colors flex! items-center gap-1"
+        >
+          Servicios
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4 transition-transform group-hover:rotate-180"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </a>
 
         <div
-          class="absolute top-10 left-0 bg-white text-neutral-800 shadow-lg rounded-lg px-4 py-6 flex flex-col gap-4
-                 opacity-0 scale-95 invisible
+          class="absolute top-full left-0 mt-2 bg-white text-neutral-800 shadow-2xl rounded-xl px-2 py-2 flex flex-col min-w-60
+                 opacity-0 scale-95 invisible z-50
                  transition-all duration-200 ease-out
-                 group-hover:opacity-100 group-hover:scale-100 group-hover:visible"
+                 group-hover:opacity-100 group-hover:scale-100 group-hover:visible border border-neutral-100 origin-top-left"
         >
           {
-            services.map((service) => (
+            siteData.services.map((service) => (
               <a
-                href="#servicios"
-                class="nav-link text-sm text-neutral-600! text-nowrap hover:text-[#FF7A00]"
+                href={service.href}
+                class="text-sm text-neutral-600 hover:text-[#FF7A00] hover:bg-orange-50 px-4 py-3 rounded-lg transition-colors font-medium flex items-center justify-between group/item"
               >
                 {service.title}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 opacity-0 -translate-x-2 group-hover/item:opacity-100 group-hover/item:translate-x-0 transition-all"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
               </a>
             ))
           }
         </div>
       </section>
+      <!-- 
+      <a
+        href="/#portafolio"
+        class="nav-link text-base font-medium hover:text-white/80 transition-colors"
+        >Portafolio</a
+      > -->
 
-      <a href="#frase" class="nav-link text-lg">Sobre nosotros</a>
+      <a
+        href="/sobre-nosotros"
+        class="nav-link text-base font-medium hover:text-white/80 transition-colors"
+        >Sobre nosotros</a
+      >
     </nav>
 
     <!-- CTA -->
     <a
       href="#soporte"
-      class="hidden md:block px-6 py-2.5 bg-white text-[#FF7A00] rounded-lg font-medium"
+      class="hidden md:block px-6 py-2.5 bg-white text-[#FF7A00] rounded-full font-bold shadow-lg
+             hover:shadow-xl hover:scale-105 transition-all duration-300"
     >
       Contacto & soporte
     </a>
@@ -109,9 +116,25 @@ const services = [
     <X size={32} />
   </button>
 
-  <a href="#servicios" class="text-2xl text-white">Servicios</a>
-  <a href="#frase" class="text-2xl text-white">Sobre nosotros</a>
-  <a href="#soporte" class="text-2xl font-bold text-white">
+  <a
+    href="/#servicios"
+    class="text-2xl text-white font-medium hover:text-neutral-200 transition-colors"
+    >Servicios</a
+  >
+  <!-- <a
+    href="/#portafolio"
+    class="text-2xl text-white font-medium hover:text-neutral-200 transition-colors"
+    >Portafolio</a
+  > -->
+  <a
+    href="/sobre-nosotros"
+    class="text-2xl text-white font-medium hover:text-neutral-200 transition-colors"
+    >Sobre nosotros</a
+  >
+  <a
+    href="#soporte"
+    class="text-2xl font-bold text-white hover:text-neutral-200 transition-colors"
+  >
     Contacto & soporte
   </a>
 </div>

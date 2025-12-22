@@ -1,0 +1,103 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Contact from "../../components/Contact.astro";
+---
+
+<Layout>
+  <div class="bg-neutral-900">
+    <Header />
+  </div>
+  <main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+    <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+      Marketing Digital
+    </h1>
+    <p class="text-xl text-center max-w-3xl mx-auto mb-16">
+      Estrategias para aumentar tu tráfico y conversiones.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+      <div
+        class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75 order-2 md:order-1"
+      >
+        <svg
+          class="w-32 h-32 text-[#FF8A00] opacity-50"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="1"
+            d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+        </svg>
+      </div>
+      <div class="space-y-6 order-1 md:order-2">
+        <h2 class="text-3xl font-bold text-neutral-800">
+          Conecta con tu audiencia ideal
+        </h2>
+        <p class="text-neutral-600 leading-relaxed">
+          Diseñamos y ejecutamos campañas de marketing digital basadas en datos.
+          Desde redes sociales hasta publicidad pagada, nos aseguramos de que tu
+          mensaje llegue a las personas correctas en el momento adecuado.
+        </p>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700">Gestión de Redes Sociales (SMM)</span
+            >
+          </li>
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700"
+              >Publicidad en Google y Meta Ads (SEM)</span
+            >
+          </li>
+          <li class="flex items-center gap-3">
+            <svg
+              class="w-6 h-6 text-[#FF8A00]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              ><path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M5 13l4 4L19 7"></path></svg
+            >
+            <span class="text-neutral-700"
+              >Email Marketing y Automatización</span
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <Contact />
+</Layout>

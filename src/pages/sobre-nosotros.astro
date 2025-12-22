@@ -1,0 +1,61 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Steps from "../components/Steps.astro";
+import Contact from "../components/Contact.astro";
+import { Image } from "astro:assets";
+// Import images if needed, or use placeholders
+---
+
+<Layout>
+  <div class="bg-neutral-900">
+    <Header />
+  </div>
+
+  <main class="text-neutral-800 bg-white">
+    <!-- Hero Section for About Us -->
+    <section class="py-20 px-6 max-w-7xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <h1 class="text-5xl font-bold mb-6 text-[#FF8A00]">Sobre Nosotros</h1>
+        <p class="text-xl text-neutral-600 leading-relaxed">
+          En Ganex, somos un equipo apasionado por la tecnología y la
+          innovación. Nuestra misión es democratizar el acceso a herramientas
+          digitales de primer nivel, ayudando a empresas de todos los tamaños a
+          escalar y prosperar en el entorno digital.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+        <div class="bg-orange-50 p-8 rounded-2xl">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">
+            Nuestra Misión
+          </h2>
+          <p class="text-neutral-600 leading-relaxed">
+            Impulsar la transformación digital de nuestros clientes mediante
+            soluciones tecnológicas personalizadas, desde sitios web de alto
+            rendimiento hasta sistemas de inteligencia artificial, garantizando
+            siempre calidad, eficiencia y resultados medibles.
+          </p>
+        </div>
+        <div class="bg-neutral-50 p-8 rounded-2xl">
+          <h2 class="text-3xl font-bold mb-4 text-neutral-800">
+            Nuestra Visión
+          </h2>
+          <p class="text-neutral-600 leading-relaxed">
+            Ser el socio tecnológico referente en la región, reconocidos por
+            nuestra capacidad para convertir desafíos complejos en soluciones
+            digitales simples, efectivas y estéticamente impactantes.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reuse Steps Component as "Our Process" -->
+    <div class="bg-neutral-50">
+      <Steps />
+    </div>
+
+    <!-- Contact Section -->
+    <Contact />
+  </main>
+</Layout>

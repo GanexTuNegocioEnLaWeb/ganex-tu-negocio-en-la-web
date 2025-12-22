@@ -5,42 +5,103 @@ import imgHero from "../assets/img-hero.svg";
 
 <section
   class="max-w-7xl mx-auto w-full flex flex-col-reverse lg:flex-row
-         items-center justify-between gap-10 px-4 sm:px-6 lg:px-8 pt-12 sm:pt-12 lg:pt-0"
+         items-center justify-between gap-12 lg:gap-16 px-6 sm:px-8 lg:px-12 pt-12 sm:pt-16 lg:pt-8"
 >
   <!-- Texto -->
   <article
     class="text-white flex flex-col gap-6 items-start
-            pt-0 pb-12 sm:pt-0 sm:pb-16 lg:py-20 text-center lg:text-left"
+            pt-0 pb-16 sm:pt-0 sm:pb-20 lg:py-20 text-center lg:text-left w-full lg:w-1/2"
   >
-    <h1
-      class="text-4xl sm:text-5xl lg:text-7xl
-             font-bold max-w-xl leading-tight"
-    >
-      La visibilidad web impulsa tu negocio, marca o empresa.
-    </h1>
+    <div class="flex flex-col gap-3">
+      <span
+        class="text-emerald-300 font-semibold tracking-wider text-sm uppercase bg-emerald-900/40 px-4 py-1.5 rounded-full w-fit mx-auto lg:mx-0 border border-emerald-500/40 backdrop-blur-sm"
+      >
+        Tu socio tecnológico integral
+      </span>
+      <h1
+        class="text-3xl sm:text-4xl lg:text-5xl
+               font-extrabold max-w-2xl leading-tight tracking-tight text-white"
+      >
+        Impulsamos tu Negocio con <span
+          class="text-transparent bg-clip-text bg-linear-to-r from-emerald-200 to-cyan-200"
+          >Soluciones Digitales</span
+        > a Medida
+      </h1>
+    </div>
 
-    <p class="text-lg sm:text-xl text-white/90 max-w-lg">
-      Creamos soluciones digitales que hacen crecer tu presencia online.
+    <p
+      class="text-base sm:text-lg text-neutral-100 max-w-xl leading-relaxed font-light mx-auto lg:mx-0 opacity-90"
+    >
+      En Ganex, fusionamos creatividad y tecnología para desarrollar sitios web,
+      aplicaciones móviles y estrategias de marketing que no solo existen, sino
+      que <strong>venden y conectan</strong>.
     </p>
 
-    <a
-      href="#servicios"
-      class="px-6 py-3 bg-emerald-600 text-white text-base sm:text-lg
-             rounded-lg font-medium transition
-             hover:-translate-y-1 hover:bg-emerald-500"
-    >
-      Conozca más
-    </a>
+    <div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
+      <a
+        href="#servicios"
+        class="px-8 py-3.5 bg-white text-[#FF8A00] text-base font-bold
+               rounded-full shadow-lg transition-all duration-300
+               hover:-translate-y-1 hover:shadow-xl hover:bg-orange-50 w-full sm:w-auto"
+      >
+        Explorar Servicios
+      </a>
+      <a
+        href="#soporte"
+        class="px-8 py-3.5 bg-white/10 backdrop-blur-md border border-white/30 text-white text-base
+               rounded-full font-bold transition-all duration-300
+               hover:-translate-y-1 hover:bg-white/20 w-full sm:w-auto"
+      >
+        Agendar Cita
+      </a>
+    </div>
   </article>
 
   <!-- Imagen -->
-  <div class="w-full lg:w-1/2 flex justify-center">
-    <Image
-      src={imgHero}
-      alt="Imagen de hero"
-      width={800}
-      height={600}
-      class="w-full max-w-sm sm:max-w-md lg:max-w-lg h-auto"
-    />
+  <div class="w-full lg:w-1/2 flex justify-center lg:justify-end relative">
+    <div
+      class="absolute -inset-10 bg-linear-to-tr from-orange-400/30 to-purple-500/30 rounded-full blur-[80px] -z-10 animate-pulse-slow"
+    >
+    </div>
+    <div
+      class="relative w-full max-w-lg lg:max-w-xl transform hover:scale-[1.02] transition-transform duration-500"
+    >
+      <Image
+        src={imgHero}
+        alt="Estrategia digital y desarrollo web con Ganex"
+        width={800}
+        height={600}
+        class="w-full h-auto drop-shadow-2xl animate-float"
+      />
+    </div>
   </div>
 </section>
+
+<style>
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-15px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  .animate-pulse-slow {
+    animation: pulse 8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.6;
+    }
+  }
+</style>

@@ -1,0 +1,142 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import { siteData } from "../data/siteData";
+---
+
+<Layout title={`Términos de Servicio - ${siteData.company.name}`}>
+  <div class="bg-linear-to-br from-[#FF8A00] to-[#FFB25A]">
+    <Header />
+  </div>
+  <main class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl font-bold text-neutral-800 mb-8">
+        Términos de Servicio
+      </h1>
+
+      <div class="prose prose-lg prose-neutral max-w-none text-neutral-600">
+        <p class="lead">
+          Bienvenido a <strong>{siteData.company.name}</strong>. Nos alegra
+          contar con su visita. Al acceder y utilizar nuestro sitio web y
+          servicios, usted acepta los presentes Términos de Servicio. Nuestro
+          objetivo es ofrecerle una experiencia segura, clara y confiable, por
+          lo que le recomendamos leer esta información detenidamente.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          1. Aceptación de los términos
+        </h3>
+        <p>
+          Al navegar por nuestro sitio web o utilizar cualquiera de nuestros
+          servicios, usted confirma que ha leído, comprendido y aceptado estos
+          Términos de Servicio. Si no está de acuerdo con alguno de ellos, le
+          recomendamos no utilizar nuestros servicios.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          2. Uso adecuado de los servicios
+        </h3>
+        <p>
+          Usted se compromete a utilizar nuestros servicios de forma
+          responsable, ética y conforme a la ley. En particular, se abstendrá
+          de:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>
+            Violar leyes o normativas locales, nacionales o internacionales.
+          </li>
+          <li>
+            Publicar, transmitir o distribuir contenido ilegal, ofensivo o
+            fraudulento.
+          </li>
+          <li>
+            Intentar acceder sin autorización a nuestros sistemas, servidores o
+            redes.
+          </li>
+        </ul>
+        <p>
+          Nos reservamos el derecho de suspender o limitar el acceso a nuestros
+          servicios si detectamos un uso indebido.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          3. Propiedad intelectual
+        </h3>
+        <p>
+          Todo el contenido disponible en este sitio web —incluyendo textos,
+          imágenes, diseños, logotipos, gráficos, código y materiales digitales—
+          es propiedad exclusiva de <strong>{siteData.company.name}</strong> o de
+          sus respectivos licenciantes, y se encuentra protegido por las leyes de
+          propiedad intelectual.
+        </p>
+        <p>
+          Queda prohibida la reproducción, distribución, modificación o uso del
+          contenido sin autorización previa y expresa por escrito.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          4. Limitación de responsabilidad
+        </h3>
+        <p>
+          Trabajamos constantemente para ofrecer información precisa y servicios
+          de calidad. Sin embargo, <strong>{siteData.company.name}</strong> no garantiza
+          que el sitio web funcione de manera ininterrumpida o libre de errores.
+        </p>
+        <p>
+          En la medida permitida por la ley, no nos hacemos responsables por
+          daños directos, indirectos, incidentales o consecuentes derivados del
+          uso o la imposibilidad de uso de nuestros servicios.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          5. Enlaces a sitios de terceros
+        </h3>
+        <p>
+          Nuestro sitio web puede incluir enlaces a páginas externas de terceros
+          como referencia o conveniencia. No tenemos control sobre su contenido
+          ni sus prácticas, por lo que no asumimos responsabilidad alguna sobre
+          ellos.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          6. Modificaciones de los términos
+        </h3>
+        <p>
+          Nos reservamos el derecho de actualizar o modificar estos Términos de
+          Servicio en cualquier momento. Las modificaciones serán efectivas
+          desde el momento de su publicación en esta página. Le recomendamos
+          revisar periódicamente esta sección.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">
+          7. Contacto y atención
+        </h3>
+        <p>
+          Si tiene preguntas, comentarios o necesita más información sobre estos
+          Términos de Servicio, estaremos encantados de ayudarle.
+        </p>
+        <p class="font-medium mt-4">
+          Correo electrónico:
+          <a
+            href={`mailto:${siteData.company.email}`}
+            class="text-[#FF8A00] hover:underline"
+          >
+            {siteData.company.email}
+          </a>
+        </p>
+
+        <p
+          class="text-sm text-neutral-400 mt-12 pt-8 border-t border-neutral-100"
+        >
+          Última actualización: {
+            new Date().toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })
+          }
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>

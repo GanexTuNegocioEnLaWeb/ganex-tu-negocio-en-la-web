@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import { siteData } from '../data/siteData';
+---
+
+<Layout title={`Política de Privacidad - ${siteData.company.name}`}>
+  <div class="bg-gradient-to-br from-[#FF8A00] to-[#FFB25A]">
+    <Header />
+  </div>
+  <main class="py-20 bg-white">
+    <div class="max-w-4xl mx-auto px-6">
+      <h1 class="text-4xl font-bold text-neutral-800 mb-8">Política de Privacidad</h1>
+      
+      <div class="prose prose-lg prose-neutral max-w-none text-neutral-600">
+        <p class="lead">
+          En <strong>{siteData.company.name}</strong>, valoramos su privacidad y nos comprometemos a proteger sus datos personales. Esta Política de Privacidad explica cómo recopilamos, usamos y protegemos su información.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">1. Información que recopilamos</h3>
+        <p>
+          Podemos recopilar información personal que usted nos proporciona voluntariamente, como su nombre, dirección de correo electrónico, número de teléfono y cualquier otra información que decida compartir con nosotros a través de nuestros formularios de contacto o suscripción.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">2. Uso de la información</h3>
+        <p>
+          Utilizamos la información recopilada para:
+        </p>
+        <ul class="list-disc pl-6 space-y-2">
+          <li>Proporcionar y mejorar nuestros servicios.</li>
+          <li>Comunicarnos con usted sobre sus consultas o proyectos.</li>
+          <li>Enviarle información relevante, actualizaciones o promociones (si ha optado por recibirlas).</li>
+          <li>Cumplir con obligaciones legales.</li>
+        </ul>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">3. Protección de datos</h3>
+        <p>
+          Implementamos medidas de seguridad técnicas y organizativas adecuadas para proteger sus datos personales contra el acceso no autorizado, la alteración, la divulgación o la destrucción.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">4. Cookies</h3>
+        <p>
+          Nuestro sitio web puede utilizar cookies para mejorar su experiencia de navegación. Puede configurar su navegador para rechazar las cookies, pero esto podría limitar algunas funcionalidades del sitio.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">5. Compartir información</h3>
+        <p>
+          No vendemos, intercambiamos ni transferimos su información personal a terceros sin su consentimiento, excepto cuando sea necesario para proporcionar nuestros servicios (por ejemplo, proveedores de alojamiento web) o cuando lo exija la ley.
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">6. Sus derechos</h3>
+        <p>
+          Usted tiene derecho a acceder, corregir, eliminar u oponerse al procesamiento de sus datos personales. Para ejercer estos derechos, contáctenos en:
+        </p>
+        <p class="font-medium mt-4">
+          Correo electrónico: <a href={`mailto:${siteData.company.email}`} class="text-[#FF8A00] hover:underline">{siteData.company.email}</a>
+        </p>
+
+        <h3 class="text-2xl font-bold text-neutral-800 mt-8 mb-4">7. Cambios en esta política</h3>
+        <p>
+          Nos reservamos el derecho de actualizar esta Política de Privacidad en cualquier momento. Le recomendamos revisar esta página periódicamente para estar informado sobre cualquier cambio.
+        </p>
+
+        <p class="text-sm text-neutral-400 mt-12 pt-8 border-t border-neutral-100">
+          Última actualización: {new Date().toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+        </p>
+      </div>
+    </div>
+  </main>
+</Layout>

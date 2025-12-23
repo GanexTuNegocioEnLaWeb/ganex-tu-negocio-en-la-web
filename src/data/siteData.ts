@@ -4,9 +4,9 @@ export const siteData = {
     email: "hola@ganexbo.com",
     phone: "+591 70930853",
     phoneLink: "tel:+59170930853",
-    address: "Santa cruz, Bolivia", // Placeholder
+    address: "Santa Cruz, Bolivia", // Placeholder
     mapUrl:
-      "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d949.7858207497464!2d-63.18823722499657!3d-17.784961910406324!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses-419!2sbo!4v1766452831368!5m2!1ses-419!2sbo",
+      "https://maps.google.com/maps?q=-17.784962,-63.188237&hl=es&z=14&output=embed",
     slogan:
       "Impulsamos el crecimiento de tu negocio con soluciones digitales innovadoras.",
     description:
@@ -69,48 +69,36 @@ export const siteData = {
   portfolio: [
     {
       id: 1,
-      title: "E-commerce Moda",
-      category: "Desarrollo Web",
-      image: "/images/portfolio/project1.jpg", // Placeholder
+      title: "Megaloblastos",
+      category: "Sitio Web Político",
+      image: "/images/portfolio/megaloblastos.jpg", // Placeholder
       description:
-        "Tienda online con pasarela de pagos y gestión de inventario.",
-      link: "#",
+        "Sitio web para un partido político de un centro interno de la Gabriel René Moreno. El tener la web antes de que termine la campaña fue uno de los indicadores clave para la victoria.",
+      link: "/proyectos/megaloblastos",
+      slug: "megaloblastos",
+      details: "El proyecto Megaloblastos consistió en el desarrollo de una plataforma web estratégica para la campaña política de un centro interno de la UAGRM. La web permitió centralizar las propuestas, presentar a los candidatos y mantener informados a los estudiantes. Su lanzamiento oportuno, antes del cierre de campaña, permitió una difusión masiva de las propuestas y se convirtió en una herramienta clave para la comunicación con el electorado, contribuyendo significativamente a la victoria electoral."
     },
     {
       id: 2,
-      title: "App Delivery",
-      category: "App Móvil",
-      image: "/images/portfolio/project2.jpg", // Placeholder
+      title: "Ecomedical",
+      category: "Salud / Web Corporativa",
+      image: "/images/portfolio/ecomedical.jpg", // Placeholder
       description:
-        "Aplicación de reparto de comida con rastreo en tiempo real.",
-      link: "#",
+        "Clínica en Tarija que ofrece servicios regenerativos y sirve como puente o canal para mostrar todos sus servicios.",
+      link: "/proyectos/ecomedical",
+      slug: "ecomedical",
+      details: "Ecomedical es una clínica líder en Tarija especializada en medicina regenerativa. Desarrollamos un sitio web corporativo que funciona como un canal digital integral para la institución. La plataforma permite a los pacientes explorar en detalle el catálogo de servicios, conocer al staff médico y entender los tratamientos innovadores que ofrecen. El diseño se centró en transmitir confianza, profesionalismo y modernidad, alineado con la identidad de la clínica."
     },
     {
       id: 3,
-      title: "Dashboard Corporativo",
-      category: "Sistema Web",
-      image: "/images/portfolio/project3.jpg", // Placeholder
+      title: "Qraten",
+      category: "App Móvil / Web App",
+      image: "/images/portfolio/qraten.jpg", // Placeholder
       description:
-        "Panel de control para gestión de recursos humanos y nómina.",
-      link: "#",
-    },
-    {
-      id: 4,
-      title: "Landing Page Inmobiliaria",
-      category: "Marketing",
-      image: "/images/portfolio/project4.jpg", // Placeholder
-      description:
-        "Página de alta conversión para venta de departamentos de lujo.",
-      link: "#",
-    },
-    {
-      id: 5,
-      title: "Bot de Atención al Cliente",
-      category: "IA & Chatbots",
-      image: "/images/portfolio/project5.jpg", // Placeholder
-      description:
-        "Asistente virtual capaz de agendar citas y resolver dudas frecuentes.",
-      link: "#",
+        "App de asistencias con QR que simplifica el control y registro de asistencia.",
+      link: "/proyectos/qraten",
+      slug: "qraten",
+      details: "Qraten es una solución innovadora para la gestión de asistencias mediante tecnología QR. La aplicación permite a organizaciones y eventos registrar la asistencia de los participantes de manera rápida y segura. Los usuarios generan un código QR único que es escaneado al ingreso, automatizando el control y generando reportes en tiempo real. El sistema incluye un panel administrativo para gestionar usuarios, eventos y estadísticas de asistencia."
     },
   ],
 };

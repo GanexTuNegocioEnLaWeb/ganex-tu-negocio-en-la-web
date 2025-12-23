@@ -63,13 +63,14 @@ const currentYear = new Date().getFullYear();
             <li>
               <a
                 href="/sobre-nosotros"
-                class="hover:text-[#FF8A00] transition-colors"
-                >Sobre Nosotros</a>
+                class="hover:text-[#FF8A00] transition-colors">Sobre Nosotros</a
+              >
             </li>
             <!-- <li><a href="#portafolio" class="hover:text-[#FF8A00] transition-colors">Portafolio</a></li> -->
             <li>
               <a href="#soporte" class="hover:text-[#FF8A00] transition-colors"
-                >Contacto</a>
+                >Contacto</a
+              >
             </li>
           </ul>
         </div>
@@ -81,32 +82,35 @@ const currentYear = new Date().getFullYear();
               <a
                 href={siteData.legal.privacyPolicy}
                 class="hover:text-[#FF8A00] transition-colors"
-                >Política de Privacidad</a>
+                >Política de Privacidad</a
+              >
             </li>
             <li>
               <a
                 href={siteData.legal.termsOfService}
                 class="hover:text-[#FF8A00] transition-colors"
-                >Términos de Servicio</a>
+                >Términos de Servicio</a
+              >
             </li>
           </ul>
         </div>
       </div>
     </div>
-
-    <div
-      class="border-t border-neutral-100 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
-    >
+  </div>
+  <div
+    class="border-t border-neutral-100 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 bg-black"
+  >
+  <div class="max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row justify-between items-center gap-4">
       <p class="text-neutral-400 text-sm">
         © {currentYear}
         {siteData.company.name} – Todos los derechos reservados.
       </p>
       <div class="flex gap-2">
         <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-        <span class="text-xs font-medium text-neutral-500"
+        <span class="text-xs font-medium text-neutral-400"
           >Sistemas operacionales</span
         >
       </div>
-    </div>
+  </div>
   </div>
 </footer>

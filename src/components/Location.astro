@@ -1,11 +1,17 @@
 ---
+import Image from "astro/components/Image.astro";
 import { siteData } from "../data/siteData";
+
+import pinLogo from "../assets/logo-ganex.svg";
 ---
 
 <section id="ubicacion" class="py-24 bg-white relative overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
-      <span class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block">Ubicación</span>
+      <span
+        class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+        >Ubicación</span
+      >
       <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
         Dónde nos <span class="text-[#FF8A00]">encontramos</span>
       </h2>
@@ -14,7 +20,9 @@ import { siteData } from "../data/siteData";
       </p>
     </div>
 
-    <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-neutral-100">
+    <div
+      class="bg-white rounded-3xl shadow-xl overflow-hidden border border-neutral-100"
+    >
       <div class="relative w-full h-100 sm:h-125 rounded-2xl overflow-hidden">
         <iframe
           src={siteData.company.mapUrl}
@@ -24,7 +32,7 @@ import { siteData } from "../data/siteData";
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
-          class="absolute inset-0 w-full h-full"
+          class="absolute inset-0 w-full h-full grayscale-20 hover:grayscale-0 transition-all duration-500"
         ></iframe>
       </div>
     </div>

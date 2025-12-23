@@ -5,6 +5,8 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
 
+    console.log("Datos recibidos en API:", data);
+
     const { error } = await supabase.from("contactos").insert([
       {
         nombre: data.nombre,

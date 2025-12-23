@@ -94,11 +94,12 @@ import { siteData } from "../data/siteData";
             <a
               href={siteData.company.phoneLink}
               class="text-neutral-600 hover:text-[#FF8A00] transition-colors block text-lg"
-              >{siteData.company.phone}</a
+              >{siteData.company.phone} - Nicolas Bustos</a
             >
             <span class="text-xs text-neutral-400 mt-1 block"
-              >Lun - Vie, 9am - 6pm</span
+              >Lun - Sab, 8am - 6pm</span
             >
+
           </div>
         </div>
       </div>
@@ -142,15 +143,39 @@ import { siteData } from "../data/siteData";
           </div>
         </div>
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-neutral-700 ml-1"
+              >Correo electrónico</label
+            >
+            <input
+              type="email"
+              name="email"
+              required
+              placeholder="tu@empresa.com"
+              class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+            />
+          </div>
+          <div class="space-y-2">
+            <label class="block text-sm font-semibold text-neutral-700 ml-1"
+              >Teléfono</label
+            >
+            <input
+              type="tel"
+              name="telefono"
+              placeholder="+591 70000000"
+              class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+            />
+          </div>
+        </div>
+
         <div class="space-y-2">
           <label class="block text-sm font-semibold text-neutral-700 ml-1"
-            >Correo electrónico</label
+            >Empresa (Opcional)</label
           >
           <input
-            type="email"
-            name="email"
-            required
-            placeholder="tu@empresa.com"
+            name="empresa"
+            placeholder="Nombre de tu empresa"
             class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
           />
         </div>
@@ -210,15 +235,37 @@ import { siteData } from "../data/siteData";
     const data = Object.fromEntries(formData.entries());
 
     try {
-      // Simulation
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      const payload = {
+        nombre: `${data.nombre} ${data.apellido || ""}`.trim(),
+        email: data.email,
+        telefono: data.telefono,
+        empresa: data.empresa,
+        mensaje: data.mensaje,
+      };
+
+      const response = await fetch("/api/contacto", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.message || "Error al enviar el mensaje");
+      }
+
       messageEl.textContent =
         "¡Mensaje enviado con éxito! Nos pondremos en contacto pronto.";
       messageEl.className =
         "mt-4 text-center text-sm text-green-600 font-medium";
       form.reset();
     } catch (error) {
+      console.error(error);
       messageEl.textContent =
+        error.message ||
         "Hubo un error al enviar el mensaje. Por favor intenta de nuevo.";
       messageEl.className = "mt-4 text-center text-sm text-red-600";
     }

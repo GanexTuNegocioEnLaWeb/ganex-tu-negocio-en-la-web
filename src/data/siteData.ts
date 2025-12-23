@@ -8,7 +8,7 @@ export const siteData = {
     mapUrl:
       "https://maps.google.com/maps?q=-17.784962,-63.188237&hl=es&z=14&output=embed",
     slogan:
-      "Impulsamos el crecimiento de tu negocio con soluciones digitales innovadoras.",
+      "Soluciones Digitales.",
     description:
       "Desarrollamos soluciones digitales seguras, escalables y alineadas a las mejores prácticas tecnológicas para impulsar tu negocio al siguiente nivel.",
   },

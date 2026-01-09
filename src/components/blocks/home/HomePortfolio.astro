@@ -47,7 +47,7 @@ const projectSlug = featuredProject?.slug || featuredProject?.title?.toLowerCase
         itemtype="https://schema.org/CreativeWork"
       >
         <div class="grid md:grid-cols-2 gap-0">
-          <figure class="relative h-80 md:h-full min-h-[400px] overflow-hidden bg-neutral-100 m-0">
+          <figure class="relative h-80 md:h-full min-h-100 overflow-hidden bg-neutral-100 m-0">
             {featuredProject.image ? (
               <img
                 src={`${import.meta.env.SITE}${featuredProject.image}`}

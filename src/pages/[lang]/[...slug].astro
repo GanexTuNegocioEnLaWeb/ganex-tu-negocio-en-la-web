@@ -15,23 +15,48 @@ export const prerender = true;
 export async function getStaticPaths() {
   const pages = await getCollection("pages");
   const supported = await getSupportedLangs();
+  const paths: any[] = [];
 
-  return pages
-    .map((page) => {
-      const [idSlug, idLang] = page.id.split(".");
-      const lang = isLang(idLang, supported) ? idLang : DEFAULT_LANG;
-      // Usamos el route definido o el slug del ID, pero quitamos 'home' para que no duplique la raíz
-      const slug = (page.data.route ?? idSlug).replace(/^\/+|\/+$/g, "");
+  for (const page of pages) {
+    const [idSlug, idLang] = page.id.split(".");
+    const lang = isLang(idLang, supported) ? idLang : DEFAULT_LANG;
+    const slug = (page.data.route ?? idSlug).replace(/^\/+|\/+$/g, "");
 
-      // El home se maneja en [lang]/index.astro, así que lo saltamos aquí
-      if (slug === "home") return null;
+    if (slug === "home") continue;
 
-      return {
-        params: { lang, slug },
-        props: { page },
-      };
-    })
-    .filter(Boolean);
+    paths.push({
+      params: { lang, slug },
+      props: { page },
+    });
+
+    // Si esta página es el portafolio, generamos también los detalles de sus proyectos
+    const portfolioSlugs = ["proyectos", "portfolio", "projects"];
+    if (portfolioSlugs.includes(slug.toLowerCase())) {
+      const i18nDict = await getI18nDict(lang);
+      const projects = i18nDict.portfolio?.projects || [];
+
+      for (const project of projects) {
+        const projectSlug =
+          project.slug || project.title?.toLowerCase().replace(/\s+/g, "-");
+        if (!projectSlug) continue;
+
+        paths.push({
+          params: { lang, slug: `${slug}/${projectSlug}` },
+          props: {
+            page: {
+              data: {
+                title: project.title,
+                description: project.description,
+                blocks: [{ type: "project-detail", props: { projectSlug } }],
+              },
+            },
+          },
+        });
+      }
+    }
+  }
+
+  return paths;
 }
 
 const { lang: rawLang, slug } = Astro.params;
@@ -67,6 +92,11 @@ const meta = await resolveMeta({
   lang,
   canonicalUrl: Astro.url?.href,
 });
+
+// Forzar el título y descripción si vienen en la data (para páginas sintéticas como proyectos)
+if (page?.data?.title) meta.title = page.data.title;
+if (page?.data?.description) meta.description = page.data.description;
+
 const i18nDict = await getI18nDict(lang);
 ---
 

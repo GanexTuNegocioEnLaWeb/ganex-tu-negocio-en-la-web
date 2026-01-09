@@ -1,0 +1,16 @@
+{
+  "route": "empezar/seo",
+  "title": "Ganex — Auditoría y Plan SEO",
+  "description": "Domina los resultados de búsqueda. Solicita tu plan de posicionamiento.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "SEO",
+        "serviceLabel": "Optimización en Buscadores",
+        "serviceId": "seo"
+      }
+    }
+  ]
+}

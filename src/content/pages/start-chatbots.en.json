@@ -1,0 +1,16 @@
+{
+  "route": "get-started/chatbots",
+  "title": "Ganex — Implement AI Chatbot",
+  "description": "Automate your customer service with Artificial Intelligence. Tell us what you need.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "AI Chatbots",
+        "serviceLabel": "AI & Automation",
+        "serviceId": "chatbots"
+      }
+    }
+  ]
+}

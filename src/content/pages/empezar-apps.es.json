@@ -1,0 +1,16 @@
+{
+  "route": "empezar/apps",
+  "title": "Ganex — Solicitar Aplicación Móvil",
+  "description": "Transformamos tu idea en una App potente. Cuéntanos tu proyecto.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Apps Móviles",
+        "serviceLabel": "Desarrollo de Aplicaciones",
+        "serviceId": "apps"
+      }
+    }
+  ]
+}

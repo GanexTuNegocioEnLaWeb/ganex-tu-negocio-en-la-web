@@ -8,10 +8,14 @@ const p1 = t("chatbots.hero.p1", i18n);
 const li1 = t("chatbots.hero.li1", i18n);
 const li2 = t("chatbots.hero.li2", i18n);
 const li3 = t("chatbots.hero.li3", i18n);
+const cta = t("chatbots.hero.cta", i18n);
+const lang = i18n.locale || "es";
 ---
 
-<main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
-  <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+<main class="max-w-6xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+  <h1
+    class="text-6xl md:text-7xl font-extrabold mb-10 text-center text-[#FF8A00] tracking-tight"
+  >
     {title}
   </h1>
   <p class="text-xl text-center max-w-3xl mx-auto mb-16">
@@ -70,23 +74,33 @@ const li3 = t("chatbots.hero.li3", i18n);
           <span class="text-neutral-700">{li3}</span>
         </li>
       </ul>
+      <div class="pt-6">
+        <a
+          href={lang === "es"
+            ? "/es/empezar/chatbots"
+            : "/en/get-started/chatbots"}
+          class="inline-flex items-center gap-2 px-8 py-4 bg-[#FF8A00] text-white font-bold rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-orange-200"
+        >
+          {cta}
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
+        </a>
+      </div>
     </div>
-    <div
-      class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75"
-    >
-      <svg
-        class="w-32 h-32 text-[#FF8A00] opacity-50"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1"
-          d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-        ></path>
-      </svg>
-    </div>
+
+    <img
+      src="/images/services/chatbot-ia.jpg"
+      alt={title}
+      class="object-cover w-full h-full rounded-2xl"
+    />
   </div>
 </main>

@@ -10,7 +10,7 @@
     { "title": "SEO", "slug": "services/seo" },
     { "title": "AI Chatbots", "slug": "services/ai-chatbots" }
   ],
-  "nav": [{ "label": "About Us", "slug": "about-us" }],
+  "nav": [{ "label": "About Us", "slug": "about-us" }, { "label": "Projects", "slug": "projects" }, { "label": "Blog", "slug": "blog" }],
   "footer": {
     "copyright": "© Ganex",
     "nav_label": "Navegación del pie",

@@ -61,22 +61,25 @@ const sectionServicesId = t("nav.services_id", dict);
 
 <header class:list={["relative", bgClass, className]} id="primary-header">
   <section
-    class="max-w-7xl mx-auto flex items-center justify-between py-6 text-white px-12"
+    class="max-w-6xl mx-auto flex items-center justify-between py-6 text-white px-12"
   >
     <!-- Logo -->
-    <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
+    <a
+      href={`/${lang}`}
+      class="transition-all duration-500 hover:scale-110 active:scale-95 group"
+    >
       <Image
         src={logoGanexWhite}
         alt={site?.data.ogImageAlt || "Ganex"}
         width={240}
         height={160}
-        class="drop-shadow-lg"
+        class="w-40 sm:w-48 md:w-56 lg:w-60 h-auto drop-shadow-2xl transition-all duration-500 group-hover:brightness-110"
       />
     </a>
 
     <!-- Desktop menu -->
     <nav
-      class="hidden md:flex gap-10 items-center"
+      class="hidden xl:flex gap-10 items-center"
       aria-label={navLabel}
       role="navigation"
     >
@@ -158,7 +161,7 @@ const sectionServicesId = t("nav.services_id", dict);
     </nav>
 
     <!-- CTA + Lang -->
-    <div class="hidden md:flex items-center gap-4">
+    <div class="hidden xl:flex items-center gap-4">
       <a
         href={`${currentPath}${contactAnchor}`}
         class="px-6 py-2.5 bg-white text-[#FF7A00] rounded-full font-bold shadow-lg
@@ -172,21 +175,21 @@ const sectionServicesId = t("nav.services_id", dict);
     <!-- Mobile button -->
     <button
       id="menu-btn"
-      class="md:hidden text-white"
+      class="xl:hidden p-2 text-white hover:bg-white/10 rounded-xl transition-all active:scale-90"
       aria-label={openMenu}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <Icon name="tabler:menu-2" width="28" height="28" />
+      <Icon name="tabler:menu-2" class="w-8 h-8 md:w-9 md:h-9" />
     </button>
   </section>
 </header>
 
 <div
   id="secondary-header"
-  class="fixed left-0 w-full bg-white shadow-xl z-40 -top-32 pointer-events-none transition-all"
+  class="fixed left-0 w-full bg-white shadow-xl z-40 -top-40 pointer-events-none transition-all"
 >
-  <div class="max-w-7xl mx-auto px-12 py-3 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-12 py-3 flex items-center justify-between">
     <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
       <Image
         src={logoGanex}
@@ -198,7 +201,7 @@ const sectionServicesId = t("nav.services_id", dict);
     </a>
 
     <nav
-      class="hidden md:flex gap-10 items-center"
+      class="hidden xl:flex gap-10 items-center"
       aria-label={navLabel}
       role="navigation"
     >
@@ -279,7 +282,7 @@ const sectionServicesId = t("nav.services_id", dict);
       }
     </nav>
 
-    <div class="hidden md:flex items-center gap-4">
+    <div class="hidden xl:flex items-center gap-4">
       <a
         href={`${currentPath}${contactAnchor}`}
         class="px-4 py-2 bg-[#FF8A00] text-white rounded-full font-bold shadow-lg hover:shadow-xl transition-all"
@@ -291,12 +294,12 @@ const sectionServicesId = t("nav.services_id", dict);
     <!-- Mobile button -->
     <button
       id="menu-btn-2"
-      class="md:hidden text-black"
+      class="xl:hidden p-2 text-[#FF8A00] hover:bg-orange-50 rounded-xl transition-all active:scale-90"
       aria-label={openMenu}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <Icon name="tabler:menu-2" width="28" height="28" />
+      <Icon name="tabler:menu-2" class="w-8 h-8 md:w-9 md:h-9" />
     </button>
   </div>
   <style>
@@ -315,36 +318,45 @@ const sectionServicesId = t("nav.services_id", dict);
 <!-- Mobile menu -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 bg-[#FF8A00] flex flex-col items-center justify-center gap-8
-         opacity-0 pointer-events-none transition-opacity z-50"
+  class="fixed inset-0 bg-linear-to-br from-[#ff8a00] to-[#ffb25a] flex flex-col items-center justify-center gap-10
+         opacity-0 pointer-events-none transition-all duration-500 z-100 backdrop-blur-lg"
 >
+  <div class="absolute inset-0 bg-white/5 opacity-20"></div>
+
   <button
     id="close-menu"
-    class="absolute top-6 right-6 text-white"
+    class="absolute top-8 right-8 text-white p-3 hover:bg-white/20 rounded-2xl transition-all active:scale-90 z-10"
     aria-label={closeMenu}
   >
-    <Icon name="tabler:x" width="28" height="28" />
+    <Icon name="tabler:x" class="w-9 h-9" />
   </button>
 
-  <a
-    href={`/${lang}#${sectionServicesId}`}
-    class="text-2xl text-white font-medium"
-  >
-    {t("nav.services", dict)}
-  </a>
+  <div class="flex flex-col items-center gap-8 z-10 w-full px-12">
+    {
+      nav.map((item) => (
+        <a
+          href={hrefFor(item)}
+          class="mobile-nav-link text-3xl text-white font-bold tracking-tight hover:scale-110 transition-transform"
+        >
+          {item.label}
+        </a>
+      ))
+    }
 
-  {
-    nav.map((item) => (
+    <div
+      class="mt-4 pt-8 border-t border-white/20 w-full flex flex-col items-center gap-8"
+    >
+      <LanguageSwitcher lang={lang} slug={slug} />
+
       <a
-        href={hrefFor(item)}
-        class="text-2xl text-white font-medium hover:text-neutral-200"
+        href={`${currentPath}${contactAnchor}`}
+        class="w-full max-w-xs py-4 bg-white text-[#FF8A00] rounded-2xl font-black text-xl text-center shadow-2xl
+               hover:scale-105 active:scale-95 transition-all"
       >
-        {item.label}
+        {cta}
       </a>
-    ))
-  }
-
-  <LanguageSwitcher lang={lang} slug={slug} />
+    </div>
+  </div>
 </div>
 
 <script>
@@ -353,41 +365,60 @@ const sectionServicesId = t("nav.services_id", dict);
   const close = document.getElementById("close-menu");
   const menu = document.getElementById("mobile-menu");
 
-  btn?.addEventListener("click", () => {
-    menu?.classList.remove("opacity-0", "pointer-events-none");
-    btn?.setAttribute("aria-expanded", "true");
-  });
+  const toggleMenu = (open: boolean) => {
+    if (open) {
+      menu?.classList.remove(
+        "opacity-0",
+        "pointer-events-none",
+        "translate-y-10",
+      );
+      menu?.classList.add("opacity-100", "translate-y-0");
+      document.body.style.overflow = "hidden";
+    } else {
+      menu?.classList.add("opacity-0", "pointer-events-none", "translate-y-10");
+      menu?.classList.remove("opacity-100", "translate-y-0");
+      document.body.style.overflow = "";
+    }
+    btn?.setAttribute("aria-expanded", String(open));
+    btn2?.setAttribute("aria-expanded", String(open));
+  };
 
-  close?.addEventListener("click", () => {
-    menu?.classList.add("opacity-0", "pointer-events-none");
-    btn?.setAttribute("aria-expanded", "false");
-  });
+  btn?.addEventListener("click", () => toggleMenu(true));
+  btn2?.addEventListener("click", () => toggleMenu(true));
+  close?.addEventListener("click", () => toggleMenu(false));
 
-   btn2?.addEventListener("click", () => {
-    menu?.classList.remove("opacity-0", "pointer-events-none");
-    btn2?.setAttribute("aria-expanded", "true");
-  });
-
-  close?.addEventListener("click", () => {
-    menu?.classList.add("opacity-0", "pointer-events-none");
-    btn2?.setAttribute("aria-expanded", "false");
-  });
-  const primary = document.getElementById("primary-header");
+  // Dynamic Scroll Behavior (Headroom-style)
   const secondary = document.getElementById("secondary-header");
-  const obs = new IntersectionObserver(
-    (entries) => {
-      const visible = entries[0]?.isIntersecting ?? true;
-      if (!visible) {
-        secondary?.classList.add("top-0");
-        secondary?.classList.remove("pointer-events-none");
+  let lastScrollY = window.scrollY;
+  const threshold = 300; // Distancia mínima para activar el header secundario
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+
+      // Si estamos por debajo del threshold
+      if (currentScrollY > threshold) {
+        if (scrollingDown) {
+          // Scroll hacia abajo: ocultar
+          secondary?.classList.remove("top-0");
+          secondary?.classList.add("-top-60", "pointer-events-none");
+        } else {
+          // Scroll hacia arriba: mostrar
+          secondary?.classList.add("top-0");
+          secondary?.classList.remove("-top-60", "pointer-events-none");
+        }
       } else {
+        // Si estamos muy arriba (cerca del primary header): ocultar secundario
         secondary?.classList.remove("top-0");
-        secondary?.classList.add("pointer-events-none");
+        secondary?.classList.add("-top-60", "pointer-events-none");
       }
+
+      lastScrollY = currentScrollY;
     },
-    { threshold: 0, rootMargin: "32px 0px 0px 0px" }
+    { passive: true },
   );
-  if (primary) obs.observe(primary);
 </script>
 
 <style>
@@ -406,7 +437,7 @@ const sectionServicesId = t("nav.services_id", dict);
     height: 2px;
     background: currentColor;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s ease;
   }
 
   .nav-link:hover::after,

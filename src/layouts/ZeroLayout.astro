@@ -1,0 +1,47 @@
+---
+import "../assets/global.css";
+import { resolveMeta } from "../lib/seo";
+
+interface Props {
+    slug?: string;
+    lang: string;
+}
+
+const { slug = "home", lang = "es" } = Astro.props;
+const meta = await resolveMeta({ slug, lang, canonicalUrl: Astro.url?.href });
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{meta.title}</title>
+        <meta name="description" content={meta.description} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="canonical" href={meta.canonicalUrl} />
+        <meta name="robots" content="index,follow" />
+        <meta name="author" content="Ganex" />
+        <meta name="theme-color" content="#FF8A00" />
+
+        <!-- Google tag (gtag.js) -->
+        <script
+            is:inline
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-27TKK0PR92"
+        ></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-27TKK0PR92");
+        </script>
+    </head>
+    <body class="bg-white text-neutral-800 antialiased overflow-x-hidden">
+        <main id="main">
+            <slot />
+        </main>
+    </body>
+</html>

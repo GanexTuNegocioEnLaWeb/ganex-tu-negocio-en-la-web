@@ -1,0 +1,16 @@
+{
+  "route": "empezar/marketing",
+  "title": "Ganex — Plan de Marketing Digital",
+  "description": "Escala tus ventas con estrategias de marketing digital basadas en resultados.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Marketing Digital",
+        "serviceLabel": "Marketing y Publicidad",
+        "serviceId": "marketing"
+      }
+    }
+  ]
+}

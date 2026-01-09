@@ -36,6 +36,10 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
     type: "home-location",
     import: () => import("./home/HomeLocation.astro"),
   },
+  {
+    type: "home-latest-blog",
+    import: () => import("./home/HomeLatestBlog.astro"),
+  },
   // ABOUT
   {
     type: "about-hero",
@@ -75,5 +79,28 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
   {
     type: "privacy-hero",
     import: () => import("./privacy/PrivacyHero.astro"),
+  },
+  // PORTFOLIO
+  {
+    type: "projects-grid",
+    import: () => import("./projects/ProjectsGrid.astro"),
+  },
+  {
+    type: "project-detail",
+    import: () => import("./projects/ProjectDetail.astro"),
+  },
+  // BLOG
+  {
+    type: "blog-grid",
+    import: () => import("./blog/BlogGrid.astro"),
+  },
+  {
+    type: "blog-post-detail",
+    import: () => import("./blog/BlogPostDetail.astro"),
+  },
+  // CONVERSATIONAL
+  {
+    type: "conversational-wizard",
+    import: () => import("./conversational/ConversationalWizard.astro"),
   },
 ];

@@ -4,6 +4,7 @@
     { "type": "home-services" },
     { "type": "home-portfolio" },
     { "type": "home-phrase" },
+    { "type": "home-latest-blog" },
     { "type": "steps" },
     { "type": "home-location" },
     { "type": "block-contact" }

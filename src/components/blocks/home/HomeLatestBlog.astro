@@ -1,0 +1,176 @@
+---
+import { t } from "../../../lib/i18n";
+import { getCollection } from "astro:content";
+
+const { i18n = {}, lang = "es" } = Astro.props as {
+  i18n?: Record<string, any>;
+  lang?: string;
+};
+
+const sectionTitle = t("home.latest_blog.title", i18n);
+const sectionSubtitle = t("home.latest_blog.subtitle", i18n);
+const readMore = t("blog.read_more", i18n);
+const viewAllPosts = t("blog.view_all_posts", i18n);
+
+// Obtener el último post del blog
+const blogEntries = await getCollection(
+  "blog",
+  ({ data }) => data.lang === lang && !data.draft
+);
+
+// Ordenar por fecha de publicación y tomar el más reciente
+const sortedPosts = blogEntries.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+
+const latestPost = sortedPosts[0];
+let postData = null;
+
+if (latestPost) {
+  const cleanSlug = latestPost.slug.replace(new RegExp(`${lang}$`), "");
+  const formattedDate = new Intl.DateTimeFormat(
+    lang === "es" ? "es-ES" : "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }
+  ).format(latestPost.data.pubDate);
+
+  postData = {
+    title: latestPost.data.title,
+    description: latestPost.data.description,
+    image: latestPost.data.image,
+    slug: cleanSlug,
+    pubDate: formattedDate,
+    author: latestPost.data.author,
+    tags: latestPost.data.tags,
+  };
+}
+---
+
+{
+  postData && (
+    <section class="py-24 bg-white relative overflow-hidden">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+            {sectionTitle}
+          </h2>
+          <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+            {sectionSubtitle}
+          </p>
+        </div>
+
+        <div class="mx-auto">
+          <article
+            class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-neutral-100"
+            itemscope
+            itemtype="https://schema.org/BlogPosting"
+          >
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
+              {postData.image && (
+                <figure class="relative h-80 lg:h-full overflow-hidden bg-neutral-100 m-0">
+                  <img
+                    src={`${postData.image}`}
+                    alt={postData.title}
+                    loading="lazy"
+                    decoding="async"
+                    width="800"
+                    height="600"
+                    class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    itemprop="image"
+                  />
+                  <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </figure>
+              )}
+
+              <div class="p-8 lg:p-12 flex flex-col justify-center">
+                <div class="flex items-center gap-3 mb-4 text-sm text-neutral-500">
+                  <time datetime={postData.pubDate} itemprop="datePublished">
+                    {postData.pubDate}
+                  </time>
+                  {postData.author && (
+                    <>
+                      <span>•</span>
+                      <span itemprop="author">{postData.author}</span>
+                    </>
+                  )}
+                </div>
+
+                {postData.tags && postData.tags.length > 0 && (
+                  <div class="flex flex-wrap gap-2 mb-4">
+                    {postData.tags.slice(0, 3).map((tag) => (
+                      <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide px-3 py-1 bg-[#FF8A00]/10 rounded-full">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
+
+                <h3
+                  class="text-3xl lg:text-4xl font-bold text-neutral-800 mb-4 group-hover:text-[#FF8A00] transition-colors leading-tight"
+                  itemprop="headline"
+                >
+                  {postData.title}
+                </h3>
+
+                <p
+                  class="text-neutral-600 mb-8 text-lg leading-relaxed"
+                  itemprop="description"
+                >
+                  {postData.description}
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-4">
+                  <a
+                    href={`/${lang}/${lang === "es" ? "blog" : "blog"}/${postData.slug}`}
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#FF8A00] text-white font-bold rounded-lg hover:bg-[#e67a00] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                    itemprop="url"
+                  >
+                    {readMore}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </a>
+
+                  <a
+                    href={`/${lang}/${lang === "es" ? "blog" : "blog"}`}
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white border-2 border-neutral-300 text-neutral-800 font-bold rounded-lg hover:border-[#FF8A00] hover:text-[#FF8A00] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  >
+                    {viewAllPosts}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  )
+}

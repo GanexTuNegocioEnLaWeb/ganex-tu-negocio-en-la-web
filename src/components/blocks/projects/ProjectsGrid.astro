@@ -1,0 +1,193 @@
+---
+import { t } from "../../../lib/i18n";
+import { getCollection } from "astro:content";
+
+const {
+  i18n = {},
+  lang = "es",
+  currentPage = 1,
+  totalPages: propsTotalPages,
+} = Astro.props as {
+  i18n?: Record<string, any>;
+  lang?: string;
+  currentPage?: number;
+  totalPages?: number;
+};
+const tag = t("portfolio.page.tag", i18n);
+const titlePre = t("portfolio.page.title_pre", i18n);
+const titleHighlight = t("portfolio.page.title_highlight", i18n);
+const desc = t("portfolio.page.desc", i18n);
+
+// Obtener proyectos desde la collection
+const projectEntries = await getCollection(
+  "projects",
+  ({ data }) => data.lang === lang,
+);
+const projects = projectEntries.map((entry) => ({
+  title: entry.data.title,
+  category: entry.data.category,
+  description: entry.data.description,
+  image: entry.data.image,
+  link: entry.data.link,
+  slug: entry.slug
+    .replace(new RegExp(`${lang}$`), "")
+    .replace(/^\/+|\/+$/g, ""),
+}));
+
+const itemsPerPage = 6;
+const totalPages = propsTotalPages || Math.ceil(projects.length / itemsPerPage);
+const start = (currentPage - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+const currentProjects = projects.slice(start, end);
+
+const baseUrl = `/${lang}/${lang === "es" ? "proyectos" : "portfolio"}`;
+const viewProjectLabel = lang === "es" ? "Ver Proyecto" : "View Project";
+const prevLabel = lang === "es" ? "Anterior" : "Previous";
+const nextLabel = lang === "es" ? "Siguiente" : "Next";
+---
+
+<section class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span
+        class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+        >{tag}</span
+      >
+      <h1 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+        {titlePre}
+        <span class="text-[#FF8A00]">{titleHighlight}</span>
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+        {desc}
+      </p>
+    </div>
+
+    <div
+      id="projects-grid"
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+    >
+      {currentProjects.map(project => (
+        <article
+          class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100"
+          itemscope
+          itemtype="https://schema.org/CreativeWork"
+        >
+          <figure class="relative h-64 overflow-hidden bg-neutral-100 m-0">
+            {project.image ? (
+              <img
+                src={project.image}
+                alt={`Proyecto ${project.title} – ${project.category}`}
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="400"
+                class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+              />
+            ) : (
+              <div class="w-full h-full flex items-center justify-center text-[#FF8A00] opacity-50">
+                <svg class="w-20 h-20" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+              </div>
+            )}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </figure>
+
+          <div class="p-8">
+            <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide mb-2 block">
+              {project.category}
+            </span>
+            <h3 class="text-2xl font-bold text-neutral-800 mb-3 group-hover:text-[#FF8A00] transition-colors" itemprop="name">
+              {project.title}
+            </h3>
+            <p class="text-neutral-600 mb-6 line-clamp-3" itemprop="description">
+              {project.description}
+            </p>
+
+            <a
+              href={`/${lang}/${lang === "es" ? "proyectos" : "projects"}/${project.slug}`}
+              class="inline-flex items-center gap-2 text-neutral-800 font-bold group-hover:text-[#FF8A00] transition-colors"
+            >
+              {lang === "es" ? "Ver detalles" : "View details"}
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* Pagination Controls */}
+    {totalPages > 1 && (
+      <div id="pagination-controls" class="mt-16 flex justify-center items-center gap-4">
+        {/* Previous Button */}
+        <a
+          href={currentPage > 1 ? (currentPage === 2 ? baseUrl : `${baseUrl}/${currentPage - 1}`) : "#"}
+          class={`p-4 rounded-full border-2 transition-all ${currentPage === 1 ? "border-neutral-50 text-neutral-200 pointer-events-none" : "border-neutral-100 text-neutral-400 hover:border-[#FF8A00] hover:text-[#FF8A00]"}`}
+          aria-label={prevLabel}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </a>
+
+        {/* Page Numbers */}
+        <div
+          id="project-pages"
+          class="flex gap-2 text-sm font-bold"
+        >
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map(p => (
+            <a
+              href={p === 1 ? baseUrl : `${baseUrl}/${p}`}
+              class={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${p === currentPage ? "bg-[#FF8A00] text-white shadow-xl shadow-orange-100 scale-110" : "bg-neutral-50 text-neutral-400 hover:bg-neutral-100"}`}
+            >
+              {p}
+            </a>
+          ))}
+        </div>
+
+        {/* Next Button */}
+        <a
+          href={currentPage < totalPages ? `${baseUrl}/${currentPage + 1}` : "#"}
+          class={`p-4 rounded-full border-2 transition-all ${currentPage === totalPages ? "border-neutral-50 text-neutral-200 pointer-events-none" : "border-neutral-100 text-neutral-400 hover:border-[#FF8A00] hover:text-[#FF8A00]"}`}
+          aria-label={nextLabel}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 5l7 7-7 7"></path>
+          </svg>
+        </a>
+      </div>
+    )}
+  </div>
+</section>
+
+{/* Auto-scroll on page change */}
+{currentPage > 1 && (
+  <script is:inline>
+    const section = document.getElementById('projects-grid');
+    if (section) {
+      window.scrollTo({ top: section.offsetTop - 150, behavior: 'instant' });
+    }
+  </script>
+)}

@@ -17,7 +17,8 @@
   "nav": {
     "services": "Services",
     "contact_id": "support",
-    "services_id": "services"
+    "services_id": "services",
+    "start_slug": "get-started"
   },
   "chatbots": {
     "hero": {
@@ -27,7 +28,8 @@
       "p1": "Integrate cutting-edge Artificial Intelligence into your business to provide instant, personalized responses 24/7. Optimize workflows and free up your team for high-impact strategic tasks.",
       "li1": "24/7 Automated Customer Support",
       "li2": "Natural Language Processing (NLP) integration",
-      "li3": "Seamless CRM and Database connectivity"
+      "li3": "Seamless CRM and Database connectivity",
+      "cta": "Get started now"
     }
   },
   "digital": {
@@ -38,7 +40,8 @@
       "p1": "We design and execute performance-based digital marketing campaigns: SEO, SEM, and Social Media Marketing. We manage Google Ads and Meta Ads, optimizing CTR, CPC, and ROI for your business in Bolivia and beyond.",
       "li1": "Social Media Management (SMM) & Growth",
       "li2": "PPC Management: Google & Meta Ads (SEM)",
-      "li3": "Marketing Automation and Advanced Analytics"
+      "li3": "Marketing Automation and Advanced Analytics",
+      "cta": "Get started now"
     }
   },
   "seo": {
@@ -50,6 +53,7 @@
       "li1": "Technical SEO Audit & On-Page Optimization",
       "li2": "Keyword Research and Content Strategy",
       "li3": "Link Building & Domain Authority Growth",
+      "cta": "Get started now",
       "p2": "We complement our strategy with <a href=\"/en/services/digital-marketing\" class=\"text-[#FF8A00] font-medium hover:underline\">digital marketing</a> and <strong>CTR optimization</strong> through structured data and rich snippets to dominate search results."
     }
   },
@@ -62,7 +66,8 @@
       "p2": "Our development includes on-page SEO, strategic information architecture, and internal linking to rank for keywords like 'web development in Santa Cruz' and 'top web agency in Bolivia'.",
       "li1": "Responsive & Modern UI/UX Design",
       "li2": "Speed Optimization (Core Web Vitals)",
-      "li3": "Custom CMS & E-commerce Integration"
+      "li3": "Custom CMS & E-commerce Integration",
+      "cta": "Get started now"
     }
   },
   "appdev": {
@@ -73,7 +78,8 @@
       "p1": "We transform your ideas into powerful mobile and web apps using React Native and Flutter, prioritizing performance, user experience (UX), and scalability. We integrate real-time analytics and push notifications for friction-less growth.",
       "li1": "Native & Hybrid App Development (React Native, Flutter)",
       "li2": "User-Centric UI/UX Design",
-      "li3": "Ongoing Maintenance and Cloud Scalability"
+      "li3": "Ongoing Maintenance and Cloud Scalability",
+      "cta": "Get started now"
     }
   },
   "privacy": {
@@ -140,35 +146,17 @@
       "cta_meeting": "Book a Meeting",
       "img_alt": "Digital strategy and web development services by Ganex"
     },
+    "latest_blog": {
+      "title": "Latest Article",
+      "subtitle": "Stay up to date with our latest insights"
+    },
     "portfolio": {
       "tag": "Our Work",
       "title_pre": "Projects that",
       "title_highlight": "Deliver Results",
       "desc": "Showcasing our latest success stories in web and app development.",
-      "see_project": "View project",
-      "items": [
-        {
-          "title": "Megaloblastos",
-          "category": "Political Website",
-          "description": "A strategic web platform for a political center at UAGRM. The site was a key factor in securing their electoral victory.",
-          "image": "/images/portfolio/megaloblastos.jpg",
-          "link": "https://megaloblastos.com"
-        },
-        {
-          "title": "Ecomedical",
-          "category": "Healthcare / Corporate",
-          "description": "A regenerative medicine clinic website in Tarija, serving as a primary channel for patient acquisition and services.",
-          "image": "/images/portfolio/ecomedical.jpg",
-          "link": "https://ecomedicalweb.com"
-        },
-        {
-          "title": "QRaten",
-          "category": "Mobile App / SaaS",
-          "description": "A QR-based attendance tracking app that simplifies records and management through a sleek mobile interface.",
-          "image": "/images/portfolio/qraten.jpg",
-          "link": "https://www.qraten.com"
-        }
-      ]
+      "see_project_detail": "View details",
+      "see_all_projects": "View all projects"
     },
     "phrase": {
       "welcome": "Welcome",
@@ -197,7 +185,7 @@
         },
         {
           "title": "Mobile Apps",
-          "slug": "services/mobile-apps",
+          "slug": "services/app-development",
           "description": "iOS and Android apps developed with React Native and Flutter, focused on UX/UI and scalability.",
           "icon": "tabler:devices"
         },
@@ -303,6 +291,30 @@
       "mapUrl": "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d30393.558107676796!2d-63.2304007!3d-17.7825414!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93f1e9df56520ef5%3A0x2b5c85fcc274b1d5!2sGanex!5e0!3m2!1ses!2sbo!4v1767725152905!5m2!1ses!2sbo"
     }
   },
+  "portfolio": {
+    "page": {
+      "tag": "Portfolio",
+      "title_pre": "Our",
+      "title_highlight": "Projects",
+      "desc": "Explore our complete collection of projects. Each one represents our commitment to excellence and innovation."
+    }
+  },
+  "project": {
+    "back_to_portfolio": "Back to portfolio",
+    "visit_website": "Visit website",
+    "view_all_projects": "View all projects"
+  },
+  "blog": {
+    "page": {
+      "tag": "Blog",
+      "title_pre": "Our",
+      "title_highlight": "Blog",
+      "desc": "Discover articles about web development, SEO, digital marketing and the latest technology trends."
+    },
+    "read_more": "Read more",
+    "back_to_blog": "Back to blog",
+    "view_all_posts": "View all posts"
+  },
   "pages": {
     "home": {
       "title": "Ganex - High-Performance Web Development & SEO Agency",
@@ -311,6 +323,14 @@
     "about-us": {
       "title": "Ganex - Who We Are | Digital Innovation Partner",
       "description": "Learn more about Ganex, our mission to drive digital transformation, and our commitment to technical excellence."
+    },
+    "portfolio": {
+      "title": "Ganex - Project Portfolio",
+      "description": "Explore our complete collection of digital projects. Web development, mobile apps, and innovative technological solutions."
+    },
+    "404": {
+      "title": "Page not found",
+      "description": "Sorry, the page you are looking for does not exist."
     }
   },
   "footer": {
@@ -321,6 +341,659 @@
     "social_label": "Social links",
     "copyright": "© Ganex",
     "system_status": "Systems operational"
+  },
+  "wizard": {
+    "step1": {
+      "title": "Your business deserves a website that sells, not just decorates.",
+      "subtitle": "Boost your growth with an optimized funnel and high-impact design.",
+      "cta": "Get Started Now"
+    },
+    "step2": {
+      "question": "What are you looking for today?",
+      "options": [
+        {
+          "id": "web",
+          "label": "My own website",
+          "desc": "Fast websites that help you sell more.",
+          "icon": "tabler:world"
+        },
+        {
+          "id": "marketing",
+          "label": "Digital Marketing",
+          "desc": "Google and Facebook ads to attract clients.",
+          "icon": "tabler:chart-arrows"
+        },
+        {
+          "id": "apps",
+          "label": "Mobile App",
+          "desc": "Your own app in your customers' pockets.",
+          "icon": "tabler:devices-2"
+        },
+        {
+          "id": "not_sure",
+          "label": "I'm not sure",
+          "desc": "I need help choosing the best path.",
+          "icon": "tabler:help"
+        }
+      ]
+    },
+    "step3": {
+      "question": "For what type of business?",
+      "options": [
+        {
+          "id": "startup",
+          "label": "Entrepreneurship / Startup",
+          "desc": "New projects looking to grow fast.",
+          "icon": "tabler:rocket"
+        },
+        {
+          "id": "freelance",
+          "label": "Independent Professional",
+          "desc": "Personal services and expert brands.",
+          "icon": "tabler:user"
+        },
+        {
+          "id": "company",
+          "label": "Company",
+          "desc": "Established businesses looking to scale.",
+          "icon": "tabler:building"
+        },
+        {
+          "id": "branding",
+          "label": "Personal Brand",
+          "desc": "Boost your influence and online authority.",
+          "icon": "tabler:id"
+        }
+      ]
+    },
+    "step4": {
+      "question": "What is your main goal?",
+      "options": [
+        {
+          "id": "clients",
+          "label": "Get more clients",
+          "desc": "Increase the flow of prospects.",
+          "icon": "tabler:users"
+        },
+        {
+          "id": "sales",
+          "label": "Sell online",
+          "desc": "E-commerce and direct transactions.",
+          "icon": "tabler:shopping-cart"
+        },
+        {
+          "id": "seo",
+          "label": "Rank on Google",
+          "desc": "Appear in the top search results.",
+          "icon": "tabler:search"
+        },
+        {
+          "id": "automation",
+          "label": "Automate contacts",
+          "desc": "Chatbots and time-saving processes.",
+          "icon": "tabler:robot"
+        }
+      ]
+    },
+    "step5": {
+      "title": "We are experts in converting visitors into customers.",
+      "subtitle": "Our methodology is designed to maximize your return on investment."
+    },
+    "step6": {
+      "title": "Almost ready",
+      "subtitle": "Leave us your details and we will get in touch to start your transformation.",
+      "form": {
+        "name": "Name",
+        "name_placeholder": "Your full name",
+        "email": "Email Address (optional)",
+        "email_placeholder": "you@email.com",
+        "whatsapp": "WhatsApp",
+        "whatsapp_placeholder": "E.g.: 70000000",
+        "company": "Company",
+        "company_placeholder": "Your company (Optional)",
+        "submit": "I want to be contacted",
+        "footer": "We respond in less than 60 minutes"
+      },
+      "success": {
+        "title": "Request sent!",
+        "subtitle": "Check your WhatsApp, we'll write to you shortly."
+      }
+    },
+    "services": {
+      "web": {
+        "step1": {
+          "title": "Your business deserves a web that sells, not just decorates.",
+          "subtitle": "We create high-impact digital experiences designed to convert visits into real revenue."
+        },
+        "step2": {
+          "question": "What type of site do you need?",
+          "options": [
+            {
+              "id": "landing",
+              "label": "Sell a product",
+              "desc": "Perfect for promoting a specific item.",
+              "icon": "tabler:target-arrow"
+            },
+            {
+              "id": "ecommerce",
+              "label": "Online Store",
+              "desc": "Sell products with a shopping cart.",
+              "icon": "tabler:shopping-bag"
+            },
+            {
+              "id": "corporate",
+              "label": "Company Website",
+              "desc": "Give a professional and trustable image.",
+              "icon": "tabler:building-estate"
+            },
+            {
+              "id": "custom",
+              "label": "Custom System",
+              "desc": "Unique solutions for specialized needs.",
+              "icon": "tabler:code-dots"
+            }
+          ]
+        },
+        "step3": {
+          "question": "Do you already have Hosting or Domain?",
+          "options": [
+            {
+              "id": "yes",
+              "label": "Yes, I have both",
+              "desc": "I just need the website built.",
+              "icon": "tabler:check"
+            },
+            {
+              "id": "no",
+              "label": "I have nothing yet",
+              "desc": "I need help with everything.",
+              "icon": "tabler:x"
+            },
+            {
+              "id": "partial",
+              "label": "Only the name",
+              "desc": "I need space for my website.",
+              "icon": "tabler:circle-dot"
+            },
+            {
+              "id": "redesign",
+              "label": "Move my website",
+              "desc": "I have one but want to improve it.",
+              "icon": "tabler:refresh"
+            }
+          ]
+        },
+        "step4": {
+          "question": "What is your web priority?",
+          "options": [
+            {
+              "id": "speed",
+              "label": "Ultra fast",
+              "desc": "So nobody leaves while it loads.",
+              "icon": "tabler:bolt"
+            },
+            {
+              "id": "conversion",
+              "label": "Get more customers",
+              "desc": "Designed to make people contact you.",
+              "icon": "tabler:heart-rate-monitor"
+            },
+            {
+              "id": "management",
+              "label": "Edit it myself",
+              "desc": "Upload photos/text without help.",
+              "icon": "tabler:layout-dashboard"
+            },
+            {
+              "id": "seo_ready",
+              "label": "Appear on Google",
+              "desc": "Ready to show up in search results.",
+              "icon": "tabler:search"
+            }
+          ]
+        },
+        "step5": {
+          "title": "Results-oriented web engineering.",
+          "subtitle": "We don't just write code, we build sales machines for your business."
+        }
+      },
+      "apps": {
+        "step1": {
+          "title": "Put your business in your customers' pockets.",
+          "subtitle": "We develop native and hybrid mobile apps that offer a superior experience."
+        },
+        "step2": {
+          "question": "For which platform?",
+          "options": [
+            {
+              "id": "android",
+              "label": "Android Only",
+              "desc": "Focus on the world's most used OS.",
+              "icon": "tabler:brand-android"
+            },
+            {
+              "id": "ios",
+              "label": "iOS Only (iPhone)",
+              "desc": "For the highest ticket audience.",
+              "icon": "tabler:brand-apple"
+            },
+            {
+              "id": "both",
+              "label": "Both (Hybrid)",
+              "desc": "Reach everyone with one app.",
+              "icon": "tabler:devices-2"
+            },
+            {
+              "id": "pwa",
+              "label": "Web App (PWA)",
+              "desc": "Installable app without passing through stores.",
+              "icon": "tabler:browser"
+            }
+          ]
+        },
+        "step3": {
+          "question": "What stage is your project in?",
+          "options": [
+            {
+              "id": "idea",
+              "label": "It's just an idea",
+              "desc": "I need to define the concept.",
+              "icon": "tabler:bulb"
+            },
+            {
+              "id": "design",
+              "label": "I have the designs",
+              "desc": "I need the programming.",
+              "icon": "tabler:palette"
+            },
+            {
+              "id": "scaling",
+              "label": "Existing app",
+              "desc": "I need to improve or scale it.",
+              "icon": "tabler:arrow-up-right"
+            },
+            {
+              "id": "mvp",
+              "label": "Initial MVP",
+              "desc": "Launch fast to validate.",
+              "icon": "tabler:player-play"
+            }
+          ]
+        },
+        "step4": {
+          "question": "Achieve your app's success",
+          "options": [
+            {
+              "id": "ux",
+              "label": "Very easy to use",
+              "desc": "Even a child could navigate it.",
+              "icon": "tabler:fingerprint"
+            },
+            {
+              "id": "security",
+              "label": "Full security",
+              "desc": "Protection for your data and payments.",
+              "icon": "tabler:shield-check"
+            },
+            {
+              "id": "growth",
+              "label": "Ready to scale",
+              "desc": "Prepared for thousands of users.",
+              "icon": "tabler:trending-up"
+            },
+            {
+              "id": "retention",
+              "label": "Customer loyalty",
+              "desc": "Keeping people coming back.",
+              "icon": "tabler:bell"
+            }
+          ]
+        },
+        "step5": {
+          "title": "Apps that users love to open.",
+          "subtitle": "We combine intuitive design with robust technology to ensure success in the stores."
+        }
+      },
+      "marketing": {
+        "step1": {
+          "title": "Stop spending and start investing in marketing.",
+          "subtitle": "We attract the right people so your sales never stop."
+        },
+        "step2": {
+          "question": "Which channel are you interested in?",
+          "options": [
+            {
+              "id": "ads",
+              "label": "Paid Advertising",
+              "desc": "Google Ads and Meta Ads (Facebook/IG).",
+              "icon": "tabler:brand-meta"
+            },
+            {
+              "id": "social",
+              "label": "Social Management",
+              "desc": "Constant content and community.",
+              "icon": "tabler:users-group"
+            },
+            {
+              "id": "email",
+              "label": "Email Marketing",
+              "desc": "Retention and lead nurturing.",
+              "icon": "tabler:mail-forward"
+            },
+            {
+              "id": "full",
+              "label": "360 Strategy",
+              "desc": "Winning combination of all channels.",
+              "icon": "tabler:circles-relation"
+            }
+          ]
+        },
+        "step3": {
+          "question": "How much do you estimate to invest per month?",
+          "options": [
+            {
+              "id": "basic",
+              "label": "$300 - $500",
+              "desc": "Ideal to start and test.",
+              "icon": "tabler:coin"
+            },
+            {
+              "id": "growth",
+              "label": "$500 - $1500",
+              "desc": "Focus on accelerated scalability.",
+              "icon": "tabler:trending-up"
+            },
+            {
+              "id": "pro",
+              "label": "+$1500 corporate",
+              "desc": "Dominate the sector completely.",
+              "icon": "tabler:crown"
+            },
+            {
+              "id": "custom_budget",
+              "label": "To be defined",
+              "desc": "I need a proposal based on return.",
+              "icon": "tabler:calculator"
+            }
+          ]
+        },
+        "step4": {
+          "question": "Your marketing goal?",
+          "options": [
+            {
+              "id": "roa",
+              "label": "Direct Sales",
+              "desc": "Earn money for every dollar spent.",
+              "icon": "tabler:moneybag"
+            },
+            {
+              "id": "branding",
+              "label": "Make my brand famous",
+              "desc": "Let everyone in town know you.",
+              "icon": "tabler:adjustments-check"
+            },
+            {
+              "id": "database",
+              "label": "Contact list",
+              "desc": "Build a database of interested people.",
+              "icon": "tabler:database"
+            },
+            {
+              "id": "loyalty",
+              "label": "Repeat customers",
+              "desc": "Get people to buy more than once.",
+              "icon": "tabler:refresh-dot"
+            }
+          ]
+        },
+        "step5": {
+          "title": "Marketing that speaks the language of sales.",
+          "subtitle": "We optimize every penny of your budget to attract those who really want to buy from you."
+        }
+      },
+      "seo": {
+        "step1": {
+          "title": "Be the first option when they search for what you sell.",
+          "subtitle": "Show up on Google when someone searches for what you offer."
+        },
+        "step2": {
+          "question": "What type of SEO do you need?",
+          "options": [
+            {
+              "id": "local",
+              "label": "Be on the map",
+              "desc": "Show up when searched in your city.",
+              "icon": "tabler:map-pin"
+            },
+            {
+              "id": "national",
+              "label": "Be nationwide",
+              "desc": "Reach customers from anywhere.",
+              "icon": "tabler:world-latitude"
+            },
+            {
+              "id": "technical",
+              "label": "Fix web errors",
+              "desc": "Clean up issues that stop you from rising.",
+              "icon": "tabler:settings-automation"
+            },
+            {
+              "id": "content",
+              "label": "Write articles",
+              "desc": "Content that Google puts first.",
+              "icon": "tabler:article"
+            }
+          ]
+        },
+        "step3": {
+          "question": "Is your website already online?",
+          "options": [
+            {
+              "id": "live",
+              "label": "Yes, it exists",
+              "desc": "I need audit and improvement.",
+              "icon": "tabler:device-laptop"
+            },
+            {
+              "id": "new",
+              "label": "It doesn't exist yet",
+              "desc": "I want to launch it optimized.",
+              "icon": "tabler:rocket"
+            },
+            {
+              "id": "stuck",
+              "label": "It is stuck",
+              "desc": "It hasn't gone up in a long time.",
+              "icon": "tabler:anchor"
+            },
+            {
+              "id": "penalty",
+              "label": "Penalized",
+              "desc": "Recover lost visibility.",
+              "icon": "tabler:alert-triangle"
+            }
+          ]
+        },
+        "step4": {
+          "question": "Dominate the search engines",
+          "options": [
+            {
+              "id": "rank1",
+              "label": "Be Number 1",
+              "desc": "Rank higher than all your competitors.",
+              "icon": "tabler:award"
+            },
+            {
+              "id": "traffic",
+              "label": "Constant visits",
+              "desc": "Regular flow of people to your site.",
+              "icon": "tabler:steering-wheel"
+            },
+            {
+              "id": "authority",
+              "label": "More trust",
+              "desc": "Make other websites link to yours.",
+              "icon": "tabler:link"
+            },
+            {
+              "id": "semantics",
+              "label": "Better answers",
+              "desc": "Answer exactly what people search for.",
+              "icon": "tabler:vocabulary"
+            }
+          ]
+        },
+        "step5": {
+          "title": "Your visibility is our obsession.",
+          "subtitle": "We apply the most advanced techniques so Google loves your site as much as your customers."
+        }
+      },
+      "chatbots": {
+        "step1": {
+          "title": "24/7 customer service without fixed salaries.",
+          "subtitle": "Reply to your customers instantly, even while you sleep."
+        },
+        "step2": {
+          "question": "Where are you integrating the Bot?",
+          "options": [
+            {
+              "id": "whatsapp",
+              "label": "Smart WhatsApp",
+              "desc": "Automated sales and alerts via chat.",
+              "icon": "tabler:brand-whatsapp"
+            },
+            {
+              "id": "web",
+              "label": "Chat on my web",
+              "desc": "Smart bubble for visitor questions.",
+              "icon": "tabler:messages"
+            },
+            {
+              "id": "multi",
+              "label": "All in one",
+              "desc": "Web, WhatsApp, and IG all together.",
+              "icon": "tabler:layout-grid"
+            },
+            {
+              "id": "internal",
+              "label": "Team Assistant",
+              "desc": "Created to help your internal staff.",
+              "icon": "tabler:engine"
+            }
+          ]
+        },
+        "step3": {
+          "question": "What is the primary function?",
+          "options": [
+            {
+              "id": "sales",
+              "label": "Close more sales",
+              "desc": "Book appointments or take payments.",
+              "icon": "tabler:cash"
+            },
+            {
+              "id": "support",
+              "label": "Customer help",
+              "desc": "Answer common questions 24/7.",
+              "icon": "tabler:headset"
+            },
+            {
+              "id": "leads",
+              "label": "Get phone numbers",
+              "desc": "Gather data from interested people.",
+              "icon": "tabler:filter"
+            },
+            {
+              "id": "ai_agent",
+              "label": "Advanced Robot",
+              "desc": "Chat that reasons like a human.",
+              "icon": "tabler:robot-face"
+            }
+          ]
+        },
+        "step4": {
+          "question": "AI at the service of ROI",
+          "options": [
+            {
+              "id": "24h",
+              "label": "Always online",
+              "desc": "Stop losing sales for not replying.",
+              "icon": "tabler:calendar-time"
+            },
+            {
+              "id": "savings",
+              "label": "Save on staff",
+              "desc": "Reduce manual support costs.",
+              "icon": "tabler:piggy-bank"
+            },
+            {
+              "id": "qualification",
+              "label": "Auto Filter",
+              "desc": "Pass only the real prospects.",
+              "icon": "tabler:filter-check"
+            },
+            {
+              "id": "nps",
+              "label": "Happy customers",
+              "desc": "Instant replies that everyone loves.",
+              "icon": "tabler:mood-smile-beam"
+            }
+          ]
+        },
+        "step5": {
+          "title": "Artificial intelligence, tangible results.",
+          "subtitle": "We create conversational agents that don't just talk, but close deals for you."
+        }
+      }
+    },
+    "back": "Back"
+  },
+  "booking": {
+    "modal": {
+      "title": "Schedule your meeting",
+      "subtitle": "Select the best time to talk"
+    },
+    "flow": {
+      "month_year": "{month} {year}",
+      "available_times": "Available times",
+      "no_times_today": "No times available for today",
+      "select_another_day": "Please select another day",
+      "meeting_scheduled": "Meeting Scheduled",
+      "change": "Change",
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "success": {
+        "title": "Meeting confirmed!",
+        "subtitle": "We'll contact you soon"
+      },
+      "form": {
+        "full_name": "Full name",
+        "full_name_placeholder": "E.g. John Doe",
+        "email": "Email address",
+        "email_placeholder": "name@company.com",
+        "company": "Company name",
+        "company_placeholder": "E.g. Ganex Studio",
+        "phone": "Phone / WhatsApp",
+        "phone_placeholder": "...",
+        "search_country": "Search country...",
+        "confirm": "Confirm meeting",
+        "confirming": "Confirming..."
+      }
+    }
+  },
+  "marketing_card": {
+    "title": "Create your project",
+    "subtitle": "What do you need help with?",
+    "email_placeholder": "Your best email address",
+    "cta": "Start",
+    "services": {
+      "web": "Web Design",
+      "ecommerce": "E-commerce",
+      "seo": "SEO",
+      "ads": "Advertising",
+      "social": "Social Media",
+      "branding": "Branding"
+    }
   },
   "locale": "en"
 }

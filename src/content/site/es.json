@@ -1,7 +1,7 @@
 {
   "locale": "es",
   "defaultTitle": "Ganex — Estudio digital: desarrollo a medida, UI/UX y branding",
-  "defaultDescription": "Somos Ganex, un estudio digital especializado en desarrollo a medida, diseño UI/UX y branding estratégico.",
+  "defaultDescription": "En Ganex creamos experiencias digitales estratégicas. Alineamos diseño, tecnología y marca para ayudarte a destacar, diferenciarte y generar resultados reales.",
   "ogImageAlt": "Ganex: estudio digital de desarrollo, UI/UX y branding",
   "services": [
     { "title": "Desarrollo web", "slug": "servicios/desarrollo-web" },
@@ -10,7 +10,7 @@
     { "title": "SEO", "slug": "servicios/seo" },
     { "title": "Chatbots IA", "slug": "servicios/chatbots-ia" }
   ],
-  "nav": [{ "label": "Quienes somos", "slug": "sobre-nosotros" }],
+  "nav": [{ "label": "Quienes somos", "slug": "sobre-nosotros" }, { "label": "Proyectos", "slug": "proyectos" }, { "label": "Blog", "slug": "blog" }],
   "footer": {
     "copyright": "© Ganex",
     "nav_label": "Footer navigation",

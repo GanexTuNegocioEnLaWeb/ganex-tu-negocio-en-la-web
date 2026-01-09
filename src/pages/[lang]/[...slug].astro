@@ -1,13 +1,153 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ZeroLayout from "../../layouts/ZeroLayout.astro";
 import { resolveMeta } from "../../lib/seo";
 import { getCollection } from "astro:content";
 import PageRenderer from "../../components/PageRenderer.astro";
-import { getI18nDict, getSupportedLangs, isLang } from "../../lib/i18n";
+import {
+  getI18nDict,
+  getSupportedLangs,
+  isLang,
+  DEFAULT_LANG,
+} from "../../lib/i18n";
 
-export const prerender = false;
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  const supported = await getSupportedLangs();
+  const paths: any[] = [];
+
+  for (const page of pages) {
+    const [idSlug, idLang] = page.id.split(".");
+    const lang = isLang(idLang, supported) ? idLang : DEFAULT_LANG;
+    const slug = (page.data.route ?? idSlug).replace(/^\/+|\/+$/g, "");
+
+    if (slug === "home") continue;
+
+    const portfolioSlugs = ["proyectos", "projects"];
+    const blogSlugs = ["blog"];
+    const isSpecial =
+      portfolioSlugs.includes(slug.toLowerCase()) ||
+      blogSlugs.includes(slug.toLowerCase());
+
+    if (!isSpecial) {
+      paths.push({
+        params: { lang, slug },
+        props: { page },
+      });
+    }
+
+    // Si esta página es el portafolio, generamos también los detalles de sus proyectos y la paginación
+    if (portfolioSlugs.includes(slug.toLowerCase())) {
+      const projects = await getCollection(
+        "projects",
+        ({ data }) => data.lang === lang,
+      );
+
+      // --- Paginación del Portafolio ---
+      const itemsPerPage = 6;
+      const totalPages = Math.ceil(projects.length / itemsPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        paths.push({
+          params: { lang, slug: i === 1 ? slug : `${slug}/${i}` },
+          props: {
+            page: {
+              ...page,
+              data: {
+                ...page.data,
+                blocks: page.data.blocks.map((b: any) =>
+                  b.type === "portfolio-grid"
+                    ? {
+                        ...b,
+                        props: { ...b.props, currentPage: i, totalPages },
+                      }
+                    : b,
+                ),
+              },
+            },
+          },
+        });
+      }
+
+      for (const project of projects) {
+        // Extraer el slug sin el sufijo del idioma
+        const projectSlug = project.slug.replace(new RegExp(`${lang}$`), "");
+        if (!projectSlug) continue;
+
+        paths.push({
+          params: { lang, slug: `${slug}/${projectSlug}` },
+          props: {
+            page: {
+              data: {
+                title: project.data.title,
+                description: project.data.description,
+                blocks: [{ type: "project-detail", props: { projectSlug } }],
+              },
+            },
+          },
+        });
+      }
+    }
+
+    // Si esta página es el blog, generamos también los detalles de sus posts y la paginación
+    if (blogSlugs.includes(slug.toLowerCase())) {
+      const blogPosts = await getCollection(
+        "blog",
+        ({ data }) => data.lang === lang && !data.draft,
+      );
+
+      // --- Paginación del Blog ---
+      const itemsPerPage = 6;
+      const totalPages = Math.ceil(blogPosts.length / itemsPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        paths.push({
+          params: { lang, slug: i === 1 ? slug : `${slug}/${i}` },
+          props: {
+            page: {
+              ...page,
+              data: {
+                ...page.data,
+                blocks: page.data.blocks.map((b: any) =>
+                  b.type === "blog-grid"
+                    ? {
+                        ...b,
+                        props: { ...b.props, currentPage: i, totalPages },
+                      }
+                    : b,
+                ),
+              },
+            },
+          },
+        });
+      }
+
+      for (const post of blogPosts) {
+        // Extraer el slug sin el sufijo del idioma
+        const postSlug = post.slug.replace(new RegExp(`${lang}$`), "");
+        if (!postSlug) continue;
+
+        paths.push({
+          params: { lang, slug: `${slug}/${postSlug}` },
+          props: {
+            page: {
+              data: {
+                title: post.data.title,
+                description: post.data.description,
+                blocks: [{ type: "blog-post-detail", props: { postSlug } }],
+              },
+            },
+          },
+        });
+      }
+    }
+  }
+
+  return paths;
+}
 
 const { lang: rawLang, slug } = Astro.params;
+const { page: propsPage } = Astro.props;
 const supported = await getSupportedLangs();
 
 if (!rawLang || !isLang(rawLang, supported)) {
@@ -17,17 +157,18 @@ if (!rawLang || !isLang(rawLang, supported)) {
 const lang = rawLang;
 const slugKey = slug || "home";
 
-// Buscar la página en la colección
-const pages = await getCollection("pages", (p) => {
-  const [pSlug, pLang] = p.id.split(".");
-  // Comparar slug sin slashes extra
-  const normalizedPSlug = (p.data.route ?? pSlug).replace(/^\/+|\/+$/g, "");
-  const normalizedSlug = (slugKey).replace(/^\/+|\/+$/g, "");
-  
-  return pLang === lang && normalizedPSlug === normalizedSlug;
-});
+// Si no viene por props (ej. en dev mode o si algo falló), lo buscamos
+const page =
+  propsPage ||
+  (
+    await getCollection("pages", (p) => {
+      const [pSlug, pLang] = p.id.split(".");
+      const normalizedPSlug = (p.data.route ?? pSlug).replace(/^\/+|\/+$/g, "");
+      const normalizedSlug = slugKey.replace(/^\/+|\/+$/g, "");
 
-const page = pages[0];
+      return pLang === lang && normalizedPSlug === normalizedSlug;
+    })
+  )[0];
 
 if (!page) {
   return Astro.redirect("/404");
@@ -38,18 +179,40 @@ const meta = await resolveMeta({
   lang,
   canonicalUrl: Astro.url?.href,
 });
+
+// Forzar el título y descripción si vienen en la data (para páginas sintéticas como proyectos)
+if (page?.data?.title) meta.title = page.data.title;
+if (page?.data?.description) meta.description = page.data.description;
+
 const i18nDict = await getI18nDict(lang);
 ---
 
-<Layout lang={lang} slug={slugKey}>
-  {
-    page?.data.blocks?.length ? (
-      <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
-    ) : (
-      <section class="max-w-3xl mx-auto px-4 py-12">
-        <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
-        <p class="opacity-80">{meta.description}</p>
-      </section>
-    )
-  }
-</Layout>
+{
+  page?.data?.layout === "zero" ? (
+    <ZeroLayout lang={lang} slug={slugKey}>
+      {page?.data.blocks?.length ? (
+        <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
+      ) : (
+        <section class="max-w-3xl mx-auto px-4 py-12">
+          <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
+          <p class="opacity-80">{meta.description}</p>
+        </section>
+      )}
+    </ZeroLayout>
+  ) : (
+    <Layout
+      lang={lang}
+      slug={slugKey}
+      minimal={page?.data?.layout === "minimal"}
+    >
+      {page?.data.blocks?.length ? (
+        <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
+      ) : (
+        <section class="max-w-3xl mx-auto px-4 py-12">
+          <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
+          <p class="opacity-80">{meta.description}</p>
+        </section>
+      )}
+    </Layout>
+  )
+}

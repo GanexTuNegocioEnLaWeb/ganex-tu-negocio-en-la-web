@@ -1,0 +1,9 @@
+{
+  "route": "projects",
+  "title": "Ganex - Project Portfolio",
+  "description": "Explore our complete collection of digital projects. Web development, mobile apps, and innovative technological solutions.",
+  "blocks": [
+    { "type": "projects-grid" },
+    { "type": "block-contact" }
+  ]
+}

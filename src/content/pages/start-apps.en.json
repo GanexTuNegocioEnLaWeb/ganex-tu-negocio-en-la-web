@@ -1,0 +1,16 @@
+{
+  "route": "get-started/apps",
+  "title": "Ganex — Request Mobile App",
+  "description": "We transform your idea into a powerful App. Tell us about your project.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Mobile Apps",
+        "serviceLabel": "App Development",
+        "serviceId": "apps"
+      }
+    }
+  ]
+}

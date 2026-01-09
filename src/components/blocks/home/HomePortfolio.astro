@@ -1,22 +1,41 @@
 ---
 import { t } from "../../../lib/i18n";
-const { i18n = {} } = Astro.props as { i18n?: Record<string, any> };
+import { getCollection } from "astro:content";
+
+const { i18n = {}, lang = "es" } = Astro.props as {
+  i18n?: Record<string, any>;
+  lang?: string;
+};
 const tag = t("home.portfolio.tag", i18n);
 const titlePre = t("home.portfolio.title_pre", i18n);
 const titleHighlight = t("home.portfolio.title_highlight", i18n);
 const desc = t("home.portfolio.desc", i18n);
-const seeProject = t("home.portfolio.see_project", i18n);
-const projects = t("home.portfolio.items", i18n) as Array<{
-  title: string;
-  category: string;
-  description: string;
-  image?: string | null;
-  link?: string;
-}>;
+const seeProjectDetail = t("home.portfolio.see_project_detail", i18n);
+const seeAllProjects = t("home.portfolio.see_all_projects", i18n);
+
+// Obtener proyectos desde la collection
+const projectEntries = await getCollection(
+  "projects",
+  ({ data }) => data.lang === lang
+);
+const projects = projectEntries.map((entry) => ({
+  title: entry.data.title,
+  category: entry.data.category,
+  description: entry.data.description,
+  image: entry.data.image,
+  link: entry.data.link,
+  slug: entry.slug
+    .replace(new RegExp(`${lang}$`), "")
+    .replace(/^\/+|\/+$/g, ""),
+}));
+
+// Seleccionar el primer proyecto como destacado
+const featuredProject = projects[0];
+const projectSlug = featuredProject?.slug || "proyecto";
 ---
 
 <section id="portafolio" class="py-24 bg-white relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <span
         class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
@@ -31,29 +50,29 @@ const projects = t("home.portfolio.items", i18n) as Array<{
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      {
-        projects.map((project) => (
-          <article
-            class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100"
-            itemscope
-            itemtype="https://schema.org/CreativeWork"
-          >
-            <figure class="relative h-64 overflow-hidden bg-neutral-100 m-0">
-              {project.image ? (
+    {
+      featuredProject && (
+        <article
+          class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-neutral-100 max-w-6xl mx-auto"
+          itemscope
+          itemtype="https://schema.org/CreativeWork"
+        >
+          <div class="grid md:grid-cols-2 gap-0">
+            <figure class="relative h-80 md:h-full min-h-100 overflow-hidden bg-neutral-100 m-0">
+              {featuredProject.image ? (
                 <img
-                  src={`${import.meta.env.SITE}${project.image}`}
-                  alt={`Proyecto ${project.title} – ${project.category}`}
+                  src={`${featuredProject.image}`}
+                  alt={`Proyecto ${featuredProject.title} – ${featuredProject.category}`}
                   loading="lazy"
                   decoding="async"
-                  width="600"
-                  height="400"
-                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  width="800"
+                  height="600"
+                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
               ) : (
                 <div class="w-full h-full flex items-center justify-center text-[#FF8A00] opacity-50">
                   <svg
-                    class="w-20 h-20"
+                    class="w-24 h-24"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -67,33 +86,32 @@ const projects = t("home.portfolio.items", i18n) as Array<{
                   </svg>
                 </div>
               )}
-              <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div class="absolute inset-0 bg-linear-to-t from-black/40 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </figure>
 
-            <div class="p-8">
-              <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide mb-2 block">
-                {project.category}
+            <div class="p-8 md:p-12 flex flex-col justify-center">
+              <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide mb-3 block">
+                {featuredProject.category}
               </span>
               <h3
-                class="text-2xl font-bold text-neutral-800 mb-3 group-hover:text-[#FF8A00] transition-colors"
+                class="text-3xl md:text-4xl font-bold text-neutral-800 mb-4 group-hover:text-[#FF8A00] transition-colors"
                 itemprop="name"
               >
-                {project.title}
+                {featuredProject.title}
               </h3>
               <p
-                class="text-neutral-600 mb-6 line-clamp-3"
+                class="text-neutral-600 mb-8 text-lg leading-relaxed"
                 itemprop="description"
               >
-                {project.description}
+                {featuredProject.description}
               </p>
 
-              {project.link ? (
+              <div class="flex flex-col sm:flex-row gap-4">
                 <a
-                  target="_blank"
-                  href={project.link}
-                  class="inline-flex items-center gap-2 text-neutral-800 font-bold group-hover:text-[#FF8A00] transition-colors"
+                  href={`/${lang}/${lang === "es" ? "proyectos" : "projects"}/${projectSlug}`}
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#FF8A00] text-white font-bold rounded-lg hover:bg-[#e67a00] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
                 >
-                  {seeProject} {project.title}
+                  {seeProjectDetail}
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     class="h-5 w-5 transition-transform group-hover:translate-x-1"
@@ -109,11 +127,31 @@ const projects = t("home.portfolio.items", i18n) as Array<{
                     />
                   </svg>
                 </a>
-              ) : null}
+                <a
+                  href={`/${lang}/${lang === "es" ? "proyectos" : "projects"}`}
+                  class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white border-2 border-neutral-300 text-neutral-800 font-bold rounded-lg hover:border-[#FF8A00] hover:text-[#FF8A00] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  {seeAllProjects}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+                    />
+                  </svg>
+                </a>
+              </div>
             </div>
-          </article>
-        ))
-      }
-    </div>
+          </div>
+        </article>
+      )
+    }
   </div>
 </section>

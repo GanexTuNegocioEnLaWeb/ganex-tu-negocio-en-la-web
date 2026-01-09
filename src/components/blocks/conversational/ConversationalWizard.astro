@@ -1,0 +1,31 @@
+---
+import Wizard from "./Wizard.vue";
+import { getI18nDict, t } from "../../../lib/i18n";
+import logoGanex from "../../../assets/logo-ganex.svg";
+
+interface Props {
+  lang: string;
+  initialService?: string;
+  serviceLabel?: string;
+  serviceId?: string;
+}
+
+const {
+  lang,
+  initialService = "",
+  serviceLabel = "",
+  serviceId = "",
+} = Astro.props;
+const dict = await getI18nDict(lang);
+const wizardI18n = dict.wizard;
+---
+
+<Wizard
+  client:load
+  lang={lang}
+  i18n={wizardI18n}
+  logo={logoGanex.src}
+  initialService={initialService}
+  serviceLabel={serviceLabel}
+  serviceId={serviceId}
+/>

@@ -1,0 +1,125 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+// Pre-auth redirection is handled in middleware.ts
+---
+
+<Layout title="Login | Ganex Dashboard" slug="login" lang="es">
+    <main
+        class="min-h-screen flex items-center justify-center p-6 bg-neutral-50"
+    >
+        <div
+            class="max-w-md w-full bg-white rounded-3xl shadow-xl p-10 border border-neutral-100"
+        >
+            <div class="text-center mb-10">
+                <h1
+                    class="text-3xl font-bold text-neutral-800 mb-2 tracking-tight"
+                >
+                    Acceso Privado
+                </h1>
+                <p class="text-neutral-500">
+                    Ingresa tus credenciales para administrar Ganex
+                </p>
+            </div>
+
+            <form id="login-form" class="space-y-6">
+                <div class="space-y-2">
+                    <label
+                        for="email"
+                        class="block text-sm font-semibold text-neutral-700 ml-1"
+                        >Correo Electrónico</label
+                    >
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        placeholder="admin@ganex.com"
+                        class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+                    />
+                </div>
+
+                <div class="space-y-2">
+                    <label
+                        for="password"
+                        class="block text-sm font-semibold text-neutral-700 ml-1"
+                        >Contraseña</label
+                    >
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        required
+                        placeholder="••••••••"
+                        class="w-full rounded-xl border border-neutral-200 px-4 py-3.5 focus:outline-none focus:ring-4 focus:ring-orange-100 focus:border-[#FF8A00] transition-all bg-neutral-50 hover:bg-white"
+                    />
+                </div>
+
+                <button
+                    type="submit"
+                    id="submit-btn"
+                    class="w-full bg-[#FF8A00] text-white font-bold py-4 rounded-xl hover:bg-[#e67e00] transition-all shadow-lg hover:shadow-xl hover:-translate-y-1 transform duration-200 flex items-center justify-center gap-2"
+                >
+                    <span>Iniciar Sesión</span>
+                </button>
+
+                <p
+                    id="error-message"
+                    class="text-center text-sm text-red-600 font-medium min-h-[1.25rem]"
+                >
+                </p>
+            </form>
+        </div>
+    </main>
+</Layout>
+
+<script>
+    import { supabase } from "../lib/supabase";
+
+    const form = document.getElementById("login-form") as HTMLFormElement;
+    const errorMsg = document.getElementById(
+        "error-message",
+    ) as HTMLParagraphElement;
+    const submitBtn = document.getElementById(
+        "submit-btn",
+    ) as HTMLButtonElement;
+
+    form?.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        errorMsg.textContent = "";
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = "<span>Verificando...</span>";
+
+        const formData = new FormData(form);
+        const email = formData.get("email") as string;
+        const password = formData.get("password") as string;
+
+        try {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+
+            if (error) throw error;
+
+            if (data.session) {
+                // Guardamos los tokens en cookies para que el middleware pueda leerlos
+                // NOTA: Para producción real, se recomienda usar HttpOnly cookies mediante un API route,
+                // pero para este entorno seguiremos la lógica de Astro + Supabase simplificada.
+                const expiration = new Date();
+                expiration.setSeconds(
+                    expiration.getSeconds() + (data.session.expires_in || 3600),
+                );
+
+                document.cookie = `sb-access-token=${data.session.access_token}; path=/; expires=${expiration.toUTCString()}; SameSite=Lax`;
+                document.cookie = `sb-refresh-token=${data.session.refresh_token}; path=/; expires=${expiration.toUTCString()}; SameSite=Lax`;
+
+                window.location.href = "/admin";
+            }
+        } catch (err: any) {
+            errorMsg.textContent = err.message || "Error al iniciar sesión";
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = "<span>Iniciar Sesión</span>";
+        }
+    });
+</script>

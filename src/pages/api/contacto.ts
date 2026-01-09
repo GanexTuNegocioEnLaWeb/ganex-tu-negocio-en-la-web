@@ -5,17 +5,19 @@ export const POST: APIRoute = async ({ request }) => {
   try {
     const data = await request.json();
     const payload = {
-      nombre: String(data?.nombre ?? ""),
+      name: String(data?.nombre ?? ""),
       email: String(data?.email ?? ""),
-      telefono: String(data?.telefono ?? ""),
-      empresa: String(data?.empresa ?? ""),
-      mensaje: String(data?.mensaje ?? ""),
+      phone: String(data?.telefono ?? ""),
+      company: String(data?.empresa ?? ""),
+      message: String(data?.mensaje ?? ""),
+      source: "contact_form",
+      status: "pending",
     };
 
     console.log("[Contacto] Nueva solicitud:", payload);
 
-    // Insertar en Supabase
-    const { error } = await supabase.from("contactos").insert([payload]);
+    // Insertar en Supabase (tabla unificada leads)
+    const { error } = await supabase.from("leads").insert([payload]);
 
     if (error) {
       console.error("[Contacto] Error Supabase:", error);

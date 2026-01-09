@@ -9,11 +9,11 @@
       "icon": "simple-icons:facebook"
     }
   ],
-  "ogImage": "/og-image.jpg",
+  "ogImage": "/og-image.png",
   "noindex": false,
   "company": {
     "email": "hola@ganexbo.com",
-    "phone": "+591 70930853",
-    "phoneLink": "tel:+59170930853"
+    "phone": "+591 69988505",
+    "phoneLink": "tel:+59169988505"
   }
 }

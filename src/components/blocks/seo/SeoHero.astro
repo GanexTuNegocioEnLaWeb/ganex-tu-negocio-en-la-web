@@ -9,10 +9,14 @@ const li1 = t("seo.hero.li1", i18n);
 const li2 = t("seo.hero.li2", i18n);
 const li3 = t("seo.hero.li3", i18n);
 const p2 = t("seo.hero.p2", i18n);
+const cta = t("seo.hero.cta", i18n);
+const lang = i18n.locale || "es";
 ---
 
-<main class="max-w-7xl mx-auto px-4 py-20 text-neutral-800 bg-white">
-  <h1 class="text-5xl font-bold mb-10 text-center text-[#FF8A00]">
+<main class="max-w-6xl mx-auto px-4 py-20 text-neutral-800 bg-white">
+  <h1
+    class="text-6xl md:text-7xl font-extrabold mb-10 text-center text-[#FF8A00] tracking-tight"
+  >
     {title}
   </h1>
   <p class="text-xl text-center max-w-3xl mx-auto mb-16">
@@ -72,23 +76,32 @@ const p2 = t("seo.hero.p2", i18n);
         </li>
       </ul>
       <p class="text-neutral-600 leading-relaxed" set:html={p2} />
+
+      <div class="pt-6">
+        <a
+          href={lang === "es" ? "/es/empezar/seo" : "/en/get-started/seo"}
+          class="inline-flex items-center gap-2 px-8 py-4 bg-[#FF8A00] text-white font-bold rounded-full hover:scale-105 active:scale-95 transition-all shadow-lg shadow-orange-200"
+        >
+          {cta}
+          <svg
+            class="w-5 h-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            ><path
+              d="M13 7l5 5m0 0l-5 5m5-5H6"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path></svg
+          >
+        </a>
+      </div>
     </div>
-    <div
-      class="bg-orange-50 rounded-2xl p-8 flex items-center justify-center min-h-75"
-    >
-      <svg
-        class="w-32 h-32 text-[#FF8A00] opacity-50"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="1"
-          d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l.5 1.539a1 1 0 00.95.69h1.619c.969 0 1.371 1.24.588 1.81l-1.31.953a1 1 0 00-.364 1.118l.5 1.539c.3.921-.755 1.688-1.538 1.118l-1.31-.953a1 1 0 00-1.175 0l-1.31.953c-.783.57-1.838-.197-1.539-1.118l.5-1.539a1 1 0 00-.364-1.118l-1.31-.953c-.783-.57-.38-1.81.588-1.81h1.619a1 1 0 00.95-.69l.5-1.539z"
-        ></path>
-      </svg>
-    </div>
+
+    <img
+      src="/images/services/seo.jpg"
+      alt={title}
+      class="object-cover w-full h-full rounded-2xl"
+    />
   </div>
 </main>

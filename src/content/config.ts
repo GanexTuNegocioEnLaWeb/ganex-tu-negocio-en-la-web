@@ -63,9 +63,11 @@ const pages = defineCollection({
     route: z.string().optional(),
     title: z.string().optional(),
     description: z.string().optional(),
+    keywords: z.array(z.string()).optional(),
     ogImage: z.string().optional(),
     ogImageAlt: z.string().optional(),
     noindex: z.boolean().optional(),
+    layout: z.enum(["default", "minimal", "zero"]).default("default"),
     blocks: z
       .array(
         z.object({
@@ -84,7 +86,35 @@ const i18n = defineCollection({
   schema: z.record(z.any()),
 });
 
-export const collections = { site, pages, i18n };
+const projects = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    category: z.string(),
+    description: z.string(),
+    keywords: z.array(z.string()).optional(),
+    image: z.string().optional(),
+    link: z.string().url().optional(),
+    lang: z.string(),
+  }),
+});
+
+const blog = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    author: z.string().optional(),
+    image: z.string().optional(),
+    pubDate: z.coerce.date(),
+    tags: z.array(z.string()).default([]),
+    keywords: z.array(z.string()).optional(),
+    lang: z.string(),
+    draft: z.boolean().default(false),
+  }),
+});
+
+export const collections = { site, pages, i18n, projects, blog };
 
 // (opcional) exporta el tipo final que quieres tener tras merge:
 export type SiteData = z.infer<typeof siteSchema>;

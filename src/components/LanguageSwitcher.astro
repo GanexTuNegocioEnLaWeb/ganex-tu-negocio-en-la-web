@@ -14,6 +14,9 @@ const { lang = "es", slug = "home", theme = "light" } = Astro.props as Props;
 const supported = await getSupportedLangs();
 const pages = await getCollection("pages");
 
+const blogEntries = await getCollection("blog");
+const projectEntries = await getCollection("projects");
+
 function normalize(s: string) {
   return s.replace(/^\/+|\/+$/g, "");
 }
@@ -21,29 +24,105 @@ function normalize(s: string) {
 function buildHref(targetLang: string) {
   const urlObj = new URL(Astro.url);
   const parts = urlObj.pathname.split("/").filter(Boolean);
-  const rest = supported.includes(parts[0]) ? parts.slice(1) : parts;
-  const currentRoute = normalize(rest.join("/"));
+  const currentLangInUrl = supported.includes(parts[0]) ? parts[0] : null;
+  const rest = currentLangInUrl ? parts.slice(1) : parts;
+  const currentPath = rest.join("/");
 
+  // Caso 1: Buscar en la colección de páginas (home, nosotros, etc)
   const currentEntryBySlug = pages.find((p) => p.id === `${slug}.${lang}`);
-
   const currentEntryByRoute = pages.find(
     (p) =>
       p.id.endsWith(`.${lang}`) &&
-      normalize(p.data.route ?? "") === currentRoute
+      normalize(p.data.route ?? "") === normalize(currentPath),
   );
 
   const baseSlug =
     currentEntryBySlug?.id.split(".")[0] ||
-    currentEntryByRoute?.id.split(".")[0] ||
-    slug;
+    currentEntryByRoute?.id.split(".")[0];
 
-  const targetEntry = pages.find((p) => p.id === `${baseSlug}.${targetLang}`);
+  if (baseSlug) {
+    const targetEntry = pages.find((p) => p.id === `${baseSlug}.${targetLang}`);
+    if (targetEntry) {
+      const route =
+        targetEntry.data.route ?? (baseSlug === "home" ? "" : baseSlug);
+      const seg = normalize(route);
+      return `/${targetLang}${seg ? `/${seg}` : ""}`;
+    }
+  }
 
-  if (targetEntry) {
-    const route =
-      targetEntry.data.route ?? (baseSlug === "home" ? "" : baseSlug);
-    const seg = normalize(route);
-    return `/${targetLang}${seg ? `/${seg}` : ""}`;
+  // Caso 2: Buscar en la colección de Blog
+  const blogSlugs = ["blog"];
+  const isInBlog = blogSlugs.some((s) =>
+    currentPath.toLowerCase().startsWith(s),
+  );
+
+  if (isInBlog) {
+    const blogParts = currentPath.split("/");
+    if (blogParts.length > 1) {
+      // Detalle de post: blog/mi-post
+      const postSlug = blogParts[1];
+      const currentPost = blogEntries.find(
+        (e) =>
+          e.data.lang === lang &&
+          e.slug.replace(new RegExp(`${lang}$`), "") === postSlug,
+      );
+
+      if (currentPost) {
+        // Encontrar el equivalente en el idioma destino
+        // Asumimos que el "id" base sin el sufijo de idioma es el mismo
+        const baseId = currentPost.id.split(".")[0];
+        const targetPost = blogEntries.find(
+          (e) => e.data.lang === targetLang && e.id.startsWith(baseId),
+        );
+
+        if (targetPost) {
+          const targetPostSlug = targetPost.slug.replace(
+            new RegExp(`${targetLang}$`),
+            "",
+          );
+          return `/${targetLang}/blog/${targetPostSlug}`;
+        }
+      }
+    }
+    return `/${targetLang}/blog`;
+  }
+
+  // Caso 3: Buscar en la colección de Proyectos
+  const projectSlugs = ["proyectos", "portfolio", "projects"];
+  const isInProjects = projectSlugs.some((s) =>
+    currentPath.toLowerCase().startsWith(s),
+  );
+
+  if (isInProjects) {
+    const projParts = currentPath.split("/");
+    if (projParts.length > 1) {
+      // Detalle de proyecto: proyectos/mi-proyecto
+      const projectSlug = projParts[1];
+      const currentProj = projectEntries.find(
+        (e) =>
+          e.data.lang === lang &&
+          e.slug.replace(new RegExp(`${lang}$`), "") === projectSlug,
+      );
+
+      if (currentProj) {
+        const baseId = currentProj.id.split(".")[0];
+        const targetProj = projectEntries.find(
+          (e) => e.data.lang === targetLang && e.id.startsWith(baseId),
+        );
+
+        if (targetProj) {
+          const targetProjSlug = targetProj.slug.replace(
+            new RegExp(`${targetLang}$`),
+            "",
+          );
+          // Usamos el slug base del idioma destino
+          const targetBase = targetLang === "es" ? "proyectos" : "projects";
+          return `/${targetLang}/${targetBase}/${targetProjSlug}`;
+        }
+      }
+    }
+    const targetBase = targetLang === "es" ? "proyectos" : "projects";
+    return `/${targetLang}/${targetBase}`;
   }
 
   return `/${targetLang}`;
@@ -56,17 +135,18 @@ const items = supported.map((l) => ({
   href: `${buildHref(l)}${url.search}${url.hash}`,
 }));
 
-const buttonClass = theme === "light" 
-  ? "border-white/30 hover:bg-white/10 text-white" 
-  : "border-neutral-200 hover:bg-neutral-100 text-neutral-800";
+const buttonClass =
+  theme === "light"
+    ? "border-white/30 hover:bg-white/10 text-white"
+    : "border-neutral-200 hover:bg-neutral-100 text-neutral-800";
 
-const dropdownClass = theme === "light"
-  ? "bg-black border-white/20 text-white"
-  : "bg-white border-neutral-100 text-neutral-800 shadow-xl";
+const dropdownClass =
+  theme === "light"
+    ? "bg-black border-white/20 text-white"
+    : "bg-white border-neutral-100 text-neutral-800 shadow-xl";
 
-const itemHoverClass = theme === "light"
-  ? "hover:bg-white/10"
-  : "hover:bg-neutral-50";
+const itemHoverClass =
+  theme === "light" ? "hover:bg-white/10" : "hover:bg-neutral-50";
 ---
 
 <div class="relative">
@@ -80,7 +160,7 @@ const itemHoverClass = theme === "light"
   </button>
 
   <ul
-    class={`absolute right-0 mt-2 border rounded-md
+    class={`absolute z-10 right-0 mt-2 border rounded-md
            opacity-0 pointer-events-none focus-within:opacity-100 focus-within:pointer-events-auto ${dropdownClass}`}
     role="listbox"
   >

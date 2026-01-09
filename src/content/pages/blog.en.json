@@ -1,0 +1,9 @@
+{
+  "route": "blog",
+  "title": "Ganex - Blog",
+  "description": "Discover articles about web development, SEO, digital marketing and the latest technology trends.",
+  "blocks": [
+    { "type": "blog-grid" },
+    { "type": "block-contact" }
+  ]
+}

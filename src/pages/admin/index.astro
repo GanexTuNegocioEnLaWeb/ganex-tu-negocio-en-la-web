@@ -1,0 +1,19 @@
+---
+import ZeroLayout from "../../layouts/ZeroLayout.astro";
+import { supabase } from "../../lib/supabase";
+import AdminLeads from "../../components/admin/AdminLeads.vue";
+
+// SSR: Fetch leads
+const { data: leads, error } = await supabase
+    .from("leads")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+if (error) {
+    console.error("Error fetching leads:", error);
+}
+---
+
+<ZeroLayout slug="admin" lang="es">
+    <AdminLeads client:load initialLeads={leads || []} />
+</ZeroLayout>

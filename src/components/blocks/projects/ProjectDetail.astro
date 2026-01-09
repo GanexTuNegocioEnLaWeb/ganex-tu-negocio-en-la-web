@@ -1,0 +1,186 @@
+---
+import "../../../assets/article-styles.css";
+import { t } from "../../../lib/i18n";
+import { getCollection } from "astro:content";
+
+const {
+  i18n = {},
+  lang = "es",
+  projectSlug,
+} = Astro.props as {
+  i18n?: Record<string, any>;
+  lang?: string;
+  projectSlug?: string;
+};
+
+const backToPortfolio = t("project.back_to_portfolio", i18n);
+const visitWebsite = t("project.visit_website", i18n);
+const viewAllProjects = t("project.view_all_projects", i18n);
+
+// Obtener los detalles del proyecto desde la collection
+let projectEntry = null;
+if (projectSlug) {
+  // Buscar por slug y lang en la collection
+  const projects = await getCollection(
+    "projects",
+    ({ data }) => data.lang === lang
+  );
+  projectEntry = projects.find((project) => {
+    const cleanSlug = project.slug.replace(new RegExp(`${lang}$`), "");
+    return cleanSlug === projectSlug;
+  });
+}
+
+if (!projectEntry || !projectEntry.data.title) {
+  const portfolioRoute = lang === "es" ? "proyectos" : "projects";
+  return Astro.redirect(`/${lang}/${portfolioRoute}`);
+}
+
+const projectDetails = projectEntry.data;
+const { Content } = await projectEntry.render();
+
+// Generar structured data para CreativeWork/Project
+const site = await import("../../../lib/site").then((m) => m.getSite(lang));
+const base = site?.data?.baseUrl?.replace(/\/$/, "") || "";
+const projectUrl = `${base}/${lang}/${lang === "es" ? "proyectos" : "projects"}/${projectSlug}`;
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: projectDetails.title,
+  description: projectDetails.description,
+  image: projectDetails.image ? `${base}${projectDetails.image}` : undefined,
+  url: projectDetails.link || projectUrl,
+  keywords:
+    projectDetails.keywords?.join(", ") || projectDetails.category || "",
+  genre: projectDetails.category,
+  inLanguage: lang,
+  creator: {
+    "@type": "Organization",
+    name: "Ganex",
+  },
+};
+---
+
+<section class="py-16 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Botón de regreso -->
+    <div class="mb-8">
+      <a
+        href={`/${lang}/${lang === "es" ? "proyectos" : "projects"}`}
+        class="inline-flex items-center gap-2 text-neutral-600 hover:text-[#FF8A00] transition-colors font-medium"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        {backToPortfolio}
+      </a>
+    </div>
+
+    <!-- Imagen destacada -->
+    {
+      projectDetails.image && (
+        <figure class="relative w-full h-96 md:h-125 rounded-2xl overflow-hidden mb-8 shadow-xl m-0">
+          <img
+            src={`${projectDetails.image}`}
+            alt={projectDetails.title || "Proyecto"}
+            loading="eager"
+            decoding="async"
+            width="1200"
+            height="600"
+            class="w-full h-full object-cover"
+          />
+        </figure>
+      )
+    }
+
+    <!-- Contenido principal -->
+    <article class="max-w-none">
+      <header class="mb-8">
+        <span
+          class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide mb-3 block"
+        >
+          {projectDetails.category}
+        </span>
+        <h1 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+          {projectDetails.title}
+        </h1>
+        {
+          projectDetails.description && (
+            <p class="text-xl text-neutral-600 leading-relaxed">
+              {projectDetails.description}
+            </p>
+          )
+        }
+      </header>
+
+      <!-- Contenido del artículo -->
+      <div class="article-content">
+        <Content />
+      </div>
+
+      <!-- Botones de acción -->
+      <div
+        class="mt-12 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row gap-4"
+      >
+        {
+          projectDetails.link && (
+            <a
+              href={projectDetails.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[#FF8A00] text-white! font-bold rounded-lg hover:bg-[#e67a00] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            >
+              {visitWebsite}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                />
+              </svg>
+            </a>
+          )
+        }
+        <a
+          href={`/${lang}/${lang === "es" ? "proyectos" : "projects"}`}
+          class="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-white border-2 border-neutral-300 text-neutral-800 font-bold rounded-lg hover:border-[#FF8A00] hover:text-[#FF8A00] transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+        >
+          {viewAllProjects}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
+            ></path>
+          </svg>
+        </a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify(projectSchema)} />

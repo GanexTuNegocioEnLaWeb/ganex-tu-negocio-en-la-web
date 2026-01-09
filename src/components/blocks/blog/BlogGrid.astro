@@ -1,0 +1,413 @@
+---
+import { t } from "../../../lib/i18n";
+import { getCollection } from "astro:content";
+
+const {
+  i18n = {},
+  lang = "es",
+  currentPage = 1,
+  totalPages: propsTotalPages,
+} = Astro.props as {
+  i18n?: Record<string, any>;
+  lang?: string;
+  currentPage?: number;
+  totalPages?: number;
+};
+const tag = t("blog.page.tag", i18n);
+const titlePre = t("blog.page.title_pre", i18n);
+const titleHighlight = t("blog.page.title_highlight", i18n);
+const desc = t("blog.page.desc", i18n);
+const readMore = t("blog.read_more", i18n);
+
+// Obtener posts del blog desde la collection (solo publicados)
+const blogEntries = await getCollection(
+  "blog",
+  ({ data }) => data.lang === lang && !data.draft,
+);
+// Ordenar por fecha de publicación (más recientes primero)
+const sortedPosts = blogEntries.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
+);
+const allPosts = sortedPosts.map((entry) => {
+  // Extraer el slug sin el sufijo del idioma
+  const cleanSlug = entry.slug.replace(new RegExp(`${lang}$`), "");
+  return {
+    title: entry.data.title,
+    description: entry.data.description,
+    image: entry.data.image,
+    slug: cleanSlug,
+    pubDate: entry.data.pubDate,
+    author: entry.data.author,
+    tags: entry.data.tags,
+  };
+});
+
+const itemsPerPage = 6;
+const totalPages = propsTotalPages || Math.ceil(allPosts.length / itemsPerPage);
+const start = (currentPage - 1) * itemsPerPage;
+const end = start + itemsPerPage;
+const posts = allPosts.slice(start, end);
+
+const baseUrl = `/${lang}/blog`;
+const searchPlaceholder =
+  lang === "es"
+    ? "Buscar por título, descripción o etiquetas..."
+    : "Search by title, description or tags...";
+const prevLabel = lang === "es" ? "Anterior" : "Previous";
+const nextLabel = lang === "es" ? "Siguiente" : "Next";
+---
+
+<section class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span
+        class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+        >{tag}</span
+      >
+      <h1 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+        {titlePre}
+        <span class="text-[#FF8A00]">{titleHighlight}</span>
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+        {desc}
+      </p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="mb-12 max-w-2xl mx-auto">
+      <div class="relative group">
+        <div
+          class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400 group-focus-within:text-[#FF8A00] transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </div>
+        <input
+          type="text"
+          id="blog-search"
+          placeholder={searchPlaceholder}
+          class="w-full bg-white border border-neutral-200 rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-4 focus:ring-orange-50/50 focus:border-[#FF8A00] transition-all shadow-sm group-hover:shadow-md"
+        />
+      </div>
+    </div>
+
+    <div id="blog-posts-container">
+      {
+        posts.length === 0 ? (
+          <div class="text-center py-16">
+            <p class="text-neutral-600 text-lg">
+              {lang === "es"
+                ? "No hay artículos disponibles aún."
+                : "No articles available yet."}
+            </p>
+          </div>
+        ) : (
+          <div
+            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            id="blog-grid"
+          >
+            {posts.map((post) => {
+              const postSlug = post.slug;
+              const formattedDate = new Intl.DateTimeFormat(
+                lang === "es" ? "es-ES" : "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                },
+              ).format(post.pubDate);
+
+              return (
+                <article
+                  class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100"
+                  itemscope
+                  itemtype="https://schema.org/BlogPosting"
+                >
+                  {post.image && (
+                    <figure class="relative h-64 overflow-hidden bg-neutral-100 m-0">
+                      <img
+                        src={`${post.image}`}
+                        alt={post.title}
+                        loading="lazy"
+                        decoding="async"
+                        width="600"
+                        height="400"
+                        class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        itemprop="image"
+                      />
+                      <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </figure>
+                  )}
+
+                  <div class="p-8">
+                    <div class="flex items-center gap-3 mb-3 text-sm text-neutral-500">
+                      <time
+                        datetime={post.pubDate.toISOString()}
+                        itemprop="datePublished"
+                      >
+                        {formattedDate}
+                      </time>
+                      {post.author && (
+                        <>
+                          <span>•</span>
+                          <span itemprop="author">{post.author}</span>
+                        </>
+                      )}
+                    </div>
+
+                    {post.tags && post.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2 mb-3">
+                        {post.tags.slice(0, 3).map((tag) => (
+                          <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    <h3
+                      class="text-2xl font-bold text-neutral-800 mb-3 group-hover:text-[#FF8A00] transition-colors"
+                      itemprop="headline"
+                    >
+                      {post.title}
+                    </h3>
+                    <p
+                      class="text-neutral-600 mb-6 line-clamp-3"
+                      itemprop="description"
+                    >
+                      {post.description}
+                    </p>
+
+                    <a
+                      href={`/${lang}/blog/${postSlug}`}
+                      class="inline-flex items-center gap-2 text-neutral-800 font-bold group-hover:text-[#FF8A00] transition-colors"
+                      itemprop="url"
+                    >
+                      {readMore}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-5 w-5 transition-transform group-hover:translate-x-1"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        )
+      }
+    </div>
+
+    {/* Pagination Controls */}
+    {
+      totalPages > 1 && (
+        <div
+          id="pagination-controls"
+          class="mt-20 flex justify-center items-center gap-4"
+        >
+          <a
+            href={
+              currentPage > 1
+                ? currentPage === 2
+                  ? baseUrl
+                  : `${baseUrl}/${currentPage - 1}`
+                : "#"
+            }
+            class={`p-4 rounded-full border-2 transition-all ${currentPage === 1 ? "border-neutral-50 text-neutral-200 pointer-events-none" : "border-neutral-100 text-neutral-400 hover:border-[#FF8A00] hover:text-[#FF8A00]"}`}
+            aria-label={prevLabel}
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 19l-7-7 7-7"
+              />
+            </svg>
+          </a>
+
+          <div class="flex gap-2 text-sm font-bold">
+            {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+              <a
+                href={p === 1 ? baseUrl : `${baseUrl}/${p}`}
+                class={`w-12 h-12 rounded-2xl flex items-center justify-center transition-all ${p === currentPage ? "bg-[#FF8A00] text-white shadow-xl shadow-orange-100 scale-110" : "bg-neutral-50 text-neutral-400 hover:bg-neutral-100"}`}
+              >
+                {p}
+              </a>
+            ))}
+          </div>
+
+          <a
+            href={
+              currentPage < totalPages ? `${baseUrl}/${currentPage + 1}` : "#"
+            }
+            class={`p-4 rounded-full border-2 transition-all ${currentPage === totalPages ? "border-neutral-50 text-neutral-200 pointer-events-none" : "border-neutral-100 text-neutral-400 hover:border-[#FF8A00] hover:text-[#FF8A00]"}`}
+            aria-label={nextLabel}
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </a>
+        </div>
+      )
+    }
+  </div>
+</section>
+
+{/* Client-side Search and Auto-scroll */}
+<script is:inline define:vars={{ allPosts, lang, readMore, currentPage }}>
+  const searchInput = document.getElementById("blog-search");
+  const blogGrid = document.getElementById("blog-grid");
+  const paginationControls = document.getElementById("pagination-controls");
+  const postsContainer = document.getElementById("blog-posts-container");
+
+  const normalizeText = (text) => {
+    if (!text) return "";
+    return text
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  };
+
+  const debounce = (func, wait) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  };
+
+  if (searchInput) {
+    searchInput.addEventListener(
+      "input",
+      debounce((e) => {
+        const query = normalizeText(e.target.value);
+
+        if (query.trim() === "") {
+          location.reload();
+          return;
+        }
+
+        if (paginationControls) paginationControls.style.display = "none";
+
+        const filtered = allPosts.filter((post) => {
+          const title = normalizeText(post.title);
+          const desc = normalizeText(post.description);
+          const tagsMatches =
+            post.tags &&
+            post.tags.some((t) => normalizeText(t).includes(query));
+
+          return title.includes(query) || desc.includes(query) || tagsMatches;
+        });
+
+        if (filtered.length === 0) {
+          postsContainer.innerHTML = `
+          <div class="text-center py-16">
+            <p class="text-neutral-600 text-lg">
+              ${lang === "es" ? "No se encontraron artículos que coincidan con tu búsqueda." : "No articles found matching your search."}
+            </p>
+          </div>
+        `;
+        } else {
+          blogGrid.innerHTML = filtered
+            .map((post) => {
+              const formattedDate = new Intl.DateTimeFormat(
+                lang === "es" ? "es-ES" : "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                },
+              ).format(new Date(post.pubDate));
+
+              return `
+            <article class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 border border-neutral-100">
+              ${
+                post.image
+                  ? `
+                <figure class="relative h-64 overflow-hidden bg-neutral-100 m-0">
+                  <img src="${post.image}" alt="${post.title}" loading="lazy" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
+                </figure>
+              `
+                  : ""
+              }
+              <div class="p-8">
+                <div class="flex items-center gap-3 mb-3 text-sm text-neutral-500">
+                  <time>${formattedDate}</time>
+                  ${post.author ? `<span>•</span> <span>${post.author}</span>` : ""}
+                </div>
+                ${
+                  post.tags
+                    ? `<div class="flex flex-wrap gap-2 mb-3">${post.tags
+                        .slice(0, 3)
+                        .map(
+                          (t) =>
+                            `<span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide">${t}</span>`,
+                        )
+                        .join("")}</div>`
+                    : ""
+                }
+                <h3 class="text-2xl font-bold text-neutral-800 mb-3 group-hover:text-[#FF8A00] transition-colors">${post.title}</h3>
+                <p class="text-neutral-600 mb-6 line-clamp-3">${post.description}</p>
+                <a href="/${lang}/blog/${post.slug}" class="inline-flex items-center gap-2 text-neutral-800 font-bold group-hover:text-[#FF8A00] transition-colors">
+                  ${readMore}
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                  </svg>
+                </a>
+              </div>
+            </article>
+          `;
+            })
+            .join("");
+          postsContainer.innerHTML = "";
+          postsContainer.appendChild(blogGrid);
+        }
+      }, 300),
+    );
+  }
+
+  // Auto-scroll on page change
+  if (currentPage > 1) {
+    const section = document.getElementById("blog-posts-container");
+    if (section) {
+      window.scrollTo({ top: section.offsetTop - 150, behavior: "instant" });
+    }
+  }
+</script>

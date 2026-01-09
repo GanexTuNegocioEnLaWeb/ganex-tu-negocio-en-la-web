@@ -8,5 +8,6 @@ export default defineConfig({
   output: "server",
   adapter: vercel(),
   site: "https://www.ganexbo.com",
+  trailingSlash: "never",
   integrations: [sitemap(), icon()],
 });

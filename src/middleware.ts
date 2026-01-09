@@ -9,11 +9,11 @@ function pickLang(accept = "", supported: string[]): string {
   return DEFAULT_LANG;
 }
 
-function stripTrailingSlash(pathname: string) {
-  return pathname.length > 1 && pathname.endsWith("/")
-    ? pathname.replace(/\/+$/, "")
-    : pathname;
-}
+// function stripTrailingSlash(pathname: string) {
+//   return pathname.length > 1 && pathname.endsWith("/")
+//     ? pathname.replace(/\/+$/, "")
+//     : pathname;
+// }
 
 export const onRequest: MiddlewareHandler = async (ctx, next) => {
   const { url, request } = ctx;
@@ -28,11 +28,11 @@ export const onRequest: MiddlewareHandler = async (ctx, next) => {
     return ctx.redirect(`/${lang}`, 307);
   }
 
-  // 2) normaliza: quita slash final
-  if (pathname.length > 1 && pathname.endsWith("/")) {
-    const normalized = stripTrailingSlash(pathname);
-    return ctx.redirect(`${normalized}${url.search}`, 308);
-  }
+  // 2) normaliza: quita slash final (Astro ya lo hace con trailingSlash: 'never')
+  // if (pathname.length > 1 && pathname.endsWith("/")) {
+  //   const normalized = stripTrailingSlash(pathname);
+  //   return ctx.redirect(`${normalized}${url.search}`, 308);
+  // }
 
   // 3) /{lang}/home -> /{lang}
   const m = pathname.match(/^\/([^/]+)\/home$/i);

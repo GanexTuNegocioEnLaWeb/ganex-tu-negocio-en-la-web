@@ -76,4 +76,13 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
     type: "privacy-hero",
     import: () => import("./privacy/PrivacyHero.astro"),
   },
+  // PORTFOLIO
+  {
+    type: "portfolio-grid",
+    import: () => import("./portfolio/PortfolioGrid.astro"),
+  },
+  {
+    type: "project-detail",
+    import: () => import("./portfolio/ProjectDetail.astro"),
+  },
 ];

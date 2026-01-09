@@ -1,0 +1,36 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import { resolveMeta } from "../../../lib/seo";
+import { getI18nDict, getSupportedLangs, isLang } from "../../../lib/i18n";
+import ProjectDetail from "../../../components/blocks/portfolio/ProjectDetail.astro";
+
+export const prerender = false;
+
+const { lang: rawLang, slug } = Astro.params;
+const supported = await getSupportedLangs();
+
+if (!rawLang || !isLang(rawLang, supported)) {
+  return Astro.redirect("/404");
+}
+
+const lang = rawLang;
+const projectSlug = slug || "";
+
+// Verificar que el proyecto existe en i18n
+const i18nDict = await getI18nDict(lang);
+const projectDetails = i18nDict?.project?.details?.[projectSlug];
+
+if (!projectDetails || !projectDetails.title) {
+  return Astro.redirect(`/${lang}/projects`);
+}
+
+const meta = await resolveMeta({
+  slug: `projects/${projectSlug}`,
+  lang,
+  canonicalUrl: Astro.url?.href,
+});
+---
+
+<Layout lang={lang} slug={`projects/${projectSlug}`}>
+  <ProjectDetail lang={lang} i18n={i18nDict} projectSlug={projectSlug} />
+</Layout>

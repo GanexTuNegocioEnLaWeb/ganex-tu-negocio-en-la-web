@@ -56,17 +56,18 @@ const items = supported.map((l) => ({
   href: `${buildHref(l)}${url.search}${url.hash}`,
 }));
 
-const buttonClass = theme === "light" 
-  ? "border-white/30 hover:bg-white/10 text-white" 
-  : "border-neutral-200 hover:bg-neutral-100 text-neutral-800";
+const buttonClass =
+  theme === "light"
+    ? "border-white/30 hover:bg-white/10 text-white"
+    : "border-neutral-200 hover:bg-neutral-100 text-neutral-800";
 
-const dropdownClass = theme === "light"
-  ? "bg-black border-white/20 text-white"
-  : "bg-white border-neutral-100 text-neutral-800 shadow-xl";
+const dropdownClass =
+  theme === "light"
+    ? "bg-black border-white/20 text-white"
+    : "bg-white border-neutral-100 text-neutral-800 shadow-xl";
 
-const itemHoverClass = theme === "light"
-  ? "hover:bg-white/10"
-  : "hover:bg-neutral-50";
+const itemHoverClass =
+  theme === "light" ? "hover:bg-white/10" : "hover:bg-neutral-50";
 ---
 
 <div class="relative">
@@ -80,7 +81,7 @@ const itemHoverClass = theme === "light"
   </button>
 
   <ul
-    class={`absolute right-0 mt-2 border rounded-md
+    class={`absolute z-10 right-0 mt-2 border rounded-md
            opacity-0 pointer-events-none focus-within:opacity-100 focus-within:pointer-events-auto ${dropdownClass}`}
     role="listbox"
   >

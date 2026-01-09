@@ -3,11 +3,39 @@ import Layout from "../../layouts/Layout.astro";
 import { resolveMeta } from "../../lib/seo";
 import { getCollection } from "astro:content";
 import PageRenderer from "../../components/PageRenderer.astro";
-import { getI18nDict, getSupportedLangs, isLang } from "../../lib/i18n";
+import {
+  getI18nDict,
+  getSupportedLangs,
+  isLang,
+  DEFAULT_LANG,
+} from "../../lib/i18n";
 
-export const prerender = false;
+export const prerender = true;
+
+export async function getStaticPaths() {
+  const pages = await getCollection("pages");
+  const supported = await getSupportedLangs();
+
+  return pages
+    .map((page) => {
+      const [idSlug, idLang] = page.id.split(".");
+      const lang = isLang(idLang, supported) ? idLang : DEFAULT_LANG;
+      // Usamos el route definido o el slug del ID, pero quitamos 'home' para que no duplique la raíz
+      const slug = (page.data.route ?? idSlug).replace(/^\/+|\/+$/g, "");
+
+      // El home se maneja en [lang]/index.astro, así que lo saltamos aquí
+      if (slug === "home") return null;
+
+      return {
+        params: { lang, slug },
+        props: { page },
+      };
+    })
+    .filter(Boolean);
+}
 
 const { lang: rawLang, slug } = Astro.params;
+const { page: propsPage } = Astro.props;
 const supported = await getSupportedLangs();
 
 if (!rawLang || !isLang(rawLang, supported)) {
@@ -17,17 +45,18 @@ if (!rawLang || !isLang(rawLang, supported)) {
 const lang = rawLang;
 const slugKey = slug || "home";
 
-// Buscar la página en la colección
-const pages = await getCollection("pages", (p) => {
-  const [pSlug, pLang] = p.id.split(".");
-  // Comparar slug sin slashes extra
-  const normalizedPSlug = (p.data.route ?? pSlug).replace(/^\/+|\/+$/g, "");
-  const normalizedSlug = (slugKey).replace(/^\/+|\/+$/g, "");
-  
-  return pLang === lang && normalizedPSlug === normalizedSlug;
-});
+// Si no viene por props (ej. en dev mode o si algo falló), lo buscamos
+const page =
+  propsPage ||
+  (
+    await getCollection("pages", (p) => {
+      const [pSlug, pLang] = p.id.split(".");
+      const normalizedPSlug = (p.data.route ?? pSlug).replace(/^\/+|\/+$/g, "");
+      const normalizedSlug = slugKey.replace(/^\/+|\/+$/g, "");
 
-const page = pages[0];
+      return pLang === lang && normalizedPSlug === normalizedSlug;
+    })
+  )[0];
 
 if (!page) {
   return Astro.redirect("/404");

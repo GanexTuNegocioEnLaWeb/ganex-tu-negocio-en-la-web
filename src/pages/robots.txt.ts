@@ -12,7 +12,7 @@ export const GET: APIRoute = async () => {
   const siteNoindex = !!site?.data.noindex;
 
   const body =
-    isProd && !siteNoindex
+    (isProd && !siteNoindex) || !isProd
       ? [
           "User-agent: *",
           "Allow: /",
@@ -22,7 +22,7 @@ export const GET: APIRoute = async () => {
       : [
           "User-agent: *",
           "Disallow: /",
-          "", // en no-prod o si noindex=true, bloquea
+          "", // si es prod pero noindex=true, bloquea
         ].join("\n");
 
   return new Response(body, {

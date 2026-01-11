@@ -140,39 +140,17 @@
       "cta_meeting": "Agendar Cita",
       "img_alt": "Estrategia digital y desarrollo web con Ganex"
     },
+    "latest_blog": {
+      "title": "Último Artículo",
+      "subtitle": "Mantente al día con nuestras últimas publicaciones"
+    },
     "portfolio": {
       "tag": "Nuestro Trabajo",
       "title_pre": "Proyectos que",
       "title_highlight": "inspiran",
       "desc": "Una selección de nuestro trabajo más reciente. Calidad sobre cantidad.",
       "see_project_detail": "Ver más detalles",
-      "see_all_projects": "Ver todos los proyectos",
-      "items": [
-        {
-          "title": "QRaten",
-          "category": "App Móvil / Web App",
-          "description": "App de asistencias con QR que simplifica el control y registro de asistencia.",
-          "image": "/images/portfolio/qraten.jpg",
-          "link": "https://www.qraten.com",
-          "slug": "qraten"
-        },
-        {
-          "title": "Megaloblastos",
-          "category": "Sitio Web Político",
-          "description": "Sitio web para un partido político de un centro interno de la Gabriel René Moreno. El tener la web antes de que termine la campaña fue uno de los indicadores clave para la victoria.",
-          "image": "/images/portfolio/megaloblastos.jpg",
-          "link": "https://megaloblastos.com",
-          "slug": "megaloblastos"
-        },
-        {
-          "title": "Ecomedical",
-          "category": "Salud / Web Corporativa",
-          "description": "Clínica en Tarija que ofrece servicios regenerativos y sirve como puente o canal para mostrar todos sus servicios.",
-          "image": "/images/portfolio/ecomedical.jpg",
-          "link": "https://ecomedicalweb.com",
-          "slug": "ecomedical"
-        }
-      ]
+      "see_all_projects": "Ver todos los proyectos"
     },
     "phrase": {
       "welcome": "Bienvenidos",
@@ -201,7 +179,7 @@
         },
         {
           "title": "Apps Móviles",
-          "slug": "servicios/apps-mobiles",
+          "slug": "servicios/desarrollo-apps",
           "description": "Desarrollo de aplicaciones móviles y web con React Native y Flutter, centradas en UX/UI, rendimiento y escalabilidad.",
           "icon": "tabler:devices"
         },
@@ -313,67 +291,23 @@
       "title_pre": "Nuestros",
       "title_highlight": "Proyectos",
       "desc": "Explora nuestra colección completa de proyectos. Cada uno representa nuestro compromiso con la excelencia y la innovación."
-    },
-    "projects": [
-      {
-        "title": "Megaloblastos",
-        "category": "Sitio Web Político",
-        "description": "Sitio web para un partido político de un centro interno de la Gabriel René Moreno. El tener la web antes de que termine la campaña fue uno de los indicadores clave para la victoria.",
-        "image": "/images/portfolio/megaloblastos.jpg",
-        "link": "https://megaloblastos.com",
-        "slug": "megaloblastos"
-      },
-      {
-        "title": "Ecomedical",
-        "category": "Salud / Web Corporativa",
-        "description": "Clínica en Tarija que ofrece servicios regenerativos y sirve como puente o canal para mostrar todos sus servicios.",
-        "image": "/images/portfolio/ecomedical.jpg",
-        "link": "https://ecomedicalweb.com",
-        "slug": "ecomedical"
-      },
-      {
-        "title": "QRaten",
-        "category": "App Móvil / Web App",
-        "description": "App de asistencias con QR que simplifica el control y registro de asistencia.",
-        "image": "/images/portfolio/qraten.jpg",
-        "link": "https://www.qraten.com",
-        "slug": "qraten"
-      }
-    ]
+    }
   },
   "project": {
     "back_to_portfolio": "Volver al portafolio",
     "visit_website": "Visitar sitio web",
-    "view_all_projects": "Ver todos los proyectos",
-    "details": {
-      "qraten": {
-        "title": "QRaten",
-        "category": "App Móvil / Web App",
-        "description": "App de asistencias con QR que simplifica el control y registro de asistencia.",
-        "image": "/images/portfolio/qraten.jpg",
-        "link": "https://www.qraten.com",
-        "slug": "qraten",
-        "content": "<p>QRaten revoluciona el control de asistencia mediante una solución tecnológica elegante y eficiente. Esta aplicación móvil y web app combina la simplicidad del código QR con la potencia de un sistema de gestión completo.</p><p>El sistema permite a instituciones educativas, empresas y organizaciones registrar asistencias de manera instantánea mediante el escaneo de códigos QR. Esta tecnología elimina los procesos manuales tradicionales, reduciendo errores y ahorrando tiempo valioso.</p><p>Desarrollamos una interfaz intuitiva tanto para administradores como para usuarios finales, garantizando una experiencia fluida en dispositivos móviles y web. La aplicación incluye funcionalidades avanzadas como reportes en tiempo real, historiales de asistencia y notificaciones automáticas.</p><p>QRaten representa nuestra capacidad para crear soluciones que transforman procesos operativos complejos en experiencias simples y efectivas, demostrando el valor real de la innovación tecnológica aplicada.</p>"
-      },
-      "megaloblastos": {
-        "title": "Megaloblastos",
-        "category": "Sitio Web Político",
-        "description": "Sitio web para un partido político de un centro interno de la Gabriel René Moreno. El tener la web antes de que termine la campaña fue uno de los indicadores clave para la victoria.",
-        "image": "/images/portfolio/megaloblastos.jpg",
-        "link": "https://megaloblastos.com",
-        "slug": "megaloblastos",
-        "content": "<p>Megaloblastos representa un hito en la estrategia digital política en Bolivia. Desarrollamos una plataforma web completa que se convirtió en el eje central de la campaña electoral del centro interno de la Universidad Autónoma Gabriel René Moreno.</p><p>El proyecto se caracterizó por su implementación rápida y efectiva, permitiendo que el sitio estuviera operativo antes del cierre de la campaña. Esta ventaja temporal fue fundamental para la difusión del mensaje y la movilización de votantes.</p><p>Nuestro enfoque combinó diseño moderno con funcionalidad estratégica, creando una experiencia de usuario que facilitaba la participación y el compromiso político. La plataforma incluyó secciones informativas, galerías multimedia y sistemas de contacto optimizados para maximizar la interacción.</p><p>Los resultados fueron contundentes: la presencia digital temprana se correlacionó directamente con el éxito electoral, demostrando el poder de una estrategia web bien ejecutada en el contexto político boliviano.</p>"
-      },
-      "ecomedical": {
-        "title": "Ecomedical",
-        "category": "Salud / Web Corporativa",
-        "description": "Clínica en Tarija que ofrece servicios regenerativos y sirve como puente o canal para mostrar todos sus servicios.",
-        "image": "/images/portfolio/ecomedical.jpg",
-        "link": "https://ecomedicalweb.com",
-        "slug": "ecomedical",
-        "content": "<p>Ecomedical es una clínica especializada en medicina regenerativa ubicada en Tarija, Bolivia. El proyecto web se diseñó como un canal integral de comunicación que conecta a los pacientes con los servicios médicos avanzados de la clínica.</p><p>La plataforma web funciona como un puente estratégico entre la clínica y su público objetivo, presentando de manera clara y profesional todos los servicios regenerativos disponibles. El diseño prioriza la confianza y la accesibilidad, elementos cruciales en el sector de la salud.</p><p>Implementamos un sistema de información estructurado que facilita la comprensión de tratamientos complejos, haciendo que la medicina regenerativa sea más accesible para el público general. La navegación intuitiva y el diseño limpio refuerzan la credibilidad médica.</p><p>El sitio web se ha convertido en una herramienta esencial para la adquisición de pacientes, permitiendo que la clínica expanda su alcance más allá de Tarija y establezca su presencia en el mercado digital de servicios médicos especializados.</p>"
-      }
-    }
+    "view_all_projects": "Ver todos los proyectos"
+  },
+  "blog": {
+    "page": {
+      "tag": "Blog",
+      "title_pre": "Nuestro",
+      "title_highlight": "Blog",
+      "desc": "Descubre artículos sobre desarrollo web, SEO, marketing digital y las últimas tendencias tecnológicas."
+    },
+    "read_more": "Leer más",
+    "back_to_blog": "Volver al blog",
+    "view_all_posts": "Ver todos los artículos"
   },
   "pages": {
     "home": {

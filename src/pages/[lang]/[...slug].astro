@@ -32,12 +32,11 @@ export async function getStaticPaths() {
     // Si esta página es el portafolio, generamos también los detalles de sus proyectos
     const portfolioSlugs = ["proyectos", "portfolio", "projects"];
     if (portfolioSlugs.includes(slug.toLowerCase())) {
-      const i18nDict = await getI18nDict(lang);
-      const projects = i18nDict.portfolio?.projects || [];
+      const projects = await getCollection("projects", ({ data }) => data.lang === lang);
 
       for (const project of projects) {
-        const projectSlug =
-          project.slug || project.title?.toLowerCase().replace(/\s+/g, "-");
+        // Extraer el slug sin el sufijo del idioma
+        const projectSlug = project.slug.replace(new RegExp(`${lang}$`), '');
         if (!projectSlug) continue;
 
         paths.push({
@@ -45,9 +44,36 @@ export async function getStaticPaths() {
           props: {
             page: {
               data: {
-                title: project.title,
-                description: project.description,
+                title: project.data.title,
+                description: project.data.description,
                 blocks: [{ type: "project-detail", props: { projectSlug } }],
+              },
+            },
+          },
+        });
+      }
+    }
+
+    // Si esta página es el blog, generamos también los detalles de sus posts
+    const blogSlugs = ["blog"];
+    if (blogSlugs.includes(slug.toLowerCase())) {
+      const blogPosts = await getCollection("blog", ({ data }) => 
+        data.lang === lang && !data.draft
+      );
+
+      for (const post of blogPosts) {
+        // Extraer el slug sin el sufijo del idioma
+        const postSlug = post.slug.replace(new RegExp(`${lang}$`), '');
+        if (!postSlug) continue;
+
+        paths.push({
+          params: { lang, slug: `${slug}/${postSlug}` },
+          props: {
+            page: {
+              data: {
+                title: post.data.title,
+                description: post.data.description,
+                blocks: [{ type: "blog-post-detail", props: { postSlug } }],
               },
             },
           },

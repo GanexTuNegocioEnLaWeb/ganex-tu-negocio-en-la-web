@@ -19,6 +19,16 @@ export const onRequest: MiddlewareHandler = async (ctx, next) => {
   const { url, request } = ctx;
   const pathname = url.pathname;
 
+  // Skip middleware for static files or common extensions
+  if (
+    pathname.includes(".") || 
+    pathname.startsWith("/api/") || 
+    pathname.startsWith("/_image") ||
+    pathname.includes("_astro")
+  ) {
+    return next();
+  }
+
   const supported = await getSupportedLangs(); // p.ej. ["es","en","pt"]
 
   // 1) raíz -> idioma detectado

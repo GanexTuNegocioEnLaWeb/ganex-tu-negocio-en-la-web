@@ -1,5 +1,6 @@
 ---
 import "../assets/global.css";
+import "../assets/article-styles.css";
 import { resolveMeta } from "../lib/seo";
 import { getSupportedLangs } from "../lib/i18n";
 import Header from "../components/Header.astro";
@@ -39,6 +40,9 @@ const alternates = supported.map((l) => {
 
 <title>{meta.title}</title>
 <meta name="description" content={meta.description} />
+{meta.keywords && meta.keywords.length > 0 && (
+  <meta name="keywords" content={meta.keywords.join(", ")} />
+)}
 <link rel="canonical" href={meta.canonicalUrl} />
 
 
@@ -55,7 +59,12 @@ const alternates = supported.map((l) => {
 <meta property="og:url" content={meta.canonicalUrl} />
 <meta property="og:image" content={meta.ogImage} />
 <meta property="og:image:alt" content={meta.ogImageAlt} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:type" content="image/jpeg" />
 <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@ganexbo" />
+<meta name="twitter:creator" content="@ganexbo" />
 
 <meta name="twitter:title" content={meta.title} />
 <meta name="twitter:description" content={meta.description} />
@@ -65,6 +74,13 @@ const alternates = supported.map((l) => {
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="manifest" href="/site.webmanifest" />
 <meta name="theme-color" content={meta.themeColor} />
+<meta name="author" content="Ganex" />
+<meta name="language" content={meta.locale} />
+<meta name="revisit-after" content="7 days" />
+<meta name="rating" content="general" />
+<meta name="distribution" content="global" />
+<meta name="geo.region" content="BO" />
+<meta name="geo.placename" content="Bolivia" />
 
 <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-27TKK0PR92"

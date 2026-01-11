@@ -140,39 +140,17 @@
       "cta_meeting": "Book a Meeting",
       "img_alt": "Digital strategy and web development services by Ganex"
     },
+    "latest_blog": {
+      "title": "Latest Article",
+      "subtitle": "Stay up to date with our latest insights"
+    },
     "portfolio": {
       "tag": "Our Work",
       "title_pre": "Projects that",
       "title_highlight": "Deliver Results",
       "desc": "Showcasing our latest success stories in web and app development.",
       "see_project_detail": "View details",
-      "see_all_projects": "View all projects",
-      "items": [
-        {
-          "title": "Megaloblastos",
-          "category": "Political Website",
-          "description": "A strategic web platform for a political center at UAGRM. The site was a key factor in securing their electoral victory.",
-          "image": "/images/portfolio/megaloblastos.jpg",
-          "link": "https://megaloblastos.com",
-          "slug": "megaloblastos"
-        },
-        {
-          "title": "Ecomedical",
-          "category": "Healthcare / Corporate",
-          "description": "A regenerative medicine clinic website in Tarija, serving as a primary channel for patient acquisition and services.",
-          "image": "/images/portfolio/ecomedical.jpg",
-          "link": "https://ecomedicalweb.com",
-          "slug": "ecomedical"
-        },
-        {
-          "title": "QRaten",
-          "category": "Mobile App / SaaS",
-          "description": "A QR-based attendance tracking app that simplifies records and management through a sleek mobile interface.",
-          "image": "/images/portfolio/qraten.jpg",
-          "link": "https://www.qraten.com",
-          "slug": "qraten"
-        }
-      ]
+      "see_all_projects": "View all projects"
     },
     "phrase": {
       "welcome": "Welcome",
@@ -201,7 +179,7 @@
         },
         {
           "title": "Mobile Apps",
-          "slug": "services/mobile-apps",
+          "slug": "services/app-development",
           "description": "iOS and Android apps developed with React Native and Flutter, focused on UX/UI and scalability.",
           "icon": "tabler:devices"
         },
@@ -313,67 +291,23 @@
       "title_pre": "Our",
       "title_highlight": "Projects",
       "desc": "Explore our complete collection of projects. Each one represents our commitment to excellence and innovation."
-    },
-    "projects": [
-      {
-        "title": "QRaten",
-        "category": "Mobile App / SaaS",
-        "description": "A QR-based attendance tracking app that simplifies records and management through a sleek mobile interface.",
-        "image": "/images/portfolio/qraten.jpg",
-        "link": "https://www.qraten.com",
-        "slug": "qraten"
-      },
-      {
-        "title": "Megaloblastos",
-        "category": "Political Website",
-        "description": "A strategic web platform for a political center at UAGRM. The site was a key factor in securing their electoral victory.",
-        "image": "/images/portfolio/megaloblastos.jpg",
-        "link": "https://megaloblastos.com",
-        "slug": "megaloblastos"
-      },
-      {
-        "title": "Ecomedical",
-        "category": "Healthcare / Corporate",
-        "description": "A regenerative medicine clinic website in Tarija, serving as a primary channel for patient acquisition and services.",
-        "image": "/images/portfolio/ecomedical.jpg",
-        "link": "https://ecomedicalweb.com",
-        "slug": "ecomedical"
-      }
-    ]
+    }
   },
   "project": {
     "back_to_portfolio": "Back to portfolio",
     "visit_website": "Visit website",
-    "view_all_projects": "View all projects",
-    "details": {
-      "qraten": {
-        "title": "QRaten",
-        "category": "Mobile App / SaaS",
-        "description": "A QR-based attendance tracking app that simplifies records and management through a sleek mobile interface.",
-        "image": "/images/portfolio/qraten.jpg",
-        "link": "https://www.qraten.com",
-        "slug": "qraten",
-        "content": "<p>QRaten revolutionizes attendance control through an elegant and efficient technological solution. This mobile and web app combines the simplicity of QR codes with the power of a complete management system.</p><p>The system allows educational institutions, companies, and organizations to register attendance instantly by scanning QR codes. This technology eliminates traditional manual processes, reducing errors and saving valuable time.</p><p>We developed an intuitive interface for both administrators and end users, ensuring a smooth experience on mobile and web devices. The application includes advanced features such as real-time reports, attendance histories, and automatic notifications.</p><p>QRaten represents our ability to create solutions that transform complex operational processes into simple and effective experiences, demonstrating the real value of applied technological innovation.</p>"
-      },
-      "megaloblastos": {
-        "title": "Megaloblastos",
-        "category": "Political Website",
-        "description": "A strategic web platform for a political center at UAGRM. The site was a key factor in securing their electoral victory.",
-        "image": "/images/portfolio/megaloblastos.jpg",
-        "link": "https://megaloblastos.com",
-        "slug": "megaloblastos",
-        "content": "<p>Megaloblastos represents a milestone in digital political strategy in Bolivia. We developed a complete web platform that became the central axis of the electoral campaign for the internal center of the Gabriel René Moreno Autonomous University.</p><p>The project was characterized by its rapid and effective implementation, allowing the site to be operational before the campaign closed. This temporal advantage was fundamental for message dissemination and voter mobilization.</p><p>Our approach combined modern design with strategic functionality, creating a user experience that facilitated participation and political engagement. The platform included informational sections, multimedia galleries, and contact systems optimized to maximize interaction.</p><p>The results were compelling: early digital presence directly correlated with electoral success, demonstrating the power of a well-executed web strategy in the Bolivian political context.</p>"
-      },
-      "ecomedical": {
-        "title": "Ecomedical",
-        "category": "Healthcare / Corporate",
-        "description": "A regenerative medicine clinic website in Tarija, serving as a primary channel for patient acquisition and services.",
-        "image": "/images/portfolio/ecomedical.jpg",
-        "link": "https://ecomedicalweb.com",
-        "slug": "ecomedical",
-        "content": "<p>Ecomedical is a clinic specialized in regenerative medicine located in Tarija, Bolivia. The web project was designed as an integral communication channel that connects patients with the clinic's advanced medical services.</p><p>The web platform functions as a strategic bridge between the clinic and its target audience, clearly and professionally presenting all available regenerative services. The design prioritizes trust and accessibility, crucial elements in the health sector.</p><p>We implemented a structured information system that facilitates understanding of complex treatments, making regenerative medicine more accessible to the general public. Intuitive navigation and clean design reinforce medical credibility.</p><p>The website has become an essential tool for patient acquisition, allowing the clinic to expand its reach beyond Tarija and establish its presence in the digital market for specialized medical services.</p>"
-      }
-    }
+    "view_all_projects": "View all projects"
+  },
+  "blog": {
+    "page": {
+      "tag": "Blog",
+      "title_pre": "Our",
+      "title_highlight": "Blog",
+      "desc": "Discover articles about web development, SEO, digital marketing and the latest technology trends."
+    },
+    "read_more": "Read more",
+    "back_to_blog": "Back to blog",
+    "view_all_posts": "View all posts"
   },
   "pages": {
     "home": {

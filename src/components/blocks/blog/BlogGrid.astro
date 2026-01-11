@@ -1,0 +1,158 @@
+---
+import { t } from "../../../lib/i18n";
+import { getCollection } from "astro:content";
+
+const { i18n = {}, lang = "es" } = Astro.props as { 
+  i18n?: Record<string, any>;
+  lang?: string;
+};
+const tag = t("blog.page.tag", i18n);
+const titlePre = t("blog.page.title_pre", i18n);
+const titleHighlight = t("blog.page.title_highlight", i18n);
+const desc = t("blog.page.desc", i18n);
+const readMore = t("blog.read_more", i18n);
+
+// Obtener posts del blog desde la collection (solo publicados)
+const blogEntries = await getCollection("blog", ({ data }) => 
+  data.lang === lang && !data.draft
+);
+// Ordenar por fecha de publicación (más recientes primero)
+const sortedPosts = blogEntries.sort((a, b) => 
+  b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+const posts = sortedPosts.map(entry => {
+  // Extraer el slug sin el sufijo del idioma
+  const cleanSlug = entry.slug.replace(new RegExp(`${lang}$`), '');
+  return {
+    title: entry.data.title,
+    description: entry.data.description,
+    image: entry.data.image,
+    slug: cleanSlug,
+    pubDate: entry.data.pubDate,
+    author: entry.data.author,
+    tags: entry.data.tags,
+  };
+});
+---
+
+<section class="py-24 bg-white relative overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-16">
+      <span
+        class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
+        >{tag}</span
+      >
+      <h1 class="text-4xl md:text-5xl font-bold text-neutral-800 mb-4">
+        {titlePre}
+        <span class="text-[#FF8A00]">{titleHighlight}</span>
+      </h1>
+      <p class="text-xl text-neutral-600 max-w-3xl mx-auto">
+        {desc}
+      </p>
+    </div>
+
+    {posts.length === 0 ? (
+      <div class="text-center py-16">
+        <p class="text-neutral-600 text-lg">
+          {lang === "es" ? "No hay artículos disponibles aún." : "No articles available yet."}
+        </p>
+      </div>
+    ) : (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {
+          posts.map((post) => {
+            const postSlug = post.slug;
+            const formattedDate = new Intl.DateTimeFormat(lang === "es" ? "es-ES" : "en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            }).format(post.pubDate);
+            
+            return (
+              <article
+                class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100"
+                itemscope
+                itemtype="https://schema.org/BlogPosting"
+              >
+                {post.image && (
+                  <figure class="relative h-64 overflow-hidden bg-neutral-100 m-0">
+                    <img
+                      src={`${post.image}`}
+                      alt={post.title}
+                      loading="lazy"
+                      decoding="async"
+                      width="600"
+                      height="400"
+                      class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      itemprop="image"
+                    />
+                    <div class="absolute inset-0 bg-linear-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </figure>
+                )}
+
+                <div class="p-8">
+                  <div class="flex items-center gap-3 mb-3 text-sm text-neutral-500">
+                    <time datetime={post.pubDate.toISOString()} itemprop="datePublished">
+                      {formattedDate}
+                    </time>
+                    {post.author && (
+                      <>
+                        <span>•</span>
+                        <span itemprop="author">{post.author}</span>
+                      </>
+                    )}
+                  </div>
+                  
+                  {post.tags && post.tags.length > 0 && (
+                    <div class="flex flex-wrap gap-2 mb-3">
+                      {post.tags.slice(0, 3).map((tag) => (
+                        <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  <h3
+                    class="text-2xl font-bold text-neutral-800 mb-3 group-hover:text-[#FF8A00] transition-colors"
+                    itemprop="headline"
+                  >
+                    {post.title}
+                  </h3>
+                  <p
+                    class="text-neutral-600 mb-6 line-clamp-3"
+                    itemprop="description"
+                  >
+                    {post.description}
+                  </p>
+
+                  <a
+                    href={`/${lang}/${lang === "es" ? "blog" : "blog"}/${postSlug}`}
+                    class="inline-flex items-center gap-2 text-neutral-800 font-bold group-hover:text-[#FF8A00] transition-colors"
+                    itemprop="url"
+                  >
+                    {readMore}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5 transition-transform group-hover:translate-x-1"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            );
+          })
+        }
+      </div>
+    )}
+  </div>
+</section>

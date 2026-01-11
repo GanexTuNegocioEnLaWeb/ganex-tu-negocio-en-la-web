@@ -1,5 +1,8 @@
 ---
+import "../../../assets/article-styles.css";
 import { t } from "../../../lib/i18n";
+import { getCollection } from "astro:content";
+
 const { i18n = {}, lang = "es", projectSlug } = Astro.props as { 
   i18n?: Record<string, any>;
   lang?: string;
@@ -10,21 +13,46 @@ const backToPortfolio = t("project.back_to_portfolio", i18n);
 const visitWebsite = t("project.visit_website", i18n);
 const viewAllProjects = t("project.view_all_projects", i18n);
 
-// Obtener los detalles del proyecto
-const projectDetails = t(`project.details.${projectSlug}`, i18n) as {
-  title?: string;
-  category?: string;
-  description?: string;
-  image?: string;
-  link?: string;
-  slug?: string;
-  content?: string;
-} | undefined;
+// Obtener los detalles del proyecto desde la collection
+let projectEntry = null;
+if (projectSlug) {
+  // Buscar por slug y lang en la collection
+  const projects = await getCollection("projects", ({ data }) => 
+    data.lang === lang
+  );
+  projectEntry = projects.find(project => {
+    const cleanSlug = project.slug.replace(new RegExp(`${lang}$`), '');
+    return cleanSlug === projectSlug;
+  });
+}
 
-if (!projectDetails || !projectDetails.title) {
+if (!projectEntry || !projectEntry.data.title) {
   const portfolioRoute = lang === "es" ? "proyectos" : "projects";
   return Astro.redirect(`/${lang}/${portfolioRoute}`);
 }
+
+const projectDetails = projectEntry.data;
+const { Content } = await projectEntry.render();
+
+// Generar structured data para CreativeWork/Project
+const site = await import("../../../lib/site").then(m => m.getSite(lang));
+const base = site?.data?.baseUrl?.replace(/\/$/, "") || "";
+const projectUrl = `${base}/${lang}/${lang === "es" ? "proyectos" : "projects"}/${projectSlug}`;
+const projectSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "name": projectDetails.title,
+  "description": projectDetails.description,
+  "image": projectDetails.image ? `${base}${projectDetails.image}` : undefined,
+  "url": projectDetails.link || projectUrl,
+  "keywords": projectDetails.keywords?.join(", ") || projectDetails.category || "",
+  "genre": projectDetails.category,
+  "inLanguage": lang,
+  "creator": {
+    "@type": "Organization",
+    "name": "Ganex"
+  }
+};
 ---
 
 <section class="py-16 bg-white relative overflow-hidden">
@@ -57,7 +85,7 @@ if (!projectDetails || !projectDetails.title) {
     {projectDetails.image && (
       <figure class="relative w-full h-96 md:h-125 rounded-2xl overflow-hidden mb-8 shadow-xl m-0">
         <img
-          src={`${import.meta.env.SITE}${projectDetails.image}`}
+          src={`${projectDetails.image}`}
           alt={projectDetails.title || "Proyecto"}
           loading="eager"
           decoding="async"
@@ -69,7 +97,7 @@ if (!projectDetails || !projectDetails.title) {
     )}
 
     <!-- Contenido principal -->
-    <article class="prose prose-lg max-w-none">
+    <article class="max-w-none">
       <header class="mb-8">
         <span class="text-xs font-bold text-[#FF8A00] uppercase tracking-wide mb-3 block">
           {projectDetails.category}
@@ -85,12 +113,9 @@ if (!projectDetails || !projectDetails.title) {
       </header>
 
       <!-- Contenido del artículo -->
-      {projectDetails.content && (
-        <div
-          class="text-neutral-700 leading-relaxed space-y-6 text-lg"
-          set:html={projectDetails.content}
-        />
-      )}
+      <div class="article-content">
+        <Content />
+      </div>
 
       <!-- Botones de acción -->
       <div class="mt-12 pt-8 border-t border-neutral-200 flex flex-col sm:flex-row gap-4">
@@ -143,19 +168,5 @@ if (!projectDetails || !projectDetails.title) {
   </div>
 </section>
 
-<style>
-  .prose a {
-    color: #FF8A00;
-    text-decoration: underline;
-  }
-  .prose a:hover {
-    color: #e67a00;
-  }
-  .prose strong {
-    color: #1f2937;
-    font-weight: 700;
-  }
-  .prose p {
-    margin-bottom: 1.5rem;
-  }
-</style>
+<script type="application/ld+json" set:html={JSON.stringify(projectSchema)} />
+

@@ -1,6 +1,8 @@
 ---
 import { t } from "../../../lib/i18n";
-const { i18n = {}, lang = "es" } = Astro.props as { 
+import { getCollection } from "astro:content";
+
+const { i18n = {}, lang = "es" } = Astro.props as {
   i18n?: Record<string, any>;
   lang?: string;
 };
@@ -8,14 +10,22 @@ const tag = t("portfolio.page.tag", i18n);
 const titlePre = t("portfolio.page.title_pre", i18n);
 const titleHighlight = t("portfolio.page.title_highlight", i18n);
 const desc = t("portfolio.page.desc", i18n);
-const projects = t("portfolio.projects", i18n) as Array<{
-  title: string;
-  category: string;
-  description: string;
-  image?: string | null;
-  link?: string;
-  slug?: string;
-}>;
+
+// Obtener proyectos desde la collection
+const projectEntries = await getCollection(
+  "projects",
+  ({ data }) => data.lang === lang,
+);
+const projects = projectEntries.map((entry) => ({
+  title: entry.data.title,
+  category: entry.data.category,
+  description: entry.data.description,
+  image: entry.data.image,
+  link: entry.data.link,
+  slug: entry.slug
+    .replace(new RegExp(`${lang}$`), "")
+    .replace(/^\/+|\/+$/g, ""),
+}));
 ---
 
 <section class="py-24 bg-white relative overflow-hidden">
@@ -37,7 +47,7 @@ const projects = t("portfolio.projects", i18n) as Array<{
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {
         projects.map((project) => {
-          const projectSlug = project.slug || project.title?.toLowerCase().replace(/\s+/g, "-") || "proyecto";
+          const projectSlug = project.slug;
           return (
             <article
               class="group relative bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-neutral-100"
@@ -47,7 +57,7 @@ const projects = t("portfolio.projects", i18n) as Array<{
               <figure class="relative h-64 overflow-hidden bg-neutral-100 m-0">
                 {project.image ? (
                   <img
-                    src={`${import.meta.env.SITE}${project.image}`}
+                    src={`${project.image}`}
                     alt={`Proyecto ${project.title} – ${project.category}`}
                     loading="lazy"
                     decoding="async"

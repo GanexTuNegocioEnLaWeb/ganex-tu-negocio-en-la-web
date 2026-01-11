@@ -36,6 +36,10 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
     type: "home-location",
     import: () => import("./home/HomeLocation.astro"),
   },
+  {
+    type: "home-latest-blog",
+    import: () => import("./home/HomeLatestBlog.astro"),
+  },
   // ABOUT
   {
     type: "about-hero",
@@ -84,5 +88,14 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
   {
     type: "project-detail",
     import: () => import("./portfolio/ProjectDetail.astro"),
+  },
+  // BLOG
+  {
+    type: "blog-grid",
+    import: () => import("./blog/BlogGrid.astro"),
+  },
+  {
+    type: "blog-post-detail",
+    import: () => import("./blog/BlogPostDetail.astro"),
   },
 ];

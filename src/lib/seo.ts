@@ -44,6 +44,7 @@ export async function resolveMeta({
   const title = i18nTitle ?? page?.data.title ?? site.data.defaultTitle;
   const description =
     i18nDesc ?? page?.data.description ?? site.data.defaultDescription;
+  const keywords = page?.data.keywords ?? [];
   const ogImage = page?.data.ogImage ?? site.data.ogImage ?? "/og-image.jpg";
   const ogImageAlt = page?.data.ogImageAlt ?? site.data.ogImageAlt ?? title;
   const noindex = page?.data.noindex ?? site.data.noindex ?? false;
@@ -94,6 +95,14 @@ export async function resolveMeta({
       description: site.data.defaultDescription,
       publisher: { "@id": `${base}/#organization` },
       inLanguage: site.data.locale,
+      potentialAction: {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": `${base}/search?q={search_term_string}`
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@type": "WebPage",
@@ -113,6 +122,9 @@ export async function resolveMeta({
       description,
       inLanguage: site.data.locale,
       breadcrumb: { "@id": `${url}#breadcrumb` },
+      keywords: keywords.length > 0 ? keywords.join(", ") : undefined,
+      datePublished: new Date().toISOString(),
+      dateModified: new Date().toISOString(),
     },
     {
       "@type": "BreadcrumbList",
@@ -151,6 +163,7 @@ export async function resolveMeta({
         ),
     title,
     description,
+    keywords,
     ogImage,
     ogImageAlt,
     noindex,

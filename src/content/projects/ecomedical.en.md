@@ -2,7 +2,7 @@
 title: Ecomedical – Regenerative Medicine Clinic
 category: Healthcare / Corporate
 description: Corporate website for a regenerative medicine clinic in Tarija, Bolivia, designed to convert visitors into patients through trust-based design and SEO optimization.
-image: /images/portfolio/ecomedical.jpg
+image: /images/portfolio/ecomedical.png
 link: https://ecomedicalweb.com
 lang: en
 ---

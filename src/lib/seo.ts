@@ -45,7 +45,7 @@ export async function resolveMeta({
   const description =
     i18nDesc ?? page?.data.description ?? site.data.defaultDescription;
   const keywords = page?.data.keywords ?? [];
-  const ogImage = page?.data.ogImage ?? site.data.ogImage ?? "/og-image.jpg";
+  const ogImage = page?.data.ogImage ?? site.data.ogImage ?? "/og-image.png";
   const ogImageAlt = page?.data.ogImageAlt ?? site.data.ogImageAlt ?? title;
   const noindex = page?.data.noindex ?? site.data.noindex ?? false;
 
@@ -67,8 +67,8 @@ export async function resolveMeta({
         "@type": "ImageObject",
         "@id": `${base}/#logo`,
         inLanguage: site.data.locale,
-        url: site.data.ogImage ?? `${base}/og-image.jpg`,
-        contentUrl: site.data.ogImage ?? `${base}/og-image.jpg`,
+        url: site.data.ogImage ?? `${base}/og-image.png`,
+        contentUrl: site.data.ogImage ?? `${base}/og-image.png`,
         width: 1200,
         height: 630,
         caption: site.data.siteName,
@@ -97,12 +97,12 @@ export async function resolveMeta({
       inLanguage: site.data.locale,
       potentialAction: {
         "@type": "SearchAction",
-        "target": {
+        target: {
           "@type": "EntryPoint",
-          "urlTemplate": `${base}/search?q={search_term_string}`
+          urlTemplate: `${base}/search?q={search_term_string}`,
         },
-        "query-input": "required name=search_term_string"
-      }
+        "query-input": "required name=search_term_string",
+      },
     },
     {
       "@type": "WebPage",

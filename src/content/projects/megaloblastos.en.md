@@ -2,10 +2,9 @@
 title: Megaloblastos – Digital Platform for University Political Campaign
 category: Political Website
 description: Political campaign website developed for a university election at UAGRM. Early digital deployment played a decisive role in the electoral victory.
-image: /images/portfolio/megaloblastos.jpg
+image: /images/portfolio/megaloblastos.png
 link: https://megaloblastos.com
 lang: en
-
 ---
 
 ## Megaloblastos | When Digital Strategy Drives Political Victory

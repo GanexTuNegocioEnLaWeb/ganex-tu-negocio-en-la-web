@@ -2,7 +2,7 @@
 title: Ecomedical – Clínica Especializada en Medicina Regenerativa
 category: Healthcare / Corporate
 description: Sitio web corporativo para una clínica de medicina regenerativa en Tarija, Bolivia. Diseñado para convertir visitantes en pacientes mediante contenido educativo, confianza médica y optimización SEO.
-image: /images/portfolio/ecomedical.jpg
+image: /images/portfolio/ecomedical.png
 link: https://ecomedicalweb.com
 lang: es
 ---

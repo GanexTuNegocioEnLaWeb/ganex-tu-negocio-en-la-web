@@ -3,7 +3,7 @@
 title: "What is a website? A complete guide to understand it and use it to your advantage"
 description: "Discover what a website is, what it is used for, types, examples, SEO benefits, and how to create one step by step for your business. A complete, Google-optimized guide."
 author: "Ganex"
-image: "images/blog/que-es-una-pagina-web.jpg"
+image: "/images/blog/que-es-una-pagina-web.png"
 pubDate: 2026-01-09
 tags: [
 "website",
@@ -26,16 +26,16 @@ draft: false
 
 ## What is a website?
 
-Imagine a *web page* like a *page from a traditional newspaper*. We’re not talking about the entire newspaper, but **a single page**: an individual space that contains organized information.
+Imagine a _web page_ like a _page from a traditional newspaper_. We’re not talking about the entire newspaper, but **a single page**: an individual space that contains organized information.
 
 That page has elements very similar to a printed newspaper:
 
-* Headings
-* Main and secondary titles
-* Paragraphs
-* Images
-* Lists
-* Links
+- Headings
+- Main and secondary titles
+- Paragraphs
+- Images
+- Lists
+- Links
 
 The difference is that a **web page lives on the Internet** and can be accessed from anywhere in the world using a browser like Chrome, Firefox, or Safari.
 
@@ -69,9 +69,9 @@ The biggest issue is **SEO**.
 
 **SEO (Search Engine Optimization)** helps search engines like Google understand and rank your content. Without a clear HTML structure:
 
-* Google doesn’t understand your content
-* Your page won’t rank properly
-* You lose visibility and potential customers
+- Google doesn’t understand your content
+- Your page won’t rank properly
+- You lose visibility and potential customers
 
 > 💡 **Important tip:** A well-structured HTML page has a much higher chance of appearing in the top search results.
 
@@ -82,7 +82,7 @@ The biggest issue is **SEO**.
 You just need to:
 
 1. Create a `.txt` file (for example, using Notepad)
-2. Write any text (e.g. *Hello world*)
+2. Write any text (e.g. _Hello world_)
 3. Save it as `any_name.html`
 
 🎉 Congratulations! You’ve just created your **first web page**.
@@ -114,22 +114,22 @@ Many people confuse these two concepts:
 
 For example:
 
-* The **home page**
-* The **blog page**
-* The **contact page**
+- The **home page**
+- The **blog page**
+- The **contact page**
 
-These are *individual web pages*, but together they form a **complete website**.
+These are _individual web pages_, but together they form a **complete website**.
 
 ## What is a website used for?
 
 A well-designed website can help you:
 
-* Increase visibility for a business or personal brand
-* Boost sales
-* Generate leads
-* Educate your audience
-* Position yourself as an industry expert
-* Automate business processes
+- Increase visibility for a business or personal brand
+- Boost sales
+- Generate leads
+- Educate your audience
+- Position yourself as an industry expert
+- Automate business processes
 
 > At [**Ganex**](/), we don’t create websites just to look good — we build them to **deliver real results**.
 
@@ -141,10 +141,10 @@ Ideal for businesses that want a professional online presence.
 
 Usually includes:
 
-* Home
-* Services
-* About us
-* Contact
+- Home
+- Services
+- About us
+- Contact
 
 ### 2. Online store or eCommerce
 
@@ -152,10 +152,10 @@ Designed to sell products or services directly.
 
 Key features:
 
-* Product catalog
-* Shopping cart
-* Online payments
-* Order management
+- Product catalog
+- Shopping cart
+- Online payments
+- Order management
 
 ### 3. Blog
 
@@ -163,9 +163,9 @@ A key tool for **SEO and content marketing**.
 
 A well-managed blog:
 
-* Attracts organic traffic
-* Builds trust
-* Educates potential clients
+- Attracts organic traffic
+- Builds trust
+- Educates potential clients
 
 > Visit our blog: [https://www.ganexbo.com/es/blog](https://www.ganexbo.com/es/blog)
 
@@ -173,9 +173,9 @@ A well-managed blog:
 
 A page focused on a single action:
 
-* Buy
-* Sign up
-* Contact
+- Buy
+- Sign up
+- Contact
 
 Widely used in advertising campaigns.
 
@@ -187,10 +187,10 @@ Perfect for freelancers, developers, and creatives.
 
 Technically, a website is built using:
 
-* **HTML:** structure
-* **CSS:** visual design
-* **JavaScript:** interactivity
-* **(Optional) CMS like WordPress:** content management
+- **HTML:** structure
+- **CSS:** visual design
+- **JavaScript:** interactivity
+- **(Optional) CMS like WordPress:** content management
 
 > At [**Ganex**](/), we build fast, secure, and SEO-optimized websites from day one.
 
@@ -200,9 +200,9 @@ A website without SEO is like a business without a sign.
 
 SEO allows you to:
 
-* Appear on Google
-* Attract customers without paying for ads
-* Generate long-term sales
+- Appear on Google
+- Attract customers without paying for ads
+- Generate long-term sales
 
 ## Benefits of having a professional website
 

@@ -2,7 +2,7 @@
 title: Megaloblastos – Plataforma Digital para Campaña Política Universitaria
 category: Sitio Web Político
 description: Sitio web político desarrollado para una campaña universitaria en la UAGRM. La implementación temprana de la plataforma fue un factor clave en la victoria electoral.
-image: /images/portfolio/megaloblastos.jpg
+image: /images/portfolio/megaloblastos.png
 link: https://megaloblastos.com
 lang: es
 ---

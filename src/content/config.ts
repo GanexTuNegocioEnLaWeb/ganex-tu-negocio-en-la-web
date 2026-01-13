@@ -67,6 +67,7 @@ const pages = defineCollection({
     ogImage: z.string().optional(),
     ogImageAlt: z.string().optional(),
     noindex: z.boolean().optional(),
+    layout: z.enum(["default", "minimal", "zero"]).default("default"),
     blocks: z
       .array(
         z.object({

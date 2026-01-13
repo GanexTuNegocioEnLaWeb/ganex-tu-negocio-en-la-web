@@ -61,7 +61,7 @@ const sectionServicesId = t("nav.services_id", dict);
 
 <header class:list={["relative", bgClass, className]} id="primary-header">
   <section
-    class="max-w-7xl mx-auto flex items-center justify-between py-6 text-white px-12"
+    class="max-w-6xl mx-auto flex items-center justify-between py-6 text-white px-12"
   >
     <!-- Logo -->
     <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
@@ -186,7 +186,7 @@ const sectionServicesId = t("nav.services_id", dict);
   id="secondary-header"
   class="fixed left-0 w-full bg-white shadow-xl z-40 -top-40 pointer-events-none transition-all"
 >
-  <div class="max-w-7xl mx-auto px-12 py-3 flex items-center justify-between">
+  <div class="max-w-6xl mx-auto px-12 py-3 flex items-center justify-between">
     <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
       <Image
         src={logoGanex}
@@ -363,7 +363,7 @@ const sectionServicesId = t("nav.services_id", dict);
     btn?.setAttribute("aria-expanded", "false");
   });
 
-   btn2?.addEventListener("click", () => {
+  btn2?.addEventListener("click", () => {
     menu?.classList.remove("opacity-0", "pointer-events-none");
     btn2?.setAttribute("aria-expanded", "true");
   });

@@ -1,0 +1,16 @@
+{
+  "route": "empezar/web",
+  "title": "Ganex — Solicitar Página Web",
+  "description": "Obtén una cotización personalizada para tu nueva página web de alto impacto.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Página Web",
+        "serviceLabel": "Diseño y Desarrollo Web",
+        "serviceId": "web"
+      }
+    }
+  ]
+}

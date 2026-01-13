@@ -1,0 +1,10 @@
+{
+  "title": "Ganex — Let's Start Your Digital Transformation",
+  "description": "Tell us about your business and receive a personalized proposal for your website or marketing strategy.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard"
+    }
+  ]
+}

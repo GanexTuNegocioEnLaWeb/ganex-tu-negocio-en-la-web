@@ -98,4 +98,9 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
     type: "blog-post-detail",
     import: () => import("./blog/BlogPostDetail.astro"),
   },
+  // CONVERSATIONAL
+  {
+    type: "conversational-wizard",
+    import: () => import("./conversational/ConversationalWizard.astro"),
+  },
 ];

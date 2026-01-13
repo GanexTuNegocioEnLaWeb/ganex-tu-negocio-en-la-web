@@ -1,0 +1,16 @@
+{
+  "route": "empezar/chatbots",
+  "title": "Ganex — Implementar Chatbot IA",
+  "description": "Automatiza tu atención al cliente con Inteligencia Artificial. Cuéntanos qué necesitas.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Chatbots IA",
+        "serviceLabel": "Automatización con IA",
+        "serviceId": "chatbots"
+      }
+    }
+  ]
+}

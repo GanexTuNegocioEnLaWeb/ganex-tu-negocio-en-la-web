@@ -16,7 +16,7 @@ const seeAllProjects = t("home.portfolio.see_all_projects", i18n);
 // Obtener proyectos desde la collection
 const projectEntries = await getCollection(
   "projects",
-  ({ data }) => data.lang === lang,
+  ({ data }) => data.lang === lang
 );
 const projects = projectEntries.map((entry) => ({
   title: entry.data.title,
@@ -35,7 +35,7 @@ const projectSlug = featuredProject?.slug || "proyecto";
 ---
 
 <section id="portafolio" class="py-24 bg-white relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <span
         class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"
@@ -53,7 +53,7 @@ const projectSlug = featuredProject?.slug || "proyecto";
     {
       featuredProject && (
         <article
-          class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-neutral-100 max-w-5xl mx-auto"
+          class="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 border border-neutral-100 max-w-6xl mx-auto"
           itemscope
           itemtype="https://schema.org/CreativeWork"
         >

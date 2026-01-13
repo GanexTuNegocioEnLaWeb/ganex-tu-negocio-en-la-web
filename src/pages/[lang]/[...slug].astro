@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import ZeroLayout from "../../layouts/ZeroLayout.astro";
 import { resolveMeta } from "../../lib/seo";
 import { getCollection } from "astro:content";
 import PageRenderer from "../../components/PageRenderer.astro";
@@ -32,11 +33,14 @@ export async function getStaticPaths() {
     // Si esta página es el portafolio, generamos también los detalles de sus proyectos
     const portfolioSlugs = ["proyectos", "portfolio", "projects"];
     if (portfolioSlugs.includes(slug.toLowerCase())) {
-      const projects = await getCollection("projects", ({ data }) => data.lang === lang);
+      const projects = await getCollection(
+        "projects",
+        ({ data }) => data.lang === lang,
+      );
 
       for (const project of projects) {
         // Extraer el slug sin el sufijo del idioma
-        const projectSlug = project.slug.replace(new RegExp(`${lang}$`), '');
+        const projectSlug = project.slug.replace(new RegExp(`${lang}$`), "");
         if (!projectSlug) continue;
 
         paths.push({
@@ -57,13 +61,14 @@ export async function getStaticPaths() {
     // Si esta página es el blog, generamos también los detalles de sus posts
     const blogSlugs = ["blog"];
     if (blogSlugs.includes(slug.toLowerCase())) {
-      const blogPosts = await getCollection("blog", ({ data }) => 
-        data.lang === lang && !data.draft
+      const blogPosts = await getCollection(
+        "blog",
+        ({ data }) => data.lang === lang && !data.draft,
       );
 
       for (const post of blogPosts) {
         // Extraer el slug sin el sufijo del idioma
-        const postSlug = post.slug.replace(new RegExp(`${lang}$`), '');
+        const postSlug = post.slug.replace(new RegExp(`${lang}$`), "");
         if (!postSlug) continue;
 
         paths.push({
@@ -126,15 +131,32 @@ if (page?.data?.description) meta.description = page.data.description;
 const i18nDict = await getI18nDict(lang);
 ---
 
-<Layout lang={lang} slug={slugKey}>
-  {
-    page?.data.blocks?.length ? (
-      <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
-    ) : (
-      <section class="max-w-3xl mx-auto px-4 py-12">
-        <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
-        <p class="opacity-80">{meta.description}</p>
-      </section>
-    )
-  }
-</Layout>
+{
+  page?.data?.layout === "zero" ? (
+    <ZeroLayout lang={lang} slug={slugKey}>
+      {page?.data.blocks?.length ? (
+        <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
+      ) : (
+        <section class="max-w-3xl mx-auto px-4 py-12">
+          <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
+          <p class="opacity-80">{meta.description}</p>
+        </section>
+      )}
+    </ZeroLayout>
+  ) : (
+    <Layout
+      lang={lang}
+      slug={slugKey}
+      minimal={page?.data?.layout === "minimal"}
+    >
+      {page?.data.blocks?.length ? (
+        <PageRenderer lang={lang} blocks={page.data.blocks} i18n={i18nDict} />
+      ) : (
+        <section class="max-w-3xl mx-auto px-4 py-12">
+          <h1 class="text-3xl font-bold sr-only">{meta.title}</h1>
+          <p class="opacity-80">{meta.description}</p>
+        </section>
+      )}
+    </Layout>
+  )
+}

@@ -14,7 +14,7 @@ const desc = t("portfolio.page.desc", i18n);
 // Obtener proyectos desde la collection
 const projectEntries = await getCollection(
   "projects",
-  ({ data }) => data.lang === lang,
+  ({ data }) => data.lang === lang
 );
 const projects = projectEntries.map((entry) => ({
   title: entry.data.title,
@@ -29,7 +29,7 @@ const projects = projectEntries.map((entry) => ({
 ---
 
 <section class="py-24 bg-white relative overflow-hidden">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-16">
       <span
         class="text-[#FF8A00] font-bold tracking-wider uppercase text-sm mb-2 block"

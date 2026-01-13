@@ -1,0 +1,16 @@
+{
+  "route": "get-started/marketing",
+  "title": "Ganex — Digital Marketing Plan",
+  "description": "Scale your sales with result-driven digital marketing strategies.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Digital Marketing",
+        "serviceLabel": "ADS & Social Media",
+        "serviceId": "marketing"
+      }
+    }
+  ]
+}

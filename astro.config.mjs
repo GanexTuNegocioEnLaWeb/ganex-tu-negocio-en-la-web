@@ -3,11 +3,12 @@ import { defineConfig } from "astro/config";
 import vercel from "@astrojs/vercel";
 import sitemap from "@astrojs/sitemap";
 import icon from "astro-icon";
+import vue from "@astrojs/vue";
 
 export default defineConfig({
   output: "server",
   adapter: vercel(),
   site: "https://www.ganexbo.com",
   trailingSlash: "never",
-  integrations: [sitemap(), icon()],
+  integrations: [sitemap(), icon(), vue()],
 });

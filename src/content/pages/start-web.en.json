@@ -1,0 +1,16 @@
+{
+  "route": "get-started/web",
+  "title": "Ganex — Request Web Page",
+  "description": "Get a personalized quote for your new high-impact website.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "Web Development",
+        "serviceLabel": "Design & Development",
+        "serviceId": "web"
+      }
+    }
+  ]
+}

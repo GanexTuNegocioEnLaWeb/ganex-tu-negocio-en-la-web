@@ -1,0 +1,16 @@
+{
+  "route": "get-started/seo",
+  "title": "Ganex — Audit and SEO Plan",
+  "description": "Master the search results. Request your positioning plan.",
+  "layout": "zero",
+  "blocks": [
+    {
+      "type": "conversational-wizard",
+      "props": {
+        "initialService": "SEO",
+        "serviceLabel": "Search Engine Optimization",
+        "serviceId": "seo"
+      }
+    }
+  ]
+}

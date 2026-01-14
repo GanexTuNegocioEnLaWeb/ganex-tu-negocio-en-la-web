@@ -17,7 +17,8 @@
   "nav": {
     "services": "Services",
     "contact_id": "support",
-    "services_id": "services"
+    "services_id": "services",
+    "start_slug": "get-started"
   },
   "chatbots": {
     "hero": {
@@ -444,6 +445,8 @@
         "email_placeholder": "you@email.com",
         "whatsapp": "WhatsApp",
         "whatsapp_placeholder": "E.g.: 70000000",
+        "company": "Company",
+        "company_placeholder": "Your company (Optional)",
         "submit": "I want to be contacted",
         "footer": "We respond in less than 60 minutes"
       },
@@ -461,28 +464,88 @@
         "step2": {
           "question": "What type of site do you need?",
           "options": [
-            { "id": "landing", "label": "Sell a product", "desc": "Perfect for promoting a specific item.", "icon": "tabler:target-arrow" },
-            { "id": "ecommerce", "label": "Online Store", "desc": "Sell products with a shopping cart.", "icon": "tabler:shopping-bag" },
-            { "id": "corporate", "label": "Company Website", "desc": "Give a professional and trustable image.", "icon": "tabler:building-estate" },
-            { "id": "custom", "label": "Custom System", "desc": "Unique solutions for specialized needs.", "icon": "tabler:code-dots" }
+            {
+              "id": "landing",
+              "label": "Sell a product",
+              "desc": "Perfect for promoting a specific item.",
+              "icon": "tabler:target-arrow"
+            },
+            {
+              "id": "ecommerce",
+              "label": "Online Store",
+              "desc": "Sell products with a shopping cart.",
+              "icon": "tabler:shopping-bag"
+            },
+            {
+              "id": "corporate",
+              "label": "Company Website",
+              "desc": "Give a professional and trustable image.",
+              "icon": "tabler:building-estate"
+            },
+            {
+              "id": "custom",
+              "label": "Custom System",
+              "desc": "Unique solutions for specialized needs.",
+              "icon": "tabler:code-dots"
+            }
           ]
         },
         "step3": {
           "question": "Do you already have Hosting or Domain?",
           "options": [
-            { "id": "yes", "label": "Yes, I have both", "desc": "I just need the website built.", "icon": "tabler:check" },
-            { "id": "no", "label": "I have nothing yet", "desc": "I need help with everything.", "icon": "tabler:x" },
-            { "id": "partial", "label": "Only the name", "desc": "I need space for my website.", "icon": "tabler:circle-dot" },
-            { "id": "redesign", "label": "Move my website", "desc": "I have one but want to improve it.", "icon": "tabler:refresh" }
+            {
+              "id": "yes",
+              "label": "Yes, I have both",
+              "desc": "I just need the website built.",
+              "icon": "tabler:check"
+            },
+            {
+              "id": "no",
+              "label": "I have nothing yet",
+              "desc": "I need help with everything.",
+              "icon": "tabler:x"
+            },
+            {
+              "id": "partial",
+              "label": "Only the name",
+              "desc": "I need space for my website.",
+              "icon": "tabler:circle-dot"
+            },
+            {
+              "id": "redesign",
+              "label": "Move my website",
+              "desc": "I have one but want to improve it.",
+              "icon": "tabler:refresh"
+            }
           ]
         },
         "step4": {
           "question": "What is your web priority?",
           "options": [
-            { "id": "speed", "label": "Ultra fast", "desc": "So nobody leaves while it loads.", "icon": "tabler:bolt" },
-            { "id": "conversion", "label": "Get more customers", "desc": "Designed to make people contact you.", "icon": "tabler:heart-rate-monitor" },
-            { "id": "management", "label": "Edit it myself", "desc": "Upload photos/text without help.", "icon": "tabler:layout-dashboard" },
-            { "id": "seo_ready", "label": "Appear on Google", "desc": "Ready to show up in search results.", "icon": "tabler:search" }
+            {
+              "id": "speed",
+              "label": "Ultra fast",
+              "desc": "So nobody leaves while it loads.",
+              "icon": "tabler:bolt"
+            },
+            {
+              "id": "conversion",
+              "label": "Get more customers",
+              "desc": "Designed to make people contact you.",
+              "icon": "tabler:heart-rate-monitor"
+            },
+            {
+              "id": "management",
+              "label": "Edit it myself",
+              "desc": "Upload photos/text without help.",
+              "icon": "tabler:layout-dashboard"
+            },
+            {
+              "id": "seo_ready",
+              "label": "Appear on Google",
+              "desc": "Ready to show up in search results.",
+              "icon": "tabler:search"
+            }
           ]
         },
         "step5": {
@@ -498,28 +561,88 @@
         "step2": {
           "question": "For which platform?",
           "options": [
-            { "id": "android", "label": "Android Only", "desc": "Focus on the world's most used OS.", "icon": "tabler:brand-android" },
-            { "id": "ios", "label": "iOS Only (iPhone)", "desc": "For the highest ticket audience.", "icon": "tabler:brand-apple" },
-            { "id": "both", "label": "Both (Hybrid)", "desc": "Reach everyone with one app.", "icon": "tabler:devices-2" },
-            { "id": "pwa", "label": "Web App (PWA)", "desc": "Installable app without passing through stores.", "icon": "tabler:browser" }
+            {
+              "id": "android",
+              "label": "Android Only",
+              "desc": "Focus on the world's most used OS.",
+              "icon": "tabler:brand-android"
+            },
+            {
+              "id": "ios",
+              "label": "iOS Only (iPhone)",
+              "desc": "For the highest ticket audience.",
+              "icon": "tabler:brand-apple"
+            },
+            {
+              "id": "both",
+              "label": "Both (Hybrid)",
+              "desc": "Reach everyone with one app.",
+              "icon": "tabler:devices-2"
+            },
+            {
+              "id": "pwa",
+              "label": "Web App (PWA)",
+              "desc": "Installable app without passing through stores.",
+              "icon": "tabler:browser"
+            }
           ]
         },
         "step3": {
           "question": "What stage is your project in?",
           "options": [
-            { "id": "idea", "label": "It's just an idea", "desc": "I need to define the concept.", "icon": "tabler:bulb" },
-            { "id": "design", "label": "I have the designs", "desc": "I need the programming.", "icon": "tabler:palette" },
-            { "id": "scaling", "label": "Existing app", "desc": "I need to improve or scale it.", "icon": "tabler:arrow-up-right" },
-            { "id": "mvp", "label": "Initial MVP", "desc": "Launch fast to validate.", "icon": "tabler:player-play" }
+            {
+              "id": "idea",
+              "label": "It's just an idea",
+              "desc": "I need to define the concept.",
+              "icon": "tabler:bulb"
+            },
+            {
+              "id": "design",
+              "label": "I have the designs",
+              "desc": "I need the programming.",
+              "icon": "tabler:palette"
+            },
+            {
+              "id": "scaling",
+              "label": "Existing app",
+              "desc": "I need to improve or scale it.",
+              "icon": "tabler:arrow-up-right"
+            },
+            {
+              "id": "mvp",
+              "label": "Initial MVP",
+              "desc": "Launch fast to validate.",
+              "icon": "tabler:player-play"
+            }
           ]
         },
         "step4": {
           "question": "Achieve your app's success",
           "options": [
-            { "id": "ux", "label": "Very easy to use", "desc": "Even a child could navigate it.", "icon": "tabler:fingerprint" },
-            { "id": "security", "label": "Full security", "desc": "Protection for your data and payments.", "icon": "tabler:shield-check" },
-            { "id": "growth", "label": "Ready to scale", "desc": "Prepared for thousands of users.", "icon": "tabler:trending-up" },
-            { "id": "retention", "label": "Customer loyalty", "desc": "Keeping people coming back.", "icon": "tabler:bell" }
+            {
+              "id": "ux",
+              "label": "Very easy to use",
+              "desc": "Even a child could navigate it.",
+              "icon": "tabler:fingerprint"
+            },
+            {
+              "id": "security",
+              "label": "Full security",
+              "desc": "Protection for your data and payments.",
+              "icon": "tabler:shield-check"
+            },
+            {
+              "id": "growth",
+              "label": "Ready to scale",
+              "desc": "Prepared for thousands of users.",
+              "icon": "tabler:trending-up"
+            },
+            {
+              "id": "retention",
+              "label": "Customer loyalty",
+              "desc": "Keeping people coming back.",
+              "icon": "tabler:bell"
+            }
           ]
         },
         "step5": {
@@ -535,28 +658,88 @@
         "step2": {
           "question": "Which channel are you interested in?",
           "options": [
-            { "id": "ads", "label": "Paid Advertising", "desc": "Google Ads and Meta Ads (Facebook/IG).", "icon": "tabler:brand-meta" },
-            { "id": "social", "label": "Social Management", "desc": "Constant content and community.", "icon": "tabler:users-group" },
-            { "id": "email", "label": "Email Marketing", "desc": "Retention and lead nurturing.", "icon": "tabler:mail-forward" },
-            { "id": "full", "label": "360 Strategy", "desc": "Winning combination of all channels.", "icon": "tabler:circles-relation" }
+            {
+              "id": "ads",
+              "label": "Paid Advertising",
+              "desc": "Google Ads and Meta Ads (Facebook/IG).",
+              "icon": "tabler:brand-meta"
+            },
+            {
+              "id": "social",
+              "label": "Social Management",
+              "desc": "Constant content and community.",
+              "icon": "tabler:users-group"
+            },
+            {
+              "id": "email",
+              "label": "Email Marketing",
+              "desc": "Retention and lead nurturing.",
+              "icon": "tabler:mail-forward"
+            },
+            {
+              "id": "full",
+              "label": "360 Strategy",
+              "desc": "Winning combination of all channels.",
+              "icon": "tabler:circles-relation"
+            }
           ]
         },
         "step3": {
           "question": "How much do you estimate to invest per month?",
           "options": [
-            { "id": "basic", "label": "$300 - $500", "desc": "Ideal to start and test.", "icon": "tabler:coin" },
-            { "id": "growth", "label": "$500 - $1500", "desc": "Focus on accelerated scalability.", "icon": "tabler:trending-up" },
-            { "id": "pro", "label": "+$1500 corporate", "desc": "Dominate the sector completely.", "icon": "tabler:crown" },
-            { "id": "custom_budget", "label": "To be defined", "desc": "I need a proposal based on return.", "icon": "tabler:calculator" }
+            {
+              "id": "basic",
+              "label": "$300 - $500",
+              "desc": "Ideal to start and test.",
+              "icon": "tabler:coin"
+            },
+            {
+              "id": "growth",
+              "label": "$500 - $1500",
+              "desc": "Focus on accelerated scalability.",
+              "icon": "tabler:trending-up"
+            },
+            {
+              "id": "pro",
+              "label": "+$1500 corporate",
+              "desc": "Dominate the sector completely.",
+              "icon": "tabler:crown"
+            },
+            {
+              "id": "custom_budget",
+              "label": "To be defined",
+              "desc": "I need a proposal based on return.",
+              "icon": "tabler:calculator"
+            }
           ]
         },
         "step4": {
           "question": "Your marketing goal?",
           "options": [
-            { "id": "roa", "label": "Direct Sales", "desc": "Earn money for every dollar spent.", "icon": "tabler:moneybag" },
-            { "id": "branding", "label": "Make my brand famous", "desc": "Let everyone in town know you.", "icon": "tabler:adjustments-check" },
-            { "id": "database", "label": "Contact list", "desc": "Build a database of interested people.", "icon": "tabler:database" },
-            { "id": "loyalty", "label": "Repeat customers", "desc": "Get people to buy more than once.", "icon": "tabler:refresh-dot" }
+            {
+              "id": "roa",
+              "label": "Direct Sales",
+              "desc": "Earn money for every dollar spent.",
+              "icon": "tabler:moneybag"
+            },
+            {
+              "id": "branding",
+              "label": "Make my brand famous",
+              "desc": "Let everyone in town know you.",
+              "icon": "tabler:adjustments-check"
+            },
+            {
+              "id": "database",
+              "label": "Contact list",
+              "desc": "Build a database of interested people.",
+              "icon": "tabler:database"
+            },
+            {
+              "id": "loyalty",
+              "label": "Repeat customers",
+              "desc": "Get people to buy more than once.",
+              "icon": "tabler:refresh-dot"
+            }
           ]
         },
         "step5": {
@@ -572,28 +755,88 @@
         "step2": {
           "question": "What type of SEO do you need?",
           "options": [
-            { "id": "local", "label": "Be on the map", "desc": "Show up when searched in your city.", "icon": "tabler:map-pin" },
-            { "id": "national", "label": "Be nationwide", "desc": "Reach customers from anywhere.", "icon": "tabler:world-latitude" },
-            { "id": "technical", "label": "Fix web errors", "desc": "Clean up issues that stop you from rising.", "icon": "tabler:settings-automation" },
-            { "id": "content", "label": "Write articles", "desc": "Content that Google puts first.", "icon": "tabler:article" }
+            {
+              "id": "local",
+              "label": "Be on the map",
+              "desc": "Show up when searched in your city.",
+              "icon": "tabler:map-pin"
+            },
+            {
+              "id": "national",
+              "label": "Be nationwide",
+              "desc": "Reach customers from anywhere.",
+              "icon": "tabler:world-latitude"
+            },
+            {
+              "id": "technical",
+              "label": "Fix web errors",
+              "desc": "Clean up issues that stop you from rising.",
+              "icon": "tabler:settings-automation"
+            },
+            {
+              "id": "content",
+              "label": "Write articles",
+              "desc": "Content that Google puts first.",
+              "icon": "tabler:article"
+            }
           ]
         },
         "step3": {
           "question": "Is your website already online?",
           "options": [
-            { "id": "live", "label": "Yes, it exists", "desc": "I need audit and improvement.", "icon": "tabler:device-laptop" },
-            { "id": "new", "label": "It doesn't exist yet", "desc": "I want to launch it optimized.", "icon": "tabler:rocket" },
-            { "id": "stuck", "label": "It is stuck", "desc": "It hasn't gone up in a long time.", "icon": "tabler:anchor" },
-            { "id": "penalty", "label": "Penalized", "desc": "Recover lost visibility.", "icon": "tabler:alert-triangle" }
+            {
+              "id": "live",
+              "label": "Yes, it exists",
+              "desc": "I need audit and improvement.",
+              "icon": "tabler:device-laptop"
+            },
+            {
+              "id": "new",
+              "label": "It doesn't exist yet",
+              "desc": "I want to launch it optimized.",
+              "icon": "tabler:rocket"
+            },
+            {
+              "id": "stuck",
+              "label": "It is stuck",
+              "desc": "It hasn't gone up in a long time.",
+              "icon": "tabler:anchor"
+            },
+            {
+              "id": "penalty",
+              "label": "Penalized",
+              "desc": "Recover lost visibility.",
+              "icon": "tabler:alert-triangle"
+            }
           ]
         },
         "step4": {
           "question": "Dominate the search engines",
           "options": [
-            { "id": "rank1", "label": "Be Number 1", "desc": "Rank higher than all your competitors.", "icon": "tabler:award" },
-            { "id": "traffic", "label": "Constant visits", "desc": "Regular flow of people to your site.", "icon": "tabler:steering-wheel" },
-            { "id": "authority", "label": "More trust", "desc": "Make other websites link to yours.", "icon": "tabler:link" },
-            { "id": "semantics", "label": "Better answers", "desc": "Answer exactly what people search for.", "icon": "tabler:vocabulary" }
+            {
+              "id": "rank1",
+              "label": "Be Number 1",
+              "desc": "Rank higher than all your competitors.",
+              "icon": "tabler:award"
+            },
+            {
+              "id": "traffic",
+              "label": "Constant visits",
+              "desc": "Regular flow of people to your site.",
+              "icon": "tabler:steering-wheel"
+            },
+            {
+              "id": "authority",
+              "label": "More trust",
+              "desc": "Make other websites link to yours.",
+              "icon": "tabler:link"
+            },
+            {
+              "id": "semantics",
+              "label": "Better answers",
+              "desc": "Answer exactly what people search for.",
+              "icon": "tabler:vocabulary"
+            }
           ]
         },
         "step5": {
@@ -609,28 +852,88 @@
         "step2": {
           "question": "Where are you integrating the Bot?",
           "options": [
-            { "id": "whatsapp", "label": "Smart WhatsApp", "desc": "Automated sales and alerts via chat.", "icon": "tabler:brand-whatsapp" },
-            { "id": "web", "label": "Chat on my web", "desc": "Smart bubble for visitor questions.", "icon": "tabler:messages" },
-            { "id": "multi", "label": "All in one", "desc": "Web, WhatsApp, and IG all together.", "icon": "tabler:layout-grid" },
-            { "id": "internal", "label": "Team Assistant", "desc": "Created to help your internal staff.", "icon": "tabler:engine" }
+            {
+              "id": "whatsapp",
+              "label": "Smart WhatsApp",
+              "desc": "Automated sales and alerts via chat.",
+              "icon": "tabler:brand-whatsapp"
+            },
+            {
+              "id": "web",
+              "label": "Chat on my web",
+              "desc": "Smart bubble for visitor questions.",
+              "icon": "tabler:messages"
+            },
+            {
+              "id": "multi",
+              "label": "All in one",
+              "desc": "Web, WhatsApp, and IG all together.",
+              "icon": "tabler:layout-grid"
+            },
+            {
+              "id": "internal",
+              "label": "Team Assistant",
+              "desc": "Created to help your internal staff.",
+              "icon": "tabler:engine"
+            }
           ]
         },
         "step3": {
           "question": "What is the primary function?",
           "options": [
-            { "id": "sales", "label": "Close more sales", "desc": "Book appointments or take payments.", "icon": "tabler:cash" },
-            { "id": "support", "label": "Customer help", "desc": "Answer common questions 24/7.", "icon": "tabler:headset" },
-            { "id": "leads", "label": "Get phone numbers", "desc": "Gather data from interested people.", "icon": "tabler:filter" },
-            { "id": "ai_agent", "label": "Advanced Robot", "desc": "Chat that reasons like a human.", "icon": "tabler:robot-face" }
+            {
+              "id": "sales",
+              "label": "Close more sales",
+              "desc": "Book appointments or take payments.",
+              "icon": "tabler:cash"
+            },
+            {
+              "id": "support",
+              "label": "Customer help",
+              "desc": "Answer common questions 24/7.",
+              "icon": "tabler:headset"
+            },
+            {
+              "id": "leads",
+              "label": "Get phone numbers",
+              "desc": "Gather data from interested people.",
+              "icon": "tabler:filter"
+            },
+            {
+              "id": "ai_agent",
+              "label": "Advanced Robot",
+              "desc": "Chat that reasons like a human.",
+              "icon": "tabler:robot-face"
+            }
           ]
         },
         "step4": {
           "question": "AI at the service of ROI",
           "options": [
-            { "id": "24h", "label": "Always online", "desc": "Stop losing sales for not replying.", "icon": "tabler:calendar-time" },
-            { "id": "savings", "label": "Save on staff", "desc": "Reduce manual support costs.", "icon": "tabler:piggy-bank" },
-            { "id": "qualification", "label": "Auto Filter", "desc": "Pass only the real prospects.", "icon": "tabler:filter-check" },
-            { "id": "nps", "label": "Happy customers", "desc": "Instant replies that everyone loves.", "icon": "tabler:mood-smile-beam" }
+            {
+              "id": "24h",
+              "label": "Always online",
+              "desc": "Stop losing sales for not replying.",
+              "icon": "tabler:calendar-time"
+            },
+            {
+              "id": "savings",
+              "label": "Save on staff",
+              "desc": "Reduce manual support costs.",
+              "icon": "tabler:piggy-bank"
+            },
+            {
+              "id": "qualification",
+              "label": "Auto Filter",
+              "desc": "Pass only the real prospects.",
+              "icon": "tabler:filter-check"
+            },
+            {
+              "id": "nps",
+              "label": "Happy customers",
+              "desc": "Instant replies that everyone loves.",
+              "icon": "tabler:mood-smile-beam"
+            }
           ]
         },
         "step5": {

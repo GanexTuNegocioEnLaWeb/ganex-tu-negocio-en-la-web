@@ -353,41 +353,52 @@ const sectionServicesId = t("nav.services_id", dict);
   const close = document.getElementById("close-menu");
   const menu = document.getElementById("mobile-menu");
 
-  btn?.addEventListener("click", () => {
-    menu?.classList.remove("opacity-0", "pointer-events-none");
-    btn?.setAttribute("aria-expanded", "true");
-  });
+  const toggleMenu = (open: boolean) => {
+    if (open) {
+      menu?.classList.remove("opacity-0", "pointer-events-none");
+    } else {
+      menu?.classList.add("opacity-0", "pointer-events-none");
+    }
+    btn?.setAttribute("aria-expanded", String(open));
+    btn2?.setAttribute("aria-expanded", String(open));
+  };
 
-  close?.addEventListener("click", () => {
-    menu?.classList.add("opacity-0", "pointer-events-none");
-    btn?.setAttribute("aria-expanded", "false");
-  });
+  btn?.addEventListener("click", () => toggleMenu(true));
+  btn2?.addEventListener("click", () => toggleMenu(true));
+  close?.addEventListener("click", () => toggleMenu(false));
 
-  btn2?.addEventListener("click", () => {
-    menu?.classList.remove("opacity-0", "pointer-events-none");
-    btn2?.setAttribute("aria-expanded", "true");
-  });
-
-  close?.addEventListener("click", () => {
-    menu?.classList.add("opacity-0", "pointer-events-none");
-    btn2?.setAttribute("aria-expanded", "false");
-  });
-  const primary = document.getElementById("primary-header");
+  // Dynamic Scroll Behavior (Headroom-style)
   const secondary = document.getElementById("secondary-header");
-  const obs = new IntersectionObserver(
-    (entries) => {
-      const visible = entries[0]?.isIntersecting ?? true;
-      if (!visible) {
-        secondary?.classList.add("top-0");
-        secondary?.classList.remove("pointer-events-none");
+  let lastScrollY = window.scrollY;
+  const threshold = 300; // Distancia mínima para activar el header secundario
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY;
+
+      // Si estamos por debajo del threshold
+      if (currentScrollY > threshold) {
+        if (scrollingDown) {
+          // Scroll hacia abajo: ocultar
+          secondary?.classList.remove("top-0");
+          secondary?.classList.add("-top-60", "pointer-events-none");
+        } else {
+          // Scroll hacia arriba: mostrar
+          secondary?.classList.add("top-0");
+          secondary?.classList.remove("-top-60", "pointer-events-none");
+        }
       } else {
+        // Si estamos muy arriba (cerca del primary header): ocultar secundario
         secondary?.classList.remove("top-0");
-        secondary?.classList.add("pointer-events-none");
+        secondary?.classList.add("-top-60", "pointer-events-none");
       }
+
+      lastScrollY = currentScrollY;
     },
-    { threshold: 0, rootMargin: "32px 0px 0px 0px" }
+    { passive: true },
   );
-  if (primary) obs.observe(primary);
 </script>
 
 <style>

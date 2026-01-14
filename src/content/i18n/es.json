@@ -17,7 +17,8 @@
   "nav": {
     "services": "Servicios",
     "contact_id": "soporte",
-    "services_id": "servicios"
+    "services_id": "servicios",
+    "start_slug": "empezar"
   },
   "chatbots": {
     "hero": {
@@ -444,6 +445,8 @@
         "email_placeholder": "tu@email.com",
         "whatsapp": "WhatsApp",
         "whatsapp_placeholder": "Ej: 70000000",
+        "company": "Empresa",
+        "company_placeholder": "Tu empresa (Opcional)",
         "submit": "Quiero que me contacten",
         "footer": "Respondemos en menos de 60 minutos"
       },

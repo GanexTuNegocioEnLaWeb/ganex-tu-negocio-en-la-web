@@ -25,18 +25,50 @@ export async function getStaticPaths() {
 
     if (slug === "home") continue;
 
-    paths.push({
-      params: { lang, slug },
-      props: { page },
-    });
-
-    // Si esta página es el portafolio, generamos también los detalles de sus proyectos
     const portfolioSlugs = ["proyectos", "portfolio", "projects"];
+    const blogSlugs = ["blog"];
+    const isSpecial =
+      portfolioSlugs.includes(slug.toLowerCase()) ||
+      blogSlugs.includes(slug.toLowerCase());
+
+    if (!isSpecial) {
+      paths.push({
+        params: { lang, slug },
+        props: { page },
+      });
+    }
+
+    // Si esta página es el portafolio, generamos también los detalles de sus proyectos y la paginación
     if (portfolioSlugs.includes(slug.toLowerCase())) {
       const projects = await getCollection(
         "projects",
         ({ data }) => data.lang === lang,
       );
+
+      // --- Paginación del Portafolio ---
+      const itemsPerPage = 6;
+      const totalPages = Math.ceil(projects.length / itemsPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        paths.push({
+          params: { lang, slug: i === 1 ? slug : `${slug}/${i}` },
+          props: {
+            page: {
+              ...page,
+              data: {
+                ...page.data,
+                blocks: page.data.blocks.map((b: any) =>
+                  b.type === "portfolio-grid"
+                    ? {
+                        ...b,
+                        props: { ...b.props, currentPage: i, totalPages },
+                      }
+                    : b,
+                ),
+              },
+            },
+          },
+        });
+      }
 
       for (const project of projects) {
         // Extraer el slug sin el sufijo del idioma
@@ -58,13 +90,37 @@ export async function getStaticPaths() {
       }
     }
 
-    // Si esta página es el blog, generamos también los detalles de sus posts
-    const blogSlugs = ["blog"];
+    // Si esta página es el blog, generamos también los detalles de sus posts y la paginación
     if (blogSlugs.includes(slug.toLowerCase())) {
       const blogPosts = await getCollection(
         "blog",
         ({ data }) => data.lang === lang && !data.draft,
       );
+
+      // --- Paginación del Blog ---
+      const itemsPerPage = 6;
+      const totalPages = Math.ceil(blogPosts.length / itemsPerPage);
+      for (let i = 1; i <= totalPages; i++) {
+        paths.push({
+          params: { lang, slug: i === 1 ? slug : `${slug}/${i}` },
+          props: {
+            page: {
+              ...page,
+              data: {
+                ...page.data,
+                blocks: page.data.blocks.map((b: any) =>
+                  b.type === "blog-grid"
+                    ? {
+                        ...b,
+                        props: { ...b.props, currentPage: i, totalPages },
+                      }
+                    : b,
+                ),
+              },
+            },
+          },
+        });
+      }
 
       for (const post of blogPosts) {
         // Extraer el slug sin el sufijo del idioma

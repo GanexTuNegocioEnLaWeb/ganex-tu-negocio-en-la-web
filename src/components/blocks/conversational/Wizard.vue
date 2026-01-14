@@ -261,6 +261,32 @@
                 </div>
               </div>
 
+              <div class="relative">
+                <input
+                  v-model="form.company"
+                  type="text"
+                  :placeholder="i18n.step6.form.company_placeholder"
+                  class="w-full p-5 pl-6 rounded-3xl border-2 border-neutral-100 focus:border-[#FF8A00] focus:ring-4 focus:ring-orange-50 outline-none transition-all font-semibold text-neutral-800"
+                />
+                <div
+                  class="absolute right-6 top-1/2 -translate-y-1/2 text-neutral-300"
+                >
+                  <svg
+                    class="w-6 h-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
               <div class="flex gap-2">
                 <div class="relative">
                   <button
@@ -477,8 +503,9 @@ const form = reactive({
   name: "",
   email: "",
   whatsapp: "",
+  company: "",
   country_code: "+591",
-  service: props.initialService || "general",
+  service: props.initialService || "General",
   service_id: props.serviceId,
 });
 
@@ -489,10 +516,25 @@ onMounted(() => {
   }
 });
 
-const totalFlowSteps = computed(() => (props.initialService ? 3 : 4));
+const totalFlowSteps = computed(() => {
+  // We have 4 selection steps (2, 3, 4) + 1 capture step (6). Step 1 (Hero) and Step 5 (Confidence) are transitions.
+  // Actually, let's just count the "interactive" steps:
+  // Step 2: Need (if not pre-selected)
+  // Step 3: Business Type
+  // Step 4: Goal
+  // Step 6: Capture
+  // Total interactive steps = (initialService ? 3 : 4)
+  return props.initialService ? 3 : 4;
+});
+
 const currentFlowStep = computed(() => {
-  if (props.initialService) return step.value - 1;
-  return step.value - 1;
+  if (step.value === 6) return totalFlowSteps.value;
+  if (step.value <= 1) return 0;
+  if (step.value === 5) return props.initialService ? 2 : 3;
+  
+  // Steps 2, 3, 4
+  if (props.initialService) return step.value - 2; // Step 3 -> 1, Step 4 -> 2
+  return step.value - 1; // Step 2 -> 1, Step 3 -> 2, Step 4 -> 3
 });
 
 const currentStepKey = computed(() => {
@@ -625,11 +667,19 @@ onMounted(() => {
 });
 
 const nextStep = () => {
-  step.value++;
+  if (step.value === 1 && props.initialService) {
+    step.value = 3; // Skip Step 2 (Need selection)
+  } else {
+    step.value++;
+  }
 };
 
 const prevStep = () => {
-  step.value--;
+  if (step.value === 3 && props.initialService) {
+    step.value = 1; // Go back to Hero, skipping Step 2
+  } else {
+    step.value--;
+  }
 };
 
 const setField = (field, value) => {
@@ -638,8 +688,9 @@ const setField = (field, value) => {
   // Update internal service_id if selecting from general flow
   if (step.value === 2 && !props.serviceId && currentStepData.value.options) {
      const opt = currentStepData.value.options.find(o => o.label === value);
-     if (opt && opt.id && props.i18n.services[opt.id]) {
+     if (opt && opt.id && props.i18n.services?.[opt.id]) {
         form.service_id = opt.id;
+        form.service = value; // Capturamos el nombre real del servicio
      }
   }
 
@@ -670,7 +721,33 @@ const changeLang = (newLang) => {
 const submitLead = async () => {
   loading.value = true;
   try {
-    const { error } = await supabase.from("leads").insert([form]);
+    const payload = {
+      name: form.name,
+      email: form.email,
+      phone: `${form.country_code} ${form.whatsapp}`,
+      whatsapp: form.whatsapp,
+      company: form.company,
+      country_code: form.country_code,
+      source: "wizard",
+      status: "pending",
+      need: form.need,
+      business_type: form.business_type,
+      goal: form.goal,
+      service: form.service || form.need,
+      service_id: form.service_id,
+      details: {
+        need: form.need,
+        business_type: form.business_type,
+        goal: form.goal,
+        lang: props.lang,
+        company: form.company,
+        service: form.service,
+        service_id: form.service_id,
+        raw_phone: form.whatsapp
+      }
+    };
+
+    const { error } = await supabase.from("leads").insert([payload]);
 
     if (error) throw error;
 

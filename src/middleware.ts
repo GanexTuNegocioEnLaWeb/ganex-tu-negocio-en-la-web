@@ -1,4 +1,5 @@
 import type { MiddlewareHandler } from "astro";
+import { supabase } from "./lib/supabase";
 import { getSupportedLangs, DEFAULT_LANG, isLang } from "./lib/i18n";
 
 function pickLang(accept = "", supported: string[]): string {
@@ -27,6 +28,32 @@ export const onRequest: MiddlewareHandler = async (ctx, next) => {
     pathname.includes("_astro")
   ) {
     return next();
+  }
+
+  // Auth Guard Logic
+  const isAdminRoute = pathname.startsWith("/admin");
+  const isLoginRoute = pathname === "/login";
+
+  if (isAdminRoute || isLoginRoute) {
+    const accessToken = ctx.cookies.get("sb-access-token");
+    const refreshToken = ctx.cookies.get("sb-refresh-token");
+
+    if (accessToken && refreshToken) {
+      const { data, error } = await supabase.auth.setSession({
+        access_token: accessToken.value,
+        refresh_token: refreshToken.value,
+      });
+
+      if (error || !data.session) {
+        ctx.cookies.delete("sb-access-token", { path: "/" });
+        ctx.cookies.delete("sb-refresh-token", { path: "/" });
+        if (isAdminRoute) return ctx.redirect("/login");
+      } else {
+        if (isLoginRoute) return ctx.redirect("/admin");
+      }
+    } else {
+      if (isAdminRoute) return ctx.redirect("/login");
+    }
   }
 
   const supported = await getSupportedLangs(); // p.ej. ["es","en","pt"]

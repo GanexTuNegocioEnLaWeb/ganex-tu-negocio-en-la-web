@@ -333,7 +333,8 @@
 
                 <div class="relative flex-1">
                   <input
-                    v-model="form.whatsapp"
+                    :value="form.whatsapp"
+                    @input="handlePhoneInput"
                     type="tel"
                     required
                     :placeholder="i18n.step6.form.whatsapp_placeholder"
@@ -654,6 +655,12 @@ const selectCountry = (c) => {
   countrySearch.value = '';
 };
 
+const handlePhoneInput = (e) => {
+  const input = e.target;
+  input.value = input.value.replace(/[^0-9]/g, '');
+  form.whatsapp = input.value;
+};
+
 onMounted(() => {
   // Try to detect country from timezone
   const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
@@ -693,6 +700,9 @@ const setField = (field, value) => {
         form.service = value; // Capturamos el nombre real del servicio
      }
   }
+
+  // Scroll to top with smooth animation
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
   setTimeout(() => {
     nextStep();

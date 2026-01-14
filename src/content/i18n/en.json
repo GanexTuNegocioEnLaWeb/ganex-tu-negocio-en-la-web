@@ -327,6 +327,10 @@
     "portfolio": {
       "title": "Ganex - Project Portfolio",
       "description": "Explore our complete collection of digital projects. Web development, mobile apps, and innovative technological solutions."
+    },
+    "404": {
+      "title": "Page not found",
+      "description": "Sorry, the page you are looking for does not exist."
     }
   },
   "footer": {
@@ -943,6 +947,49 @@
       }
     },
     "back": "Back"
+  },
+  "booking": {
+    "modal": {
+      "title": "Schedule your meeting",
+      "subtitle": "Select the best time to talk"
+    },
+    "flow": {
+      "month_year": "{month} {year}",
+      "available_times": "Available times",
+      "no_times_today": "No times available for today",
+      "select_another_day": "Please select another day",
+      "meeting_scheduled": "Meeting Scheduled",
+      "change": "Change",
+      "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "form": {
+        "full_name": "Full name",
+        "full_name_placeholder": "E.g. John Doe",
+        "email": "Email address",
+        "email_placeholder": "name@company.com",
+        "company": "Company name",
+        "company_placeholder": "E.g. Ganex Studio",
+        "phone": "Phone / WhatsApp",
+        "phone_placeholder": "...",
+        "search_country": "Search country...",
+        "confirm": "Confirm meeting",
+        "confirming": "Confirming..."
+      }
+    }
+  },
+  "marketing_card": {
+    "title": "Create your project",
+    "subtitle": "What do you need help with?",
+    "email_placeholder": "Your best email address",
+    "cta": "Start my project",
+    "services": {
+      "web": "Web Design",
+      "ecommerce": "E-commerce",
+      "seo": "SEO",
+      "ads": "Advertising",
+      "social": "Social Media",
+      "branding": "Branding"
+    }
   },
   "locale": "en"
 }

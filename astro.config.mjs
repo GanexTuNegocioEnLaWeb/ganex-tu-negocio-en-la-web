@@ -10,5 +10,12 @@ export default defineConfig({
   adapter: vercel(),
   site: "https://www.ganexbo.com",
   trailingSlash: "never",
-  integrations: [sitemap(), icon(), vue()],
+  integrations: [
+    sitemap({
+      filter: (page) =>
+        !page.includes("/admin") && !page.includes("/login"),
+    }),
+    icon(),
+    vue(),
+  ],
 });

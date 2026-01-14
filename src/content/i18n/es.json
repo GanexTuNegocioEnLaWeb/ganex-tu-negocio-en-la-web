@@ -327,6 +327,10 @@
     "portfolio": {
       "title": "Ganex - Portafolio de Proyectos",
       "description": "Explora nuestra colección completa de proyectos digitales. Desarrollo web, apps móviles y soluciones tecnológicas innovadoras."
+    },
+    "404": {
+      "title": "Página no encontrada",
+      "description": "Lo sentimos, la página que buscas no existe."
     }
   },
   "footer": {
@@ -943,6 +947,49 @@
       }
     },
     "back": "Volver"
+  },
+  "booking": {
+    "modal": {
+      "title": "Agenda tu reunión",
+      "subtitle": "Selecciona el mejor momento para conversar"
+    },
+    "flow": {
+      "month_year": "{month} {year}",
+      "available_times": "Horarios disponibles",
+      "no_times_today": "No hay horarios disponibles para hoy",
+      "select_another_day": "Por favor selecciona otro día",
+      "meeting_scheduled": "Reunión Agendada",
+      "change": "Cambiar",
+      "days": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
+      "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      "form": {
+        "full_name": "Nombre completo",
+        "full_name_placeholder": "Ej. Andres Eduardo",
+        "email": "Correo electrónico",
+        "email_placeholder": "nombre@empresa.com",
+        "company": "Nombre de la empresa",
+        "company_placeholder": "Ej. Ganex Studio",
+        "phone": "Teléfono / WhatsApp",
+        "phone_placeholder": "...",
+        "search_country": "Buscar país...",
+        "confirm": "Confirmar reunión",
+        "confirming": "Confirmando..."
+      }
+    }
+  },
+  "marketing_card": {
+    "title": "Crea tu proyecto",
+    "subtitle": "¿Con qué necesitas ayuda?",
+    "email_placeholder": "Tu mejor correo electrónico",
+    "cta": "Iniciar mi proyecto",
+    "services": {
+      "web": "Diseño Web",
+      "ecommerce": "Tienda Online",
+      "seo": "SEO / Posicionamiento",
+      "ads": "Marketing",
+      "social": "Publicidad",
+      "branding": "Crea tu Marca"
+    }
   },
   "locale": "es"
 }

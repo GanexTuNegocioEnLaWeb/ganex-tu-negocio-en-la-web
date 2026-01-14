@@ -64,13 +64,16 @@ const sectionServicesId = t("nav.services_id", dict);
     class="max-w-6xl mx-auto flex items-center justify-between py-6 text-white px-12"
   >
     <!-- Logo -->
-    <a href={`/${lang}`} class="w-60 transition-transform hover:scale-105">
+    <a
+      href={`/${lang}`}
+      class="transition-all duration-500 hover:scale-110 active:scale-95 group"
+    >
       <Image
         src={logoGanexWhite}
         alt={site?.data.ogImageAlt || "Ganex"}
         width={240}
         height={160}
-        class="drop-shadow-lg"
+        class="w-40 sm:w-48 md:w-56 lg:w-60 h-auto drop-shadow-2xl transition-all duration-500 group-hover:brightness-110"
       />
     </a>
 
@@ -172,12 +175,12 @@ const sectionServicesId = t("nav.services_id", dict);
     <!-- Mobile button -->
     <button
       id="menu-btn"
-      class="xl:hidden text-white"
+      class="xl:hidden p-2 text-white hover:bg-white/10 rounded-xl transition-all active:scale-90"
       aria-label={openMenu}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <Icon name="tabler:menu-2" width="28" height="28" />
+      <Icon name="tabler:menu-2" class="w-8 h-8 md:w-9 md:h-9" />
     </button>
   </section>
 </header>
@@ -291,12 +294,12 @@ const sectionServicesId = t("nav.services_id", dict);
     <!-- Mobile button -->
     <button
       id="menu-btn-2"
-      class="xl:hidden text-black"
+      class="xl:hidden p-2 text-[#FF8A00] hover:bg-orange-50 rounded-xl transition-all active:scale-90"
       aria-label={openMenu}
       aria-expanded="false"
       aria-controls="mobile-menu"
     >
-      <Icon name="tabler:menu-2" width="28" height="28" />
+      <Icon name="tabler:menu-2" class="w-8 h-8 md:w-9 md:h-9" />
     </button>
   </div>
   <style>
@@ -315,36 +318,45 @@ const sectionServicesId = t("nav.services_id", dict);
 <!-- Mobile menu -->
 <div
   id="mobile-menu"
-  class="fixed inset-0 bg-[#FF8A00] flex flex-col items-center justify-center gap-8
-         opacity-0 pointer-events-none transition-opacity z-50"
+  class="fixed inset-0 bg-linear-to-br from-[#ff8a00] to-[#ffb25a] flex flex-col items-center justify-center gap-10
+         opacity-0 pointer-events-none transition-all duration-500 z-100 backdrop-blur-lg"
 >
+  <div class="absolute inset-0 bg-white/5 opacity-20"></div>
+
   <button
     id="close-menu"
-    class="absolute top-6 right-6 text-white"
+    class="absolute top-8 right-8 text-white p-3 hover:bg-white/20 rounded-2xl transition-all active:scale-90 z-10"
     aria-label={closeMenu}
   >
-    <Icon name="tabler:x" width="28" height="28" />
+    <Icon name="tabler:x" class="w-9 h-9" />
   </button>
 
-  <a
-    href={`/${lang}#${sectionServicesId}`}
-    class="text-2xl text-white font-medium"
-  >
-    {t("nav.services", dict)}
-  </a>
+  <div class="flex flex-col items-center gap-8 z-10 w-full px-12">
+    {
+      nav.map((item) => (
+        <a
+          href={hrefFor(item)}
+          class="mobile-nav-link text-3xl text-white font-bold tracking-tight hover:scale-110 transition-transform"
+        >
+          {item.label}
+        </a>
+      ))
+    }
 
-  {
-    nav.map((item) => (
+    <div
+      class="mt-4 pt-8 border-t border-white/20 w-full flex flex-col items-center gap-8"
+    >
+      <LanguageSwitcher lang={lang} slug={slug} />
+
       <a
-        href={hrefFor(item)}
-        class="text-2xl text-white font-medium hover:text-neutral-200"
+        href={`${currentPath}${contactAnchor}`}
+        class="w-full max-w-xs py-4 bg-white text-[#FF8A00] rounded-2xl font-black text-xl text-center shadow-2xl
+               hover:scale-105 active:scale-95 transition-all"
       >
-        {item.label}
+        {cta}
       </a>
-    ))
-  }
-
-  <LanguageSwitcher lang={lang} slug={slug} />
+    </div>
+  </div>
 </div>
 
 <script>
@@ -355,9 +367,17 @@ const sectionServicesId = t("nav.services_id", dict);
 
   const toggleMenu = (open: boolean) => {
     if (open) {
-      menu?.classList.remove("opacity-0", "pointer-events-none");
+      menu?.classList.remove(
+        "opacity-0",
+        "pointer-events-none",
+        "translate-y-10",
+      );
+      menu?.classList.add("opacity-100", "translate-y-0");
+      document.body.style.overflow = "hidden";
     } else {
-      menu?.classList.add("opacity-0", "pointer-events-none");
+      menu?.classList.add("opacity-0", "pointer-events-none", "translate-y-10");
+      menu?.classList.remove("opacity-100", "translate-y-0");
+      document.body.style.overflow = "";
     }
     btn?.setAttribute("aria-expanded", String(open));
     btn2?.setAttribute("aria-expanded", String(open));

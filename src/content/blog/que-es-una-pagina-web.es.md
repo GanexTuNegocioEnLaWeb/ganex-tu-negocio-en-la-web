@@ -1,5 +1,4 @@
 ---
-
 title: "¿Qué es una página web? Guía completa para entenderla y usarla a tu favor"
 description: "Descubre qué es una página web, para qué sirve, tipos, ejemplos, ventajas SEO y cómo crear una paso a paso para tu negocio. Guía completa y optimizada para posicionar en Google."
 author: "Ganex"
@@ -18,7 +17,6 @@ tags: [
 "ganex" ]
 lang: "es"
 draft: false
-
 ---
 
 > En esta guía te voy a explicar **qué es una página web**, para qué sirve, los tipos que existen y cómo puede ayudarte a **hacer crecer tu negocio en Internet** de forma estratégica.

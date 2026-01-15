@@ -1,5 +1,4 @@
 ---
-
 title: "What is a website? A complete guide to understand it and use it to your advantage"
 description: "Discover what a website is, what it is used for, types, examples, SEO benefits, and how to create one step by step for your business. A complete, Google-optimized guide."
 author: "Ganex"
@@ -19,7 +18,6 @@ tags: [
 ]
 lang: "en"
 draft: false
-
 ---
 
 > In this guide, I’ll explain **what a website is**, what it’s used for, the different types that exist, and how it can help you **grow your business online** in a strategic way.

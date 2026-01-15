@@ -962,6 +962,10 @@
       "change": "Change",
       "days": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
       "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      "success": {
+        "title": "Meeting confirmed!",
+        "subtitle": "We'll contact you soon"
+      },
       "form": {
         "full_name": "Full name",
         "full_name_placeholder": "E.g. John Doe",

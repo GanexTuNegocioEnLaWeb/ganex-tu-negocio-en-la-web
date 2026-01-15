@@ -16,6 +16,7 @@ const step = ref(1);
 const selectedDate = ref<Date | null>(null);
 const selectedTime = ref<string | null>(null);
 const isSubmitting = ref(false);
+const isSuccess = ref(false);
 
 const form = ref({
   name: "",
@@ -255,11 +256,17 @@ const handleConfirm = async () => {
     console.error("Error booking meeting:", error);
     alert("Hubo un error al agendar la reunión. Inténtalo de nuevo.");
   } else {
-    emit("success", {
-      scheduled_at: scheduledAt.toISOString(),
-      name: form.value.name,
-      email: form.value.email,
-    });
+    // Show success message
+    isSuccess.value = true;
+    
+    // Wait 2 seconds before emitting success event
+    setTimeout(() => {
+      emit("success", {
+        scheduled_at: scheduledAt.toISOString(),
+        name: form.value.name,
+        email: form.value.email,
+      });
+    }, 2000);
   }
 };
 
@@ -409,6 +416,17 @@ onMounted(() => {
             </div>
           </div>
         </Transition>
+      </div>
+
+      <!-- Success Message -->
+      <div v-else-if="isSuccess" key="success" class="text-center py-8">
+        <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <h3 class="text-2xl font-black text-neutral-800 mb-2">{{ t('booking.flow.success.title', '¡Reunión confirmada!') }}</h3>
+        <p class="text-neutral-600">{{ t('booking.flow.success.subtitle', 'Te contactaremos pronto') }}</p>
       </div>
 
       <!-- Step 2: Form -->

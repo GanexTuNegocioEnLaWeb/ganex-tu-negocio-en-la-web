@@ -962,6 +962,10 @@
       "change": "Cambiar",
       "days": ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
       "months": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+      "success": {
+        "title": "¡Reunión confirmada!",
+        "subtitle": "Te contactaremos pronto"
+      },
       "form": {
         "full_name": "Nombre completo",
         "full_name_placeholder": "Ej. Andres Eduardo",

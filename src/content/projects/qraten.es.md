@@ -9,7 +9,7 @@ keywords:
   - aplicación móvil Bolivia
   - web app empresarial
   - desarrollo de software Bolivia
-image: /images/portfolio/qraten.png
+image: /images/projects/qraten.png
 link: https://www.qraten.com
 lang: es
 ---

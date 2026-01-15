@@ -82,12 +82,12 @@ export const BLOCK_MANIFEST: BlockManifestEntry[] = [
   },
   // PORTFOLIO
   {
-    type: "portfolio-grid",
-    import: () => import("./portfolio/PortfolioGrid.astro"),
+    type: "projects-grid",
+    import: () => import("./projects/ProjectsGrid.astro"),
   },
   {
     type: "project-detail",
-    import: () => import("./portfolio/ProjectDetail.astro"),
+    import: () => import("./projects/ProjectDetail.astro"),
   },
   // BLOG
   {

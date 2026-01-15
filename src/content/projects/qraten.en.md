@@ -8,7 +8,7 @@ keywords:
   - mobile app development
   - web app solution
   - QR code system
-image: /images/portfolio/qraten.png
+image: /images/projects/qraten.png
 link: https://www.qraten.com
 lang: en
 ---

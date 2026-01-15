@@ -414,25 +414,33 @@ onMounted(() => {
       <!-- Step 2: Form -->
       <div v-else key="step2" class="space-y-6">
         <div
-          class="bg-orange-50 p-6 rounded-3xl border border-orange-100 flex items-center gap-4 mb-4"
+          class="bg-orange-50 p-6 rounded-3xl border border-orange-100 flex flex-col gap-4 mb-4"
         >
-          <div
-            class="w-12 h-12 bg-[#FF8A00] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-orange-100"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          <div class="w-full flex justify-between">
+            <div
+              class="w-12 h-12 bg-[#FF8A00] rounded-2xl flex items-center justify-center text-white shadow-lg shadow-orange-100"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-              />
-            </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-6 h-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+            </div>
+            <button
+              @click="step = 1"
+              class="ml-auto text-sm font-bold text-neutral-400 hover:text-neutral-600 underline"
+            >
+              {{ t("booking.flow.change", "Cambiar") }}
+            </button>
           </div>
           <div>
             <div
@@ -447,12 +455,6 @@ onMounted(() => {
               {{ selectedTime }}
             </div>
           </div>
-          <button
-            @click="step = 1"
-            class="ml-auto text-sm font-bold text-neutral-400 hover:text-neutral-600 underline"
-          >
-            {{ t("booking.flow.change", "Cambiar") }}
-          </button>
         </div>
 
         <form @submit.prevent="handleConfirm" class="space-y-4">
@@ -491,101 +493,94 @@ onMounted(() => {
             </div>
           </div>
           <!-- <div class="grid sm:grid-cols-2 gap-4"> -->
-            <div class="space-y-2">
-              <label
-                class="text-xs font-black text-neutral-400 uppercase tracking-widest ml-1"
-                >{{
-                  t("booking.flow.form.company", "Nombre de la empresa")
-                }}</label
-              >
-              <input
-                v-model="form.company"
-                type="text"
-                :placeholder="
-                  t('booking.flow.form.company_placeholder', 'Ej. Ganex Studio')
-                "
-                class="w-full bg-neutral-50 border-2 border-neutral-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#FF8A00] transition-all font-bold text-neutral-800"
-              />
-            </div>
-            <div class="space-y-2">
-              <label
-                class="text-xs font-black text-neutral-400 uppercase tracking-widest ml-1"
-                >{{
-                  t("booking.flow.form.phone", "Teléfono / WhatsApp")
-                }}</label
-              >
-              <div class="flex gap-2">
-                <div class="relative">
-                  <button
-                    type="button"
-                    @click="showCountries = !showCountries"
-                    class="h-full flex items-center gap-2 px-4 rounded-2xl border-2 border-neutral-100 bg-white hover:bg-neutral-50 transition-all cursor-pointer whitespace-nowrap"
-                  >
-                    <span class="text-xl">{{ selectedCountry.flag }}</span>
-                    <span class="font-bold text-neutral-700">{{
-                      selectedCountry.dial
-                    }}</span>
-                  </button>
+          <div class="space-y-2">
+            <label
+              class="text-xs font-black text-neutral-400 uppercase tracking-widest ml-1"
+              >{{
+                t("booking.flow.form.company", "Nombre de la empresa")
+              }}</label
+            >
+            <input
+              v-model="form.company"
+              type="text"
+              :placeholder="
+                t('booking.flow.form.company_placeholder', 'Ej. Ganex Studio')
+              "
+              class="w-full bg-neutral-50 border-2 border-neutral-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#FF8A00] transition-all font-bold text-neutral-800"
+            />
+          </div>
+          <div class="space-y-2">
+            <label
+              class="text-xs font-black text-neutral-400 uppercase tracking-widest ml-1"
+              >{{ t("booking.flow.form.phone", "Teléfono / WhatsApp") }}</label
+            >
+            <div class="flex gap-2">
+              <div class="relative">
+                <button
+                  type="button"
+                  @click="showCountries = !showCountries"
+                  class="h-full flex items-center gap-2 px-4 rounded-2xl border-2 border-neutral-100 bg-white hover:bg-neutral-50 transition-all cursor-pointer whitespace-nowrap"
+                >
+                  <span class="text-xl">{{ selectedCountry.flag }}</span>
+                  <span class="font-bold text-neutral-700">{{
+                    selectedCountry.dial
+                  }}</span>
+                </button>
 
-                  <div
-                    v-if="showCountries"
-                    @click="showCountries = false"
-                    class="fixed inset-0 z-10"
-                  ></div>
+                <div
+                  v-if="showCountries"
+                  @click="showCountries = false"
+                  class="fixed inset-0 z-10"
+                ></div>
 
-                  <div
-                    v-if="showCountries"
-                    class="absolute bottom-full mb-2 left-0 w-64 bg-white rounded-2xl shadow-2xl border border-neutral-100 overflow-hidden z-20"
-                  >
-                    <div
-                      class="p-2 border-b border-neutral-100 bg-neutral-50/50"
+                <div
+                  v-if="showCountries"
+                  class="absolute bottom-full mb-2 left-0 w-64 bg-white rounded-2xl shadow-2xl border border-neutral-100 overflow-hidden z-20"
+                >
+                  <div class="p-2 border-b border-neutral-100 bg-neutral-50/50">
+                    <input
+                      v-model="countrySearch"
+                      type="text"
+                      :placeholder="
+                        t('booking.flow.form.search_country', 'Buscar país...')
+                      "
+                      class="w-full px-3 py-2 text-sm bg-white rounded-xl border border-neutral-200 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
+                      @click.stop
+                    />
+                  </div>
+                  <div class="max-h-60 overflow-y-auto">
+                    <button
+                      v-for="c in filteredCountries"
+                      :key="c.code"
+                      type="button"
+                      @click="selectCountry(c)"
+                      class="w-full flex items-center gap-3 p-4 hover:bg-orange-50 transition-all text-left border-b border-neutral-50 last:border-0"
                     >
-                      <input
-                        v-model="countrySearch"
-                        type="text"
-                        :placeholder="
-                          t(
-                            'booking.flow.form.search_country',
-                            'Buscar país...'
-                          )
-                        "
-                        class="w-full px-3 py-2 text-sm bg-white rounded-xl border border-neutral-200 focus:ring-2 focus:ring-orange-100 outline-none transition-all"
-                        @click.stop
-                      />
-                    </div>
-                    <div class="max-h-60 overflow-y-auto">
-                      <button
-                        v-for="c in filteredCountries"
-                        :key="c.code"
-                        type="button"
-                        @click="selectCountry(c)"
-                        class="w-full flex items-center gap-3 p-4 hover:bg-orange-50 transition-all text-left border-b border-neutral-50 last:border-0"
-                      >
-                        <span class="text-2xl">{{ c.flag }}</span>
-                        <div class="flex flex-col">
-                          <span class="font-bold text-neutral-800">{{
-                            c.name
-                          }}</span>
-                          <span class="text-xs text-neutral-400">{{
-                            c.dial
-                          }}</span>
-                        </div>
-                      </button>
-                    </div>
+                      <span class="text-2xl">{{ c.flag }}</span>
+                      <div class="flex flex-col">
+                        <span class="font-bold text-neutral-800">{{
+                          c.name
+                        }}</span>
+                        <span class="text-xs text-neutral-400">{{
+                          c.dial
+                        }}</span>
+                      </div>
+                    </button>
                   </div>
                 </div>
-                <input
-                  :value="form.phone"
-                  @input="handlePhoneInput"
-                  type="tel"
-                  required
-                  :placeholder="
-                    t('booking.flow.form.phone_placeholder', '+591 ...')
-                  "
-                  class="flex-1 bg-neutral-50 border-2 border-neutral-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#FF8A00] transition-all font-bold text-neutral-800"
-                />
               </div>
+              <input
+                :value="form.phone"
+                @input="handlePhoneInput"
+                type="tel"
+                required
+                :placeholder="
+                  t('booking.flow.form.phone_placeholder', '+591 ...')
+                "
+                class="bg-neutral-50 border-2 border-neutral-100 rounded-2xl px-6 py-4 focus:outline-none focus:border-[#FF8A00] transition-all w-full font-bold text-neutral-800"
+              />
             </div>
+          </div>
           <!-- </div> -->
 
           <div class="pt-4">

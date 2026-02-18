@@ -1,0 +1,100 @@
+name: PR Auto Labeler
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  label:
+    name: Auto Label PR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Etiquetar PR automáticamente
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { data: files } = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+            });
+
+            const labels = new Set();
+
+            files.forEach(file => {
+              const path = file.filename;
+
+              // Etiquetas por tipo de archivo
+              if (path.includes('src/components/')) {
+                labels.add('components');
+              }
+              if (path.includes('src/pages/')) {
+                labels.add('pages');
+              }
+              if (path.includes('src/content/')) {
+                labels.add('content');
+              }
+              if (path.includes('.vue')) {
+                labels.add('vue');
+              }
+              if (path.includes('.astro')) {
+                labels.add('astro');
+              }
+              if (path.match(/\.(css|scss)$/)) {
+                labels.add('styles');
+              }
+              if (path.includes('src/content/blog/')) {
+                labels.add('blog');
+              }
+              if (path.includes('src/content/i18n/')) {
+                labels.add('i18n');
+              }
+              if (path.match(/\.(md|mdx)$/)) {
+                labels.add('documentation');
+              }
+              if (path.includes('.github/')) {
+                labels.add('ci/cd');
+              }
+              if (path.includes('package.json') || path.includes('package-lock.json')) {
+                labels.add('dependencies');
+              }
+            });
+
+            // Etiquetas por título del PR
+            const title = context.payload.pull_request.title.toLowerCase();
+
+            if (title.includes('fix') || title.includes('bug')) {
+              labels.add('bug');
+            }
+            if (title.includes('feat') || title.includes('feature')) {
+              labels.add('enhancement');
+            }
+            if (title.includes('docs') || title.includes('documentation')) {
+              labels.add('documentation');
+            }
+            if (title.includes('refactor')) {
+              labels.add('refactor');
+            }
+            if (title.includes('test')) {
+              labels.add('tests');
+            }
+            if (title.includes('perf') || title.includes('performance')) {
+              labels.add('performance');
+            }
+            if (title.includes('security')) {
+              labels.add('security');
+            }
+
+            // Añadir todas las etiquetas
+            if (labels.size > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: Array.from(labels)
+              });
+            }

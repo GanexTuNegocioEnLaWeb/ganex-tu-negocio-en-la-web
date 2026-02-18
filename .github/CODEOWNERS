@@ -1,0 +1,27 @@
+# CODEOWNERS
+# Este archivo define quién debe revisar los cambios en diferentes partes del código
+# Los usuarios mencionados serán automáticamente solicitados como revisores
+
+# Configuración por defecto - todos los archivos
+* @GanexTuNegocioEnLaWeb
+
+# Configuración y CI/CD
+/.github/ @GanexTuNegocioEnLaWeb
+*.yml @GanexTuNegocioEnLaWeb
+*.yaml @GanexTuNegocioEnLaWeb
+package.json @GanexTuNegocioEnLaWeb
+package-lock.json @GanexTuNegocioEnLaWeb
+
+# Documentación
+*.md @GanexTuNegocioEnLaWeb
+/docs/ @GanexTuNegocioEnLaWeb
+
+# Componentes críticos
+/src/components/Header.astro @GanexTuNegocioEnLaWeb
+/src/components/Footer.astro @GanexTuNegocioEnLaWeb
+
+# Contenido y traducciones
+/src/content/ @GanexTuNegocioEnLaWeb
+
+# Configuración de Astro
+astro.config.mjs @GanexTuNegocioEnLaWeb

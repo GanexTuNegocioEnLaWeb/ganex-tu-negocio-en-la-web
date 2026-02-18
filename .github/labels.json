@@ -1,0 +1,157 @@
+[
+  {
+    "name": "bug",
+    "color": "d73a4a",
+    "description": "Algo no funciona correctamente"
+  },
+  {
+    "name": "enhancement",
+    "color": "a2eeef",
+    "description": "Nueva funcionalidad o mejora"
+  },
+  {
+    "name": "documentation",
+    "color": "0075ca",
+    "description": "Mejoras o adiciones a la documentación"
+  },
+  {
+    "name": "question",
+    "color": "d876e3",
+    "description": "Pregunta o necesita más información"
+  },
+  {
+    "name": "good first issue",
+    "color": "7057ff",
+    "description": "Bueno para nuevos contribuidores"
+  },
+  {
+    "name": "help wanted",
+    "color": "008672",
+    "description": "Se necesita ayuda extra"
+  },
+  {
+    "name": "priority: high",
+    "color": "b60205",
+    "description": "Alta prioridad"
+  },
+  {
+    "name": "priority: medium",
+    "color": "fbca04",
+    "description": "Prioridad media"
+  },
+  {
+    "name": "priority: low",
+    "color": "0e8a16",
+    "description": "Baja prioridad"
+  },
+  {
+    "name": "size/small",
+    "color": "c2e0c6",
+    "description": "PR pequeño (< 200 líneas)"
+  },
+  {
+    "name": "size/medium",
+    "color": "f9d0c4",
+    "description": "PR mediano (200-500 líneas)"
+  },
+  {
+    "name": "size/large",
+    "color": "ee0701",
+    "description": "PR grande (> 500 líneas)"
+  },
+  {
+    "name": "components",
+    "color": "1d76db",
+    "description": "Cambios en componentes"
+  },
+  {
+    "name": "pages",
+    "color": "5319e7",
+    "description": "Cambios en páginas"
+  },
+  {
+    "name": "content",
+    "color": "bfdadc",
+    "description": "Cambios en contenido"
+  },
+  {
+    "name": "styles",
+    "color": "fef2c0",
+    "description": "Cambios en estilos CSS"
+  },
+  {
+    "name": "vue",
+    "color": "42b883",
+    "description": "Componentes Vue"
+  },
+  {
+    "name": "astro",
+    "color": "ff5d01",
+    "description": "Componentes Astro"
+  },
+  {
+    "name": "blog",
+    "color": "c5def5",
+    "description": "Relacionado con el blog"
+  },
+  {
+    "name": "i18n",
+    "color": "bfd4f2",
+    "description": "Internacionalización y traducciones"
+  },
+  {
+    "name": "dependencies",
+    "color": "0366d6",
+    "description": "Actualización de dependencias"
+  },
+  {
+    "name": "ci/cd",
+    "color": "ededed",
+    "description": "Integración continua y deployment"
+  },
+  {
+    "name": "refactor",
+    "color": "fbca04",
+    "description": "Refactorización de código"
+  },
+  {
+    "name": "tests",
+    "color": "d4c5f9",
+    "description": "Relacionado con tests"
+  },
+  {
+    "name": "performance",
+    "color": "f9c513",
+    "description": "Mejoras de rendimiento"
+  },
+  {
+    "name": "security",
+    "color": "ee0701",
+    "description": "Relacionado con seguridad"
+  },
+  {
+    "name": "wontfix",
+    "color": "ffffff",
+    "description": "No se trabajará en esto"
+  },
+  {
+    "name": "duplicate",
+    "color": "cfd3d7",
+    "description": "Issue o PR duplicado"
+  },
+  {
+    "name": "needs review",
+    "color": "fbca04",
+    "description": "Necesita revisión"
+  },
+  {
+    "name": "work in progress",
+    "color": "f9d0c4",
+    "description": "Trabajo en progreso"
+  },
+  {
+    "name": "blocked",
+    "color": "b60205",
+    "description": "Bloqueado por otra tarea"
+  }
+]
